@@ -1,4 +1,5 @@
 import { clamp, segment } from '../lib/motion.js';
+import { whenNear } from '../lib/lazyBackgrounds.js';
 
 // Tools: the tools hang on a sage wall; below, three cats, each hugging a fish, walk along a Persian rug as you
 // scroll. Their walk is a flip-book of three poses (cut from the same window in every frame, so nothing jumps),
@@ -16,10 +17,13 @@ export function createTools(root, { reduced }) {
     const el = document.createElement('div');
     el.className = `cat cat--${name}`;
     el.innerHTML = '<span class="cat__shadow"></span>'
-      + [0, 1, 2].map((f) => `<img src="assets/tools/cat-${name}-${f}.webp" alt="" decoding="async">`).join('');
+      + [0, 1, 2].map((f) => `<img data-src="assets/tools/cat-${name}-${f}.webp" alt="" decoding="async">`).join('');
     troupe.append(el);
     return { el, poses: [...el.querySelectorAll('img')], pose: -1 };
   });
+
+  // The cats load only as the page comes near.
+  whenNear(root, () => troupe.querySelectorAll('img[data-src]').forEach((img) => { img.src = img.dataset.src; }));
 
   let top = 0, run = 1, frame = 0;
 

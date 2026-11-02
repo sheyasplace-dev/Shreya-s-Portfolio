@@ -1,5 +1,6 @@
 import { config } from './config.js';
 import { prefersReducedMotion } from './lib/motion.js';
+import { lazyBackgrounds } from './lib/lazyBackgrounds.js';
 import { HeroStage } from './intro/heroStage.js';
 import { DesktopScene } from './intro/desktopScene.js';
 import { circleReveal } from './intro/circleReveal.js';
@@ -56,6 +57,7 @@ const sound = createSoundToggle(document.querySelector('[data-sound]'), {
   music: config.music,
 });
 
+lazyBackgrounds();
 helloEl.inert = true;
 hero.mount();
 // Let the film open on its own before the controls drift in.

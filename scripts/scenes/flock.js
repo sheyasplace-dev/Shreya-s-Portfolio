@@ -1,4 +1,5 @@
 import { clamp, ease, lerp, segment } from '../lib/motion.js';
+import { whenNear } from '../lib/lazyBackgrounds.js';
 
 // The two birds, lifted from the photograph: each a body and two wings, on the photograph's own pixel grid.
 // box: [x, y, w, h] in the 608 × 868 photograph; up/down: each wing's shoulder, in % of the box;
@@ -25,7 +26,7 @@ function birdEl(b) {
   el.style.setProperty('--up-axis', `${b.upAxis}deg`);
   el.style.setProperty('--down-axis', `${b.downAxis}deg`);
   el.innerHTML = ['up', 'down', 'body']
-    .map((l) => `<img class="bird__${l}" src="assets/birds/bird-${b.name}-${l}.png" alt="" decoding="async">`).join('');
+    .map((l) => `<img class="bird__${l}" data-src="assets/birds/bird-${b.name}-${l}.webp" alt="" decoding="async">`).join('');
   return el;
 }
 
@@ -51,6 +52,8 @@ export function createFlock(root, { reduced }) {
   const sky = root.querySelector('[data-flock-sky]');
   const pair = root.querySelector('[data-flock-pair]');
   const flyers = BIRDS.map((b) => { const el = birdEl(b); pair.append(el); return { b, el }; });
+  // The birds load only as their sky comes near.
+  whenNear(root, () => pair.querySelectorAll('img[data-src]').forEach((img) => { img.src = img.dataset.src; }));
 
   let t = null, frame = 0, beating = false;
 

@@ -49,7 +49,7 @@
   aspect-ratio: 608 / 868;
   min-width: 112vw;
   translate: -50% -50%;
-  background: url('../assets/birds/clouds-blue.webp') center / cover no-repeat;
+  background: var(--clouds, none) center / cover no-repeat;
 }
 
 .flock__pair {

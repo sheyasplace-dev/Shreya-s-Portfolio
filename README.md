@@ -54,7 +54,7 @@ styles/
 assets/video/                  hero.mp4, hero-poster.jpg (first frame), hero-final.jpg (exact last frame)
 assets/work/                   fish-car-*.webp (the fish-car illustration, cut out of its background)
 assets/about/                  sofa-*.webp (her on the sofa) and tiger-*.webp (the tiger alone), two layers on one frame
-assets/scene/                  character.png, sticker.png (her outline), name.png (the original lettering), intro-audio.m4a
+assets/scene/                  character.webp, sticker.webp (her outline), name.webp (the original lettering), intro-audio.m4a
 assets/audio/                  put the background music here
 ```
 
@@ -70,9 +70,9 @@ New scenes go inside `<main id="hello">`, after the hello section.
 
 The images in `assets/scene/` were cut out of the supplied artwork: the checkerboard backgrounds were painted in, not transparent. The cut-outs also remove the watermarks that sat on them.
 
-- `character.png`: her figure on a padded canvas (924 × 1408). The bottom edge is a straight cut, hidden behind the banner's lower border.
-- `sticker.png`: her gold-and-ink outline on the same canvas, so the two always line up.
-- `name.png`: the original lettering, recoloured to the banner's orange (`#ff6f17`).
+- `character.webp`: her figure on a padded canvas (924 × 1408). The bottom edge is a straight cut, hidden behind the banner's lower border.
+- `sticker.webp`: her gold-and-ink outline on the same canvas, so the two always line up.
+- `name.webp`: the original lettering, recoloured to the banner's orange (`#ff6f17`).
 - `intro-audio.m4a`: the film's soundtrack, so the scene keeps its sound.
 
 Positions in `config.scene` are in the original banner's own pixels (3168 × 1344), so they can be checked against the artwork directly. To use a new figure, replace both PNGs on the same canvas and update `figure.width`, `height` and `focus`.
@@ -151,7 +151,7 @@ by copying one and giving it a new `data-proj`). The picture shown on hover is t
 
 `<section class="flock">`. After the open source / website design page (which holds still, in `.pstage`), the
 birds' sky drops from the top like the curtain, then the two birds fly across it as you scroll. The birds are
-lifted from the photograph in layers in `assets/birds/` (`bird-a-body/up/down.png` and the same for `b`); the
+lifted from the photograph in layers in `assets/birds/` (`bird-a-body/up/down.webp` and the same for `b`); the
 clouds behind them are the photograph's, recoloured blue (`clouds-blue.webp`). A wingbeat foreshortens each wing
 from the shoulder (`pose()` in `scripts/scenes/flock.js`). The drop's length is `fall` there; the flight's is
 `.flock__flight`'s height in `styles/flock.css`.
@@ -187,6 +187,11 @@ nothing is linked yet, by design. The doodles are inline SVGs in each `.cell`.
 slot as the page scrolls in). **Fill in** the LinkedIn, Substack and GitHub links and the email (they're marked
 `todo`: set each `href` and text, and drop the class). If you add Bengali text anywhere, add its characters to the
 Noto Serif Bengali `text=` list in `<head>`.
+
+## Favicon
+
+`favicon.ico` (16/32/48 px), `favicon-32.png`, `favicon-192.png`, `apple-touch-icon.png` (on the site's paper) and
+`icon-512.png`, all cut from the শ্রেয়া badge, with `site.webmanifest`; linked in `<head>`.
 
 ## Replacing the video
 

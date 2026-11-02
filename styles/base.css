@@ -49,3 +49,8 @@ button { font: inherit; color: inherit; }
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+/* Background pictures load only once their section is near the screen (scripts/lib/lazyBackgrounds.js). */
+.jack.is-near { --painting: url('../assets/jack/kathakali.webp'); }
+.rug.is-near { --rug: url('../assets/tools/rug.webp'); }
+.flock__sky.is-near { --clouds: url('../assets/birds/clouds-blue.webp'); }

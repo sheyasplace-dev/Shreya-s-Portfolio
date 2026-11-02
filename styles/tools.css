@@ -127,7 +127,7 @@
 .rug {
   position: relative;
   height: clamp(130px, 24svh, 240px);
-  background: url('../assets/tools/rug.webp') 0 0 / auto 100% repeat-x;
+  background: var(--rug, #3a1f5c) 0 0 / auto 100% repeat-x;
   box-shadow: 0 -2px 0 #1e1030, 0 -14px 24px -10px rgba(30, 40, 20, 0.35);
 }
 

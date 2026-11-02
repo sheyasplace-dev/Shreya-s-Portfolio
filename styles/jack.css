@@ -15,7 +15,7 @@
      page stays in front. The sky (where the fish swims) is the least washed. */
   background:
     linear-gradient(180deg, rgba(60, 14, 22, 0.15) 0, rgba(94, 24, 32, 0.55) 30%, rgba(94, 24, 32, 0.72) 100%),
-    url('../assets/jack/kathakali.webp') 50% 0 / cover no-repeat,
+    var(--painting, none) 50% 0 / cover no-repeat,
     var(--maroon);
   color: var(--maroon);
   perspective: 1400px;

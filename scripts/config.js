@@ -32,10 +32,10 @@ export const config = {
       inset: 48,                       // where the panel meets the inked border
       band: { top: 0.734, bottom: 0.715 }, // left edge of the red band, as a fraction of the panel
     },
-    name: { src: 'assets/scene/name.png', x: 148, y: 33, w: 2910, h: 1229 },
+    name: { src: 'assets/scene/name.webp', x: 148, y: 33, w: 2910, h: 1229 },
     figure: {
-      src: 'assets/scene/character.png',
-      sticker: 'assets/scene/sticker.png',
+      src: 'assets/scene/character.webp',
+      sticker: 'assets/scene/sticker.webp',
       width: 924,
       height: 1408,
       x: 1184,
