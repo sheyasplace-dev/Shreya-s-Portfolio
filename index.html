@@ -9,15 +9,21 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..500,0..100;1,9..144,300..500,0..100&family=Inter:wght@500&family=Italiana&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..500,0..100;1,9..144,300..500,0..100&family=Inter:wght@500&family=Italiana&family=Fredoka:wght@600&family=Nanum+Pen+Script&family=Figtree:wght@400;700&family=Black+Ops+One&family=Cedarville+Cursive&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500&text=%E0%A6%95%E0%A6%BE%E0%A6%9C%E0%A7%87%E0%A6%B0%20%E0%A6%85%E0%A6%AD%E0%A6%BF%E0%A6%9C%E0%A7%8D%E0%A6%9E%E0%A6%A4%E0%A6%BE&display=swap">
   <!-- Bengali numerals and her name only, so the subset stays tiny. -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400&text=%E0%A7%A7%E0%A7%A8%E0%A7%A9%E0%A7%AA%E0%A7%AB%E0%A6%B6%E0%A7%8D%E0%A6%B0%E0%A7%87%E0%A6%AF%E0%A6%BC%E0%A6%BE%20%E0%A6%B2%E0%A6%B9%E0%A6%BF%E0%A6%A1%E0%A7%80&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400&text=%E0%A7%A7%E0%A7%A8%E0%A7%A9%E0%A7%AA%E0%A7%AB%E0%A7%AC%E0%A6%B6%E0%A7%8D%E0%A6%B0%E0%A7%87%E0%A6%AF%E0%A6%BC%E0%A6%BE%20%E0%A6%B2%E0%A6%B9%E0%A6%BF%E0%A6%A1%E0%A7%80&display=swap">
 
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/intro.css">
   <link rel="stylesheet" href="styles/scene.css">
   <link rel="stylesheet" href="styles/hello.css">
   <link rel="stylesheet" href="styles/about.css">
+  <link rel="stylesheet" href="styles/work.css">
+  <link rel="stylesheet" href="styles/experience.css">
+  <link rel="stylesheet" href="styles/calendar.css">
+  <link rel="stylesheet" href="styles/casefile.css">
+  <link rel="stylesheet" href="styles/internships.css">
   <link rel="stylesheet" href="styles/chrome.css">
 
   <noscript><style>.intro, .chrome { display: none !important; } .hello .word { opacity: 1; transform: none; filter: none; }</style></noscript>
@@ -45,7 +51,9 @@
       </a>
     </section>
 
-    <!-- About. Answers marked .fact__todo are placeholders: replace the text and drop the class. -->
+    <!-- About. To add a field, copy a .fact block and give it the next Bengali numeral and --i. -->
+    <!-- The about section holds still (sticky) over its runway while the curtain falls on it. -->
+    <div class="stage" data-stage>
     <section id="about" class="about" aria-labelledby="about-title" data-about>
       <div class="about__copy">
         <h2 id="about-title" class="about__title" data-reveal>
@@ -62,19 +70,23 @@
           </div>
           <div class="fact" data-reveal style="--i:1">
             <dt><span class="fact__num" lang="bn" aria-hidden="true">২</span>lives in</dt>
-            <dd><span class="fact__todo">City, Country</span></dd>
+            <dd>Bengaluru, India</dd>
           </div>
           <div class="fact" data-reveal style="--i:2">
             <dt><span class="fact__num" lang="bn" aria-hidden="true">৩</span>role</dt>
-            <dd><span class="fact__todo">What you do</span></dd>
+            <dd>Marketing Specialist</dd>
           </div>
           <div class="fact fact--wide" data-reveal style="--i:3">
             <dt><span class="fact__num" lang="bn" aria-hidden="true">৪</span>known for</dt>
-            <dd><span class="fact__todo">The thing people come to you for</span></dd>
+            <dd><span class="nobr">not giving up,</span> <span class="nobr">new ideas at 1am,</span> <span class="nobr">too many tabs</span></dd>
           </div>
           <div class="fact fact--wide" data-reveal style="--i:4">
-            <dt><span class="fact__num" lang="bn" aria-hidden="true">৫</span>education</dt>
-            <dd><span class="fact__todo">Degree, Institution</span></dd>
+            <dt><span class="fact__num" lang="bn" aria-hidden="true">৫</span>education <span class="fact__when">2022–2025</span></dt>
+            <dd>BSC Economics with minor in Data Science</dd>
+          </div>
+          <div class="fact fact--wide" data-reveal style="--i:5">
+            <dt><span class="fact__num" lang="bn" aria-hidden="true">৬</span>college</dt>
+            <dd>St Joseph's College of Commerce</dd>
           </div>
         </dl>
       </div>
@@ -84,19 +96,382 @@
         <svg class="tiger__ring" viewBox="0 0 100 100" aria-hidden="true">
           <circle class="tiger__disc" cx="50" cy="50" r="49"/>
         </svg>
+        <div class="about__ground" aria-hidden="true"></div>
+        <!-- Two layers on one frame: she and the sofa stay put; the tiger walks in and settles in front. -->
+        <img
+          class="about__sofa"
+          data-lazy
+          data-src="assets/about/sofa-full.webp"
+          data-srcset="assets/about/sofa-1200.webp 1200w, assets/about/sofa-full.webp 2241w"
+          sizes="(min-width: 900px) and (min-aspect-ratio: 1/1) min(56vw, 86svh, 1100px), min(112vw, 760px)"
+          width="2241" height="1731"
+          alt="Illustration of Shreya stretched out on a striped sofa, one arm thrown over her head"
+          decoding="async">
         <div class="tiger" data-tiger>
           <div class="tiger__shadow" aria-hidden="true"></div>
           <img
-            data-tiger-img
-            data-src="assets/about/tiger-2243.webp"
-            data-srcset="assets/about/tiger-1200.webp 1200w, assets/about/tiger-2243.webp 2243w"
+            data-lazy
+            data-src="assets/about/tiger-full.webp"
+            data-srcset="assets/about/tiger-1200.webp 1200w, assets/about/tiger-full.webp 2241w"
             sizes="(min-width: 900px) and (min-aspect-ratio: 1/1) min(56vw, 86svh, 1100px), min(112vw, 760px)"
-            width="2243" height="1710"
-            alt="Illustration of Shreya stretched out on a striped sofa, a tiger curled around her with its tail arched overhead"
+            width="2241" height="1731"
+            alt="A tiger, its tail arched high over her, settling in front of the sofa"
             decoding="async">
         </div>
       </figure>
     </section>
+    <div class="stage__runway" data-runway aria-hidden="true"></div>
+    </div>
+
+    <!-- Work. The curtain is drawn by scripts/scenes/curtainArt.js; once it rises, its hem stays as this page's valance. -->
+    <section id="work" class="work" aria-labelledby="work-title" data-work>
+      <div class="curtain is-away" data-curtain aria-hidden="true"></div>
+      <header class="work__head" data-reveal>
+        <h2 id="work-title" class="work__title">work ex<span class="lift" style="--y:-0.1em">p</span><span class="lift" style="--y:-0.2em">e</span><span class="lift" style="--y:-0.08em">r</span>ience</h2>
+        <p class="work__bn" lang="bn">কাজের অভিজ্ঞতা</p>
+      </header>
+      <figure class="work__art" data-reveal style="--i:2">
+        <img
+          data-src="assets/work/fish-car-full.webp"
+          data-srcset="assets/work/fish-car-1100.webp 1100w, assets/work/fish-car-full.webp 2025w"
+          sizes="min(88vw, 1000px)"
+          width="2025" height="1232"
+          alt="Illustration of Shreya, in glasses, driving a purple fish-shaped car with a grey dog beside her, flying a red fish kite"
+          decoding="async">
+      </figure>
+    </section>
+
+    <!-- Experience: a dictionary entry under a Jamdani border (scripts/scenes/jamdani.js, scripts/scenes/experience.js). -->
+    <section id="experience" class="exp" aria-labelledby="exp-title" data-exp>
+      <div class="exp__border" data-exp-border></div>
+      <div class="exp__inner">
+        <header class="exp__head" data-reveal>
+          <h2 id="exp-title" class="exp__title">Experience</h2>
+          <p class="exp__say">/ɪkˈspɪəriəns/ <span aria-hidden="true">·</span> <em>noun</em></p>
+        </header>
+        <div class="exp__body" data-exp-body>
+          <svg class="exp__route" data-exp-route shape-rendering="crispEdges" aria-hidden="true"></svg>
+          <p class="exp__def" data-reveal><b>Experience</b> — the knowledge, perspective and understanding gained through the things we do, the paths we take, the mistakes we make, and the people we meet along the way.</p>
+          <p data-reveal>This is <b>my journey</b>. A collection of opportunities embraced, paths explored, lessons learned, a few unexpected detours, and countless moments of figuring things out as I went.</p>
+          <p data-reveal>Think of it as me navigating <b>a sea of opportunities</b>, never quite knowing what lies around the corner, but always curious enough to find out.</p>
+          <p data-reveal>Before you dive in, a little reminder: <b>come with an open heart</b>. No two journeys look alike, and there is no universal roadmap to getting it right. Some take the scenic route, some sail against the current, and some build their boats along the way.</p>
+          <p class="exp__last" data-reveal>This is simply my route and <b>every route has a story</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where I've worked: a wall calendar whose pages flip as you scroll (scripts/scenes/calendar.js). -->
+    <section id="worked" class="cal" aria-labelledby="cal-title" data-cal>
+      <div class="cal__stage">
+        <div class="cal__field" aria-hidden="true"></div>
+        <h2 id="cal-title" class="visually-hidden">Where I've worked</h2>
+        <nav class="cal__index" aria-label="Companies">
+          <button type="button" data-goto="0"><span>01</span> AI+</button>
+          <button type="button" data-goto="1"><span>02</span> Arctus Aerospace</button>
+          <button type="button" data-goto="2"><span>03</span> Wayground</button>
+        </nav>
+        <div class="cal__calendar">
+          <div class="cal__binding" aria-hidden="true"><i class="cal__hook"></i></div>
+          <div class="cal__pages">
+          <article class="cal-page" data-page aria-labelledby="cal-ai-plus">
+            <div class="cal-page__photo">
+              <img src="assets/companies/ai-plus-900.webp" srcset="assets/companies/ai-plus-900.webp 900w, assets/companies/ai-plus-1024.webp 1024w" sizes="min(90vw, 680px)" alt="The AI+ team and friends in a group selfie at an evening event" loading="lazy" decoding="async" style="object-position:center 30%">
+            </div>
+            <div class="cal-page__foot">
+              <div class="cal-page__meta">
+                <p class="cal-page__no">01</p>
+                <h3 id="cal-ai-plus" class="cal-page__name">AI+</h3>
+                <hr class="cal-page__rule">
+                <p class="cal-page__role">GTM Associate · Feb 2026 – Present</p>
+                <button class="cal-page__more" type="button" data-more>know more <span aria-hidden="true">→</span></button>
+              </div>
+            </div>
+            <!-- The page that opens on "know more". Text marked .todo is a placeholder: replace it and drop the class. -->
+            <template class="cal-page__story">
+              <article class="case" aria-label="AI+: GTM Associate">
+                <header class="case__intro">
+                  <div class="case__lead">
+                    <p class="case__tag">| 01 · GTM Associate |</p>
+                    <h2 class="case__title">GTM <em>at</em><br>AI+</h2>
+                    <p class="case__when">Feb 2026 – Present</p>
+                    
+                  </div>
+                  <div class="case__text">
+                    <p class="todo">A paragraph on what AI+ does, and what you came in to do there.</p>
+                    <p class="todo">A second paragraph: what a week looked like, who you worked with, what you owned.</p>
+                    <ul class="case__marks">
+                      <li class="todo">A number or result you're proud of</li>
+                      <li class="todo">Another one</li>
+                      <li class="todo">And one more</li>
+                    </ul>
+                  </div>
+                </header>
+                <figure class="case__band">
+                  <p class="case__spread" aria-hidden="true"><span>the</span><span>chapter</span><span>I’m</span><span>writing</span><span>now</span></p>
+                  <img src="assets/companies/ai-plus-900.webp" srcset="assets/companies/ai-plus-900.webp 900w, assets/companies/ai-plus-1024.webp 1024w" sizes="100vw" alt="The AI+ team and friends in a group selfie at an evening event" style="object-position:center 30%">
+                </figure>
+                <section class="case__box">
+                  <p class="case__tag">| what I did |</p>
+                  <div class="case__boxgrid">
+                    <div class="case__photo"><div class="ph"><span>another photo from AI+</span></div></div>
+                    <ol class="case__list">
+                      <li class="todo">The first thing you worked on, and what came of it.</li>
+                      <li class="todo">A project or campaign you led or shaped.</li>
+                      <li class="todo">Something you built from scratch: a process, a playbook, a pipeline.</li>
+                      <li class="todo">Who you worked with, and how.</li>
+                      <li class="todo">A moment that stretched you.</li>
+                    </ol>
+                  </div>
+                </section>
+                <section class="case__end">
+                  <h3 class="case__endtitle">What I <em>took</em><br>away</h3>
+                  <div class="case__endtext">
+                    <p class="case__tag">| lessons |</p>
+                    <p class="todo">What this role taught you: about the work, about people, about yourself.</p>
+                    <p class="todo">And what you carried into what came next.</p>
+                  </div>
+                </section>
+              </article>
+            </template>
+          </article>
+          <article class="cal-page" data-page aria-labelledby="cal-arctus">
+            <div class="cal-page__photo">
+              <img src="assets/companies/arctus-900.webp" srcset="assets/companies/arctus-900.webp 900w, assets/companies/arctus-1600.webp 1600w" sizes="min(90vw, 680px)" alt="The Arctus Aerospace team in matching black hoodies, gathered laughing around a desk" loading="lazy" decoding="async" style="object-position:center 45%">
+            </div>
+            <div class="cal-page__foot">
+              <div class="cal-page__meta">
+                <p class="cal-page__no">02</p>
+                <h3 id="cal-arctus" class="cal-page__name">Arctus<br>Aerospace</h3>
+                <hr class="cal-page__rule">
+                <p class="cal-page__role">Founder’s Office Associate · Oct 2025 – Jan 2026</p>
+                <button class="cal-page__more" type="button" data-more>know more <span aria-hidden="true">→</span></button>
+              </div>
+            </div>
+            <!-- The page that opens on "know more". Text marked .todo is a placeholder: replace it and drop the class. -->
+            <template class="cal-page__story">
+              <article class="case" aria-label="Arctus Aerospace: Founder’s Office Associate">
+                <header class="case__intro">
+                  <div class="case__lead">
+                    <p class="case__tag">| 02 · Founder’s Office Associate |</p>
+                    <h2 class="case__title">Founder’s office <em>at</em><br>Arctus Aerospace</h2>
+                    <p class="case__when">Oct 2025 – Jan 2026</p>
+                    
+                  </div>
+                  <div class="case__text">
+                    <p class="todo">A paragraph on what Arctus Aerospace does, and what you came in to do there.</p>
+                    <p class="todo">A second paragraph: what a week looked like, who you worked with, what you owned.</p>
+                    <ul class="case__marks">
+                      <li class="todo">A number or result you're proud of</li>
+                      <li class="todo">Another one</li>
+                      <li class="todo">And one more</li>
+                    </ul>
+                  </div>
+                </header>
+                <figure class="case__band">
+                  <p class="case__spread" aria-hidden="true"><span>learning</span><span>at</span><span>the</span><span>founders’</span><span>table</span></p>
+                  <img src="assets/companies/arctus-900.webp" srcset="assets/companies/arctus-900.webp 900w, assets/companies/arctus-1600.webp 1600w" sizes="100vw" alt="The Arctus Aerospace team in matching black hoodies, gathered laughing around a desk" style="object-position:center 45%">
+                </figure>
+                <section class="case__box">
+                  <p class="case__tag">| what I did |</p>
+                  <div class="case__boxgrid">
+                    <div class="case__photo"><div class="ph"><span>another photo from Arctus Aerospace</span></div></div>
+                    <ol class="case__list">
+                      <li class="todo">The first thing you worked on, and what came of it.</li>
+                      <li class="todo">A project or campaign you led or shaped.</li>
+                      <li class="todo">Something you built from scratch: a process, a playbook, a pipeline.</li>
+                      <li class="todo">Who you worked with, and how.</li>
+                      <li class="todo">A moment that stretched you.</li>
+                    </ol>
+                  </div>
+                </section>
+                <section class="case__end">
+                  <h3 class="case__endtitle">What I <em>took</em><br>away</h3>
+                  <div class="case__endtext">
+                    <p class="case__tag">| lessons |</p>
+                    <p class="todo">What this role taught you: about the work, about people, about yourself.</p>
+                    <p class="todo">And what you carried into what came next.</p>
+                  </div>
+                </section>
+              </article>
+            </template>
+          </article>
+          <article class="cal-page" data-page aria-labelledby="cal-quizizz">
+            <div class="cal-page__photo">
+              <img src="assets/companies/wayground-900.webp" srcset="assets/companies/wayground-900.webp 900w, assets/companies/wayground-1600.webp 1600w" sizes="min(90vw, 680px)" alt="The Wayground team flexing their arms together in the office" loading="lazy" decoding="async" style="object-position:center 52%">
+            </div>
+            <div class="cal-page__foot">
+              <div class="cal-page__meta">
+                <p class="cal-page__no">03</p>
+                <h3 id="cal-quizizz" class="cal-page__name">Wayground <span class="cal-page__aka">(formerly Quizizz)</span></h3>
+                <hr class="cal-page__rule">
+                <p class="cal-page__role">GTM Consultant · Oct 2024 – Oct 2025</p>
+                <button class="cal-page__more" type="button" data-more>know more <span aria-hidden="true">→</span></button>
+              </div>
+            </div>
+            <!-- The page that opens on "know more". Text marked .todo is a placeholder: replace it and drop the class. -->
+            <template class="cal-page__story">
+              <article class="case" aria-label="Wayground: GTM Consultant">
+                <header class="case__intro">
+                  <div class="case__lead">
+                    <p class="case__tag">| 03 · GTM Consultant |</p>
+                    <h2 class="case__title">GTM <em>at</em><br>Wayground</h2>
+                    <p class="case__when">Oct 2024 – Oct 2025</p>
+                    <p class="case__aka">formerly Quizizz</p>
+                  </div>
+                  <div class="case__text">
+                    <p class="todo">A paragraph on what Wayground does, and what you came in to do there.</p>
+                    <p class="todo">A second paragraph: what a week looked like, who you worked with, what you owned.</p>
+                    <ul class="case__marks">
+                      <li class="todo">A number or result you're proud of</li>
+                      <li class="todo">Another one</li>
+                      <li class="todo">And one more</li>
+                    </ul>
+                  </div>
+                </header>
+                <figure class="case__band">
+                  <p class="case__spread" aria-hidden="true"><span>where</span><span>it</span><span>all</span><span>began</span></p>
+                  <img src="assets/companies/wayground-900.webp" srcset="assets/companies/wayground-900.webp 900w, assets/companies/wayground-1600.webp 1600w" sizes="100vw" alt="The Wayground team flexing their arms together in the office" style="object-position:center 52%">
+                </figure>
+                <section class="case__box">
+                  <p class="case__tag">| what I did |</p>
+                  <div class="case__boxgrid">
+                    <div class="case__photo"><div class="ph"><span>another photo from Wayground</span></div></div>
+                    <ol class="case__list">
+                      <li class="todo">The first thing you worked on, and what came of it.</li>
+                      <li class="todo">A project or campaign you led or shaped.</li>
+                      <li class="todo">Something you built from scratch: a process, a playbook, a pipeline.</li>
+                      <li class="todo">Who you worked with, and how.</li>
+                      <li class="todo">A moment that stretched you.</li>
+                    </ol>
+                  </div>
+                </section>
+                <section class="case__end">
+                  <h3 class="case__endtitle">What I <em>took</em><br>away</h3>
+                  <div class="case__endtext">
+                    <p class="case__tag">| lessons |</p>
+                    <p class="todo">What this role taught you: about the work, about people, about yourself.</p>
+                    <p class="todo">And what you carried into what came next.</p>
+                  </div>
+                </section>
+              </article>
+            </template>
+          </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- "know more": a full page over the site, with its own scroll (scripts/scenes/calendar.js). -->
+    <div class="casefile" data-casefile role="dialog" aria-modal="true" aria-label="More about this job" hidden>
+      <div class="casefile__bar">
+        <button class="casefile__back" type="button" data-casefile-close><span aria-hidden="true">←</span> back</button>
+        <button class="casefile__next" type="button" data-casefile-next></button>
+      </div>
+      <div class="casefile__body" data-casefile-body></div>
+    </div>
+
+    <!-- Early internships: the G3 drives in as you scroll; its windows open onto each internship (scripts/scenes/internships.js). -->
+    <section id="internships" class="ride" aria-labelledby="ride-title" data-ride>
+      <div class="ride__stage">
+        <div class="ride__ground" aria-hidden="true"></div>
+        <div class="ride__words">
+          <h2 id="ride-title" class="ride__title">early internships</h2>
+          <p class="ride__sub">route G3 · three stops</p>
+        </div>
+        <div class="ride__flyer" data-flyer aria-hidden="true"></div>
+        <div class="ride__road">
+          <div class="ride__roadside" data-roadside aria-hidden="true"></div>
+          <div class="bus" data-bus>
+            <div class="bus__art" data-bus-art></div>
+            <button class="bus__window" type="button" style="--i:0" data-window="intern-1">
+              <span class="bus__blind"><span class="bus__label">Company one</span></span>
+            </button>
+            <button class="bus__window" type="button" style="--i:1" data-window="intern-2">
+              <span class="bus__blind"><span class="bus__label">Company two</span></span>
+            </button>
+            <button class="bus__window" type="button" style="--i:2" data-window="intern-3">
+              <span class="bus__blind"><span class="bus__label">Company three</span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Stop 01. Text marked .todo is a placeholder: replace it and drop the class. The window's label above
+           and data-label here are the company's name. -->
+      <template data-intern="intern-1" data-label="Company one">
+        <article class="ticket" aria-label="Company one">
+          <p class="ticket__route">route G3 · stop 01</p>
+          <h2 class="ticket__name"><span class="todo-name">Company one</span><span class="ticket__and">intern</span></h2>
+          <div class="ticket__grid">
+            <figure class="ticket__plan" data-plan></figure>
+            <div class="ticket__notes">
+              <p class="ticket__hand todo">A note in your own words: how you came to this internship, and what it was like on day one.</p>
+              <dl class="ticket__facts">
+                <div><dt>role</dt><dd class="todo">Your role</dd></div>
+                <div><dt>when</dt><dd class="todo">Month YYYY – Month YYYY</dd></div>
+              </dl>
+              <ol class="ticket__parts">
+                <li class="todo">The first thing you worked on.</li>
+                <li class="todo">A project you're proud of.</li>
+                <li class="todo">Something you learned to do.</li>
+                <li class="todo">The people who taught you most.</li>
+                <li class="todo">What you took with you to the next stop.</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+      </template>
+      <!-- Stop 02. Text marked .todo is a placeholder: replace it and drop the class. The window's label above
+           and data-label here are the company's name. -->
+      <template data-intern="intern-2" data-label="Company two">
+        <article class="ticket" aria-label="Company two">
+          <p class="ticket__route">route G3 · stop 02</p>
+          <h2 class="ticket__name"><span class="todo-name">Company two</span><span class="ticket__and">intern</span></h2>
+          <div class="ticket__grid">
+            <figure class="ticket__plan" data-plan></figure>
+            <div class="ticket__notes">
+              <p class="ticket__hand todo">A note in your own words: how you came to this internship, and what it was like on day one.</p>
+              <dl class="ticket__facts">
+                <div><dt>role</dt><dd class="todo">Your role</dd></div>
+                <div><dt>when</dt><dd class="todo">Month YYYY – Month YYYY</dd></div>
+              </dl>
+              <ol class="ticket__parts">
+                <li class="todo">The first thing you worked on.</li>
+                <li class="todo">A project you're proud of.</li>
+                <li class="todo">Something you learned to do.</li>
+                <li class="todo">The people who taught you most.</li>
+                <li class="todo">What you took with you to the next stop.</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+      </template>
+      <!-- Stop 03. Text marked .todo is a placeholder: replace it and drop the class. The window's label above
+           and data-label here are the company's name. -->
+      <template data-intern="intern-3" data-label="Company three">
+        <article class="ticket" aria-label="Company three">
+          <p class="ticket__route">route G3 · stop 03</p>
+          <h2 class="ticket__name"><span class="todo-name">Company three</span><span class="ticket__and">intern</span></h2>
+          <div class="ticket__grid">
+            <figure class="ticket__plan" data-plan></figure>
+            <div class="ticket__notes">
+              <p class="ticket__hand todo">A note in your own words: how you came to this internship, and what it was like on day one.</p>
+              <dl class="ticket__facts">
+                <div><dt>role</dt><dd class="todo">Your role</dd></div>
+                <div><dt>when</dt><dd class="todo">Month YYYY – Month YYYY</dd></div>
+              </dl>
+              <ol class="ticket__parts">
+                <li class="todo">The first thing you worked on.</li>
+                <li class="todo">A project you're proud of.</li>
+                <li class="todo">Something you learned to do.</li>
+                <li class="todo">The people who taught you most.</li>
+                <li class="todo">What you took with you to the next stop.</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+      </template>
+    </section>
+
   </main>
 
   <div id="intro" class="intro">
