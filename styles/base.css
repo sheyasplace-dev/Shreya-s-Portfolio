@@ -1,0 +1,42 @@
+/* Palette sampled from the opening film. */
+:root {
+  --ink: #400300;          /* the hand-drawn outline */
+  --vermilion: #e54235;    /* the border bands */
+  --pink: #f44292;
+  --crimson: #ec2e41;
+  --gold: #f2c14e;         /* the coins and the sticker outline */
+  --paper: #f8efe4;
+  --paper-deep: #f1e1cf;
+
+  --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-ui: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body[data-phase='intro'],
+body[data-phase='transition'] {
+  overflow: hidden;
+}
+
+button { font: inherit; color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}

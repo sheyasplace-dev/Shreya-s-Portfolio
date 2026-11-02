@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Shreya Lahiri</title>
+  <meta name="description" content="Pieces of me — the portfolio of Shreya Lahiri.">
+  <meta name="theme-color" content="#400300">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..500,0..100;1,9..144,300..500,0..100&family=Inter:wght@500&family=Italiana&display=swap">
+  <!-- Bengali numerals and her name only, so the subset stays tiny. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400&text=%E0%A7%A7%E0%A7%A8%E0%A7%A9%E0%A7%AA%E0%A7%AB%E0%A6%B6%E0%A7%8D%E0%A6%B0%E0%A7%87%E0%A6%AF%E0%A6%BC%E0%A6%BE%20%E0%A6%B2%E0%A6%B9%E0%A6%BF%E0%A6%A1%E0%A7%80&display=swap">
+
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/intro.css">
+  <link rel="stylesheet" href="styles/scene.css">
+  <link rel="stylesheet" href="styles/hello.css">
+  <link rel="stylesheet" href="styles/about.css">
+  <link rel="stylesheet" href="styles/chrome.css">
+
+  <noscript><style>.intro, .chrome { display: none !important; } .hello .word { opacity: 1; transform: none; filter: none; }</style></noscript>
+  <script type="module" src="scripts/main.js"></script>
+</head>
+<body data-phase="intro">
+
+  <!-- The page lives underneath the intro from the start, so the reveal never waits on loading. -->
+  <main id="hello" class="hello">
+    <div class="hello__atmos" data-atmos aria-hidden="true"></div>
+
+    <section class="scene scene--hello" aria-labelledby="hello-title">
+      <div class="scene__inner">
+        <div class="medallion" data-medallion role="img" aria-label="Illustrated portrait of Shreya holding a hilsa fish">
+          <div class="medallion__window" data-medallion-window></div>
+        </div>
+        <h1 id="hello-title" class="hello__title">
+          <span class="word" style="--i:0">Well,</span>
+          <em><span class="word" style="--i:1">hello</span> <span class="word" style="--i:2">there<span class="hello__dot">.</span></span></em>
+        </h1>
+      </div>
+      <a class="hello__cue" href="#about" data-cue>
+        <span>scroll</span>
+        <i aria-hidden="true"></i>
+      </a>
+    </section>
+
+    <!-- About. Answers marked .fact__todo are placeholders: replace the text and drop the class. -->
+    <section id="about" class="about" aria-labelledby="about-title" data-about>
+      <div class="about__copy">
+        <h2 id="about-title" class="about__title" data-reveal>
+          <span class="about__title-text">tell me about yourself</span>
+          <svg class="about__swash" viewBox="0 0 320 18" preserveAspectRatio="none" aria-hidden="true">
+            <path pathLength="1" d="M3 12C46 6 92 4 140 7s96 8 136 3c18-2 30-5 41-8"/>
+          </svg>
+        </h2>
+
+        <dl class="facts">
+          <div class="fact fact--name" data-reveal style="--i:0">
+            <dt><span class="fact__num" lang="bn" aria-hidden="true">১</span>name</dt>
+            <dd>Shreya Lahiri <span class="fact__aside" lang="bn">শ্রেয়া লাহিড়ী</span></dd>
+          </div>
+          <div class="fact" data-reveal style="--i:1">
+            <dt><span class="fact__num" lang="bn" aria-hidden="true">২</span>lives in</dt>
+            <dd><span class="fact__todo">City, Country</span></dd>
+          </div>
+          <div class="fact" data-reveal style="--i:2">
+            <dt><span class="fact__num" lang="bn" aria-hidden="true">৩</span>role</dt>
+            <dd><span class="fact__todo">What you do</span></dd>
+          </div>
+          <div class="fact fact--wide" data-reveal style="--i:3">
+            <dt><span class="fact__num" lang="bn" aria-hidden="true">৪</span>known for</dt>
+            <dd><span class="fact__todo">The thing people come to you for</span></dd>
+          </div>
+          <div class="fact fact--wide" data-reveal style="--i:4">
+            <dt><span class="fact__num" lang="bn" aria-hidden="true">৫</span>education</dt>
+            <dd><span class="fact__todo">Degree, Institution</span></dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- The tiger's resting place. The image inside travels here as the section scrolls in (scripts/scenes/about.js). -->
+      <figure class="about__tiger" data-tiger-home>
+        <svg class="tiger__ring" viewBox="0 0 100 100" aria-hidden="true">
+          <circle class="tiger__disc" cx="50" cy="50" r="49"/>
+        </svg>
+        <div class="tiger" data-tiger>
+          <div class="tiger__shadow" aria-hidden="true"></div>
+          <img
+            data-tiger-img
+            data-src="assets/about/tiger-2243.webp"
+            data-srcset="assets/about/tiger-1200.webp 1200w, assets/about/tiger-2243.webp 2243w"
+            sizes="(min-width: 900px) and (min-aspect-ratio: 1/1) min(56vw, 86svh, 1100px), min(112vw, 760px)"
+            width="2243" height="1710"
+            alt="Illustration of Shreya stretched out on a striped sofa, a tiger curled around her with its tail arched overhead"
+            decoding="async">
+        </div>
+      </figure>
+    </section>
+  </main>
+
+  <div id="intro" class="intro">
+    <div class="intro__stage" data-intro-stage>
+      <div class="intro__backdrop" aria-hidden="true"><canvas data-intro-backdrop width="32" height="18"></canvas></div>
+      <div class="intro__frame" data-intro-frame>
+        <div class="intro__media" data-intro-media>
+          <!-- Sources are set by heroStage.js, so laptops and desktops (which use the live scene) never download the film. -->
+          <video
+            muted
+            playsinline
+            preload="auto"
+            disablepictureinpicture
+            disableremoteplayback
+            aria-label="Opening film: an illustrated Shreya holds a hilsa fish above a lotus as gold coins fall around her name in Bengali"></video>
+          <img class="intro__final" data-intro-final alt="" decoding="async">
+        </div>
+      </div>
+    </div>
+    <div class="intro__loader" aria-hidden="true"></div>
+    <button class="intro__play" data-play type="button" hidden>
+      <span class="intro__play-icon" aria-hidden="true"></span>
+      <span class="intro__play-label">Play the intro</span>
+    </button>
+  </div>
+
+  <div class="iris-rim" data-iris-rim aria-hidden="true"></div>
+
+  <div class="chrome">
+    <button class="pill sound" data-sound type="button" aria-pressed="false">
+      <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span data-sound-label>Sound off</span>
+    </button>
+    <button class="pill skip" data-skip type="button">Skip intro <span aria-hidden="true">→</span></button>
+  </div>
+
+</body>
+</html>

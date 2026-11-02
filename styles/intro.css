@@ -1,0 +1,189 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;
+  background: var(--ink);
+  contain: strict;
+}
+
+.intro.is-fading {
+  opacity: 0;
+  transition: opacity 0.7s linear;
+}
+
+/* Everything that zooms out together. Positioned in viewport pixels; transformed by circleReveal.js. */
+.intro__stage {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+/* The film's own colours, blurred, filling any space around it — and anything the zoom-out exposes. */
+.intro__backdrop {
+  position: absolute;
+  inset: -45%;
+  background: var(--vermilion);
+}
+
+.intro__backdrop canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: blur(56px) saturate(1.2);
+  transform: scale(1.15);
+}
+
+.intro__backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 55% at 50% 48%, transparent 40%, rgba(64, 3, 0, 0.3) 100%);
+}
+
+/* In landscape the backdrop only peeks out at the edges, so keep it bright and continuous with the film. */
+.intro:not(:has(.is-arch)) .intro__backdrop::after { display: none; }
+
+.intro__frame {
+  position: absolute;
+  overflow: hidden;
+  transition: border-radius 0.5s var(--ease-in-out), box-shadow 0.5s var(--ease-in-out);
+}
+
+/* Portrait: a temple-arch window with the film's own sticker outline (ink, gold, ink). */
+.intro__frame.is-arch {
+  box-shadow:
+    0 0 0 2px var(--ink),
+    0 0 0 8px var(--gold),
+    0 0 0 10px var(--ink),
+    0 40px 90px -30px rgba(20, 0, 0, 0.75);
+}
+
+/* As the camera pulls back, the arch dissolves so only the picture is left in the lens. */
+.intro.is-leaving .intro__frame.is-arch {
+  border-radius: 0 !important;
+  box-shadow: 0 0 0 0 transparent;
+}
+
+.intro__media {
+  position: absolute;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1.2s var(--ease-out), transform 2.6s var(--ease-out);
+}
+
+.intro.is-visible .intro__media {
+  opacity: 1;
+  transform: none;
+}
+
+.intro__media.feather-x {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.intro__media.feather-y {
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.intro__media video,
+.intro__final {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* the box is already sized to the film's exact aspect ratio */
+}
+
+.intro__media video::-webkit-media-controls { display: none !important; }
+
+/* The exact final frame as a still: the anchor the transition is built on. */
+.intro__final { opacity: 0; }
+.intro.is-final .intro__final { opacity: 1; }
+.intro.is-final-fade .intro__final { transition: opacity 0.28s linear; }
+
+/* Buffering: a small coin-gold ring, only if the film actually stalls. */
+.intro__loader {
+  position: absolute;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom) + 92px);
+  width: 22px;
+  height: 22px;
+  margin-left: -11px;
+  border-radius: 50%;
+  border: 2px solid rgba(242, 193, 78, 0.25);
+  border-top-color: var(--gold);
+  opacity: 0;
+  transition: opacity 0.4s;
+  animation: spin 0.9s linear infinite;
+}
+
+.intro.is-buffering .intro__loader { opacity: 1; transition-delay: 0.4s; }
+
+@keyframes spin { to { transform: rotate(1turn); } }
+
+/* Shown when autoplay is blocked, or with reduced motion. */
+.intro__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: var(--paper);
+}
+
+.intro__play[hidden] { display: none; }
+
+.intro__play-icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: rgba(64, 3, 0, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 0 3px var(--gold), 0 0 0 4.5px rgba(64, 3, 0, 0.5), 0 18px 40px -12px rgba(20, 0, 0, 0.6);
+  position: relative;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.intro__play-icon::after {
+  content: '';
+  position: absolute;
+  left: 34px;
+  top: 27px;
+  border-style: solid;
+  border-width: 15px 0 15px 24px;
+  border-color: transparent transparent transparent var(--paper);
+}
+
+.intro__play:hover .intro__play-icon { transform: scale(1.06); }
+
+.intro__play-label {
+  font-style: italic;
+  font-size: 1.25rem;
+  font-variation-settings: 'opsz' 36, 'SOFT' 100;
+  text-shadow: 0 1px 12px rgba(20, 0, 0, 0.6);
+}
+
+/* The lens's gold rim during the transition — it becomes the medallion's ring. */
+.iris-rim {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 11;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform;
+}

@@ -1,0 +1,267 @@
+/* Laptops and desktops: the live scene (scripts/intro/desktopScene.js). Positions and motion are set in JS;
+   this file holds the look. Banner colours are sampled from the original artwork. */
+
+.intro.is-scene .intro__backdrop,
+.intro.is-scene .intro__frame,
+.intro.is-scene .intro__loader { display: none; }
+
+.pandal {
+  --banner-red: #f4302a;
+  --magenta: #ff31a0;
+  --band: #ff273c;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--magenta); /* only seen at the very end, when the world falls away around her */
+  opacity: 0;
+}
+
+.pandal > *,
+.pandal__banner > *,
+.banner__panel > * { position: absolute; }
+
+/* ── The wall the banner hangs on ── */
+
+.pandal__wall {
+  inset: -6%;
+  background:
+    radial-gradient(48% 52% at 50% 44%, #e52b3b 0%, rgba(229, 43, 59, 0) 100%),
+    radial-gradient(70% 70% at 50% 45%, #c71a30 0%, #a3112a 70%, #870c22 100%);
+  will-change: transform;
+}
+
+.pandal__wall::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain, none);
+}
+
+.pandal__floor {
+  left: 0;
+  width: 100%;
+  opacity: 0.68;
+  will-change: transform;
+}
+
+.pandal__floor svg { display: block; overflow: visible; }
+
+/* Rice-paste lines drawn in at the start. */
+.a-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 2.6s cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.pandal.is-drawn .a-line { stroke-dashoffset: 0; }
+
+.a-fill {
+  opacity: 0;
+  transition: opacity 1.4s ease 1s;
+}
+
+.pandal.is-drawn .a-fill { opacity: 1; }
+
+/* ── The banner: the original artwork, rebuilt in layers ── */
+
+.pandal__banner {
+  background: var(--banner-red);
+  box-shadow:
+    0 2px 0 rgba(60, 0, 10, 0.12),
+    0 48px 90px -36px rgba(45, 0, 12, 0.75);
+  will-change: transform;
+  transition: background-color 0.9s ease, box-shadow 0.9s ease;
+}
+
+.banner__panel {
+  overflow: hidden;
+  background: linear-gradient(180deg, #ff32a1, #ff2f97);
+}
+
+.banner__band {
+  inset: 0;
+  background: var(--band);
+  clip-path: polygon(73.4% 0, 100% 0, 100% 100%, 71.5% 100%);
+}
+
+.banner__flourish {
+  right: -1.5%;
+  bottom: -3%;
+  width: 19%;
+  height: auto;
+}
+
+.banner__name {
+  max-width: none;
+  /* Painted on with a soft brush edge (--wipe runs left to right). */
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(var(--wipe, -14%) - 12%), transparent var(--wipe, -14%));
+  mask-image: linear-gradient(90deg, #000 calc(var(--wipe, -14%) - 12%), transparent var(--wipe, -14%));
+}
+
+.banner__light {
+  inset: 0;
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  background: radial-gradient(20% 85% at var(--gx, -25%) 46%, rgba(255, 214, 110, 0.85), rgba(255, 190, 80, 0.28) 45%, transparent 72%);
+}
+
+.banner__coins {
+  top: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.coin {
+  position: absolute;
+  top: 0;
+  left: calc(var(--x) * 100%);
+  width: calc(var(--coin) * var(--w));
+  opacity: 0;
+  animation: coin-fall var(--dur) linear var(--delay) infinite paused;
+}
+
+.pandal.coins-on .coin { animation-play-state: running; }
+
+.coin svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: coin-turn 1.9s ease-in-out var(--delay) infinite;
+}
+
+@keyframes coin-fall {
+  0% { transform: translateY(-60px); opacity: 0; }
+  8% { opacity: 1; }
+  86% { opacity: 1; }
+  100% { transform: translateY(var(--fall)); opacity: 0; }
+}
+
+@keyframes coin-turn {
+  0%, 100% { transform: rotate(-20deg) scaleY(1); }
+  50% { transform: rotate(16deg) scaleY(0.4); }
+}
+
+.spark {
+  position: absolute;
+  left: calc(var(--x) * 100%);
+  top: calc(var(--y) * 100%);
+  width: calc(var(--coin) * 0.55 * var(--s));
+  animation: twinkle 3.4s ease-in-out var(--d) infinite;
+}
+
+.spark svg { display: block; width: 100%; height: auto; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.75); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* ── Her ── */
+
+.banner__figure { will-change: transform; }
+
+.figure__sticker,
+.figure__art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.figure__sticker { filter: drop-shadow(0 10px 16px rgba(80, 0, 30, 0.28)); }
+
+.figure__ripple {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.figure__ripple ellipse {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 5;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.banner__frame {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ── Toran ── */
+
+.pandal__toran { will-change: transform; }
+.pandal__toran svg { display: block; overflow: visible; }
+
+.t-leaf {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  animation: leaf-sway 5.5s ease-in-out var(--d) infinite;
+}
+
+.t-strand {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  animation: strand-sway 7s ease-in-out var(--d) infinite;
+}
+
+@keyframes leaf-sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes strand-sway {
+  0%, 100% { transform: rotate(-1.3deg); }
+  50% { transform: rotate(1.3deg); }
+}
+
+/* ── Skip: settle quickly into the final composition ── */
+
+.pandal.is-snapping .pandal__wall,
+.pandal.is-snapping .pandal__floor,
+.pandal.is-snapping .pandal__banner,
+.pandal.is-snapping .pandal__toran,
+.pandal.is-snapping .banner__figure,
+.pandal.is-snapping .figure__art,
+.pandal.is-snapping .figure__sticker {
+  transition: transform 0.34s ease-out, opacity 0.34s ease-out;
+}
+
+/* ── The lens closes: the world falls away until she stands on plain magenta ── */
+
+.pandal.is-leaving .pandal__wall,
+.pandal.is-leaving .pandal__floor,
+.pandal.is-leaving .pandal__toran,
+.pandal.is-leaving .banner__band,
+.pandal.is-leaving .banner__flourish,
+.pandal.is-leaving .banner__name,
+.pandal.is-leaving .banner__light,
+.pandal.is-leaving .banner__coins,
+.pandal.is-leaving .banner__frame,
+.pandal.is-leaving .figure__ripple {
+  opacity: 0 !important;
+  transition: opacity 0.9s ease;
+}
+
+.pandal.is-leaving .pandal__banner {
+  background-color: var(--magenta);
+  box-shadow: none;
+}
+
+.pandal.is-leaving .figure__sticker { filter: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .t-leaf, .t-strand, .spark, .coin svg { animation: none; }
+  .coin { animation: none; opacity: 1; top: calc(var(--x) * 70% + 4%); }
+  .a-line { transition: none; stroke-dashoffset: 0; }
+  .a-fill { transition: none; opacity: 1; }
+}

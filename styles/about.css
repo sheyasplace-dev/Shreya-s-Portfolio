@@ -1,0 +1,325 @@
+/* About: "tell me about yourself". The words sit top-left; the tiger walks in from the top-left corner
+   and settles bottom-right (scripts/scenes/about.js). */
+
+.hello { overflow-x: clip; } /* the tiger bleeds off the right edge, and starts off the left one */
+
+.scene--hello { position: relative; }
+.scene--hello .scene__inner { position: relative; z-index: 2; } /* the tiger passes behind the greeting */
+
+/* ── The way down from the greeting ── */
+
+.hello__cue {
+  position: absolute;
+  left: 50%;
+  bottom: max(28px, 5vh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  translate: -50% 0;
+  color: rgba(64, 3, 0, 0.62);
+  font-family: 'Italiana', var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-out) 1.4s;
+}
+
+.hello__cue i {
+  position: relative;
+  width: 1px;
+  height: 44px;
+  overflow: hidden;
+  background: rgba(64, 3, 0, 0.14);
+}
+
+.hello__cue i::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--vermilion);
+  transform: translateY(-100%);
+  animation: cue 2.6s var(--ease-in-out) infinite;
+}
+
+@keyframes cue {
+  0% { transform: translateY(-100%); }
+  55%, 100% { transform: translateY(100%); }
+}
+
+.hello.is-revealed .hello__cue { opacity: 1; }
+.hello.is-revealed.is-scrolled .hello__cue { opacity: 0; transition-delay: 0s; transition-duration: 0.5s; }
+
+/* ── The section ── */
+
+.about {
+  --gutter: max(16px, 7.5vw);
+  --tw: min(112vw, 760px); /* the tiger's width at rest */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(40px, 9vh, 96px) 0 clamp(72px, 12vh, 140px);
+  overflow-x: clip;
+}
+
+.about__copy {
+  position: relative;
+  z-index: 2;
+  padding: 0 var(--gutter);
+  container-type: inline-size;
+}
+
+/* The question, asked quietly. */
+.about__title {
+  position: relative;
+  display: inline-block;
+  margin: 0 0 clamp(36px, 6vh, 64px);
+  font-family: 'Italiana', var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 1.2rem + 1.5vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.about__swash {
+  position: absolute;
+  left: -2%;
+  right: -4%;
+  bottom: -0.42em;
+  width: 106%;
+  height: 0.46em;
+  overflow: visible;
+}
+
+.about__swash path {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+/* ── The answers ── */
+
+.facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: clamp(28px, 4cqi, 56px);
+  margin: 0;
+  max-width: 34rem;
+}
+
+@container (min-width: 30rem) {
+  .facts { grid-template-columns: 1fr 1fr; }
+  .fact--name,
+  .fact--wide { grid-column: 1 / -1; }
+}
+
+.fact {
+  position: relative;
+  padding: clamp(18px, 2.6vh, 26px) 0 clamp(18px, 2.6vh, 24px);
+}
+
+/* A hand-inked rule, with an alpona dot where it starts. */
+.fact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  transform-origin: 0 50%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 6' preserveAspectRatio='none'%3E%3Cpath d='M1 3.4C60 2.2 118 4 182 3.1S305 2 399 3.3' fill='none' stroke='%23400300' stroke-opacity='.26' stroke-width='1.1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+}
+
+.fact::after {
+  content: '';
+  position: absolute;
+  top: 0.5px;
+  left: -2px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.fact--name { padding-top: 0; }
+.fact--name::before,
+.fact--name::after { display: none; }
+
+.fact dt {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+  margin-bottom: 0.45em;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 360;
+  font-size: clamp(0.95rem, 0.88rem + 0.25vw, 1.08rem);
+  font-variation-settings: 'opsz' 14, 'SOFT' 100, 'WONK' 1;
+  letter-spacing: 0.01em;
+  color: rgba(64, 3, 0, 0.6);
+}
+
+.fact__num {
+  font-family: 'Noto Serif Bengali', var(--font-display);
+  font-style: normal;
+  font-size: 1.2em;
+  line-height: 1;
+  color: var(--vermilion);
+}
+
+.fact dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 360;
+  font-size: clamp(1.35rem, 1.05rem + 0.95vw, 2rem);
+  line-height: 1.16;
+  letter-spacing: -0.012em;
+  font-variation-settings: 'opsz' 72, 'SOFT' 100;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.fact--name dd {
+  font-weight: 330;
+  font-size: clamp(2.3rem, 1.5rem + 2.7vw, 3.9rem);
+  line-height: 1.02;
+  letter-spacing: -0.026em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+}
+
+.fact__aside {
+  display: block;
+  margin-top: 0.42em;
+  font-family: 'Noto Serif Bengali', var(--font-display);
+  font-size: 0.36em;
+  letter-spacing: 0.02em;
+  color: var(--vermilion);
+}
+
+/* Placeholder answers: obviously unfinished, but still in the voice of the page. */
+.fact__todo {
+  color: rgba(64, 3, 0, 0.42);
+  font-style: italic;
+  text-decoration: underline dotted rgba(229, 66, 53, 0.55);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+}
+
+/* ── Arriving: each line settles in as it reaches the screen ── */
+
+.about.is-armed [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 1s var(--ease-out),
+    transform 1.2s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 0.09s);
+}
+
+.about.is-armed .fact::before {
+  transform: scaleX(0);
+  transition: transform 1.3s var(--ease-out);
+  transition-delay: calc(0.15s + var(--i, 0) * 0.09s);
+}
+
+.about.is-armed .about__swash path {
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.4s var(--ease-in-out) 0.35s;
+}
+
+.about.is-armed [data-reveal].is-in { opacity: 1; transform: none; }
+.about.is-armed .fact.is-in::before { transform: none; }
+.about.is-armed .about__title.is-in .about__swash path { stroke-dashoffset: 0; }
+
+/* ── The tiger's place ── */
+
+.about__tiger {
+  position: relative;
+  z-index: 1;
+  order: -1; /* small screens: the picture first, then the words */
+  align-self: flex-end;
+  width: var(--tw);
+  aspect-ratio: 2243 / 1710;
+  margin: 0 calc(var(--tw) * -0.07) clamp(28px, 5vh, 56px) 0; /* the sofa's far arm runs off the page */
+}
+
+/* A soft gold disc behind the tiger, the medallion's circle grown large. */
+.tiger__ring {
+  position: absolute;
+  left: 13%;
+  top: -6%;
+  width: 82%;
+  height: auto;
+  overflow: visible;
+}
+
+.tiger__disc {
+  fill: rgba(242, 193, 78, 0.13);
+  opacity: var(--land, 1);
+}
+
+.tiger {
+  position: absolute;
+  inset: 0;
+  will-change: transform, opacity;
+}
+
+.tiger img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Grounds the sofa and the paws once they've landed. */
+.tiger__shadow {
+  position: absolute;
+  left: 6%;
+  right: 4%;
+  bottom: -2.5%;
+  height: 9%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(64, 3, 0, 0.2), rgba(64, 3, 0, 0) 100%);
+  opacity: var(--land, 1);
+}
+
+.about.is-waiting .tiger { opacity: 0; }
+
+/* ── Side by side: the words left, the tiger anchoring the bottom-right ── */
+
+@media (min-width: 900px) and (min-aspect-ratio: 1/1) {
+  .about {
+    --tw: min(56vw, 86svh, 1100px);
+    min-height: 100svh;
+    padding: clamp(72px, 13vh, 150px) 0 0;
+  }
+
+  .about__copy {
+    /* Never reaches the tiger: stops short of its left edge. */
+    padding-right: 0;
+    max-width: min(calc(var(--gutter) + 36rem), calc(100vw - var(--tw) * 0.93 - 40px));
+  }
+
+  .about__tiger {
+    position: absolute;
+    right: calc(var(--tw) * -0.07);
+    bottom: clamp(16px, 4vh, 48px);
+    margin: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hello__cue i::after { animation: none; transform: none; }
+  .about.is-armed [data-reveal] { transform: none; transition: opacity 0.8s linear; }
+  .about.is-armed .fact::before { transform: none; transition: none; }
+  .about.is-armed .about__swash path { transition: none; stroke-dashoffset: 0; }
+}

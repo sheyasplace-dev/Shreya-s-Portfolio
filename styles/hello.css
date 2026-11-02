@@ -1,0 +1,148 @@
+.hello {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+}
+
+/* Warm paper with a faint glow of the film's pink and gold where the medallion lands. */
+.hello__atmos {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  transform-origin: 50% 40%;
+  background:
+    radial-gradient(42vmax 32vmax at 50% 38%, rgba(242, 193, 78, 0.16), transparent 70%),
+    radial-gradient(70vmax 50vmax at 50% 40%, rgba(244, 66, 146, 0.07), transparent 65%),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper) 55%, var(--paper-deep) 100%);
+}
+
+.hello__atmos::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain, none); /* generated in hello.js */
+}
+
+.scene {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: max(10vh, 72px) 16px;
+}
+
+.scene--hello .scene__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(28px, 5.5vh, 56px);
+  transform: translateY(-4vh); /* sit on the optical centre, not the geometric one */
+}
+
+/* The final frame, cropped to the transition's focus circle. --fx/--fy/--fr/--src-w come from config. */
+.medallion {
+  --size: clamp(128px, 20vmin, 208px);
+  --scale: calc(var(--size) / (2 * var(--fr)));
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+}
+
+.medallion__window {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.medallion img {
+  position: absolute;
+  left: calc(var(--size) / 2 - var(--fx) * var(--scale));
+  top: calc(var(--size) / 2 - var(--fy) * var(--scale));
+  width: calc(var(--src-w) * var(--scale));
+  max-width: none;
+  height: auto;
+  visibility: hidden;
+}
+
+.medallion.is-filled {
+  box-shadow:
+    0 0 0 3px var(--gold),
+    0 0 0 4.5px rgba(64, 3, 0, 0.5),
+    0 22px 48px -18px rgba(64, 3, 0, 0.42);
+}
+
+.medallion.is-filled img { visibility: visible; }
+
+/* One ripple on landing — the film has one too, when the fish meets the water. */
+.medallion::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hello.is-revealed .medallion::after {
+  animation: ripple 1.8s var(--ease-out) forwards;
+}
+
+.hello.is-revealed .medallion {
+  animation: drift 8s ease-in-out 1.6s infinite;
+}
+
+@keyframes ripple {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.4); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.hello__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 340;
+  font-size: clamp(2.9rem, 1.4rem + 5.6vw, 7rem);
+  line-height: 1;
+  letter-spacing: -0.028em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.hello__title em {
+  font-style: italic;
+  font-weight: 320;
+}
+
+.hello__dot { color: var(--vermilion); }
+
+.hello .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em);
+  filter: blur(8px);
+  transition:
+    opacity 1.1s var(--ease-out),
+    transform 1.4s var(--ease-out),
+    filter 1.1s var(--ease-out);
+  transition-delay: calc(0.12s + var(--i) * 0.16s);
+}
+
+.hello.is-revealed .word {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hello .word { transform: none; filter: none; transition: opacity 0.8s linear; transition-delay: calc(var(--i) * 0.1s); }
+  .hello.is-revealed .medallion,
+  .hello.is-revealed .medallion::after { animation: none; }
+}
