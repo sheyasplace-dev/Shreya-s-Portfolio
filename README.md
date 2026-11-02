@@ -30,6 +30,10 @@ scripts/
   scenes/casefile.js           the full page that opens over the site (calendar "know more", bus windows)
   scenes/internships.js        early internships: the G3 bus driving in, its blinds, its stops' pages
   scenes/projects.js          the open source line: picture on hover, its own page on click
+  scenes/flock.js             the birds breaker: the photograph comes alive, then the pair flies across the sky
+  scenes/blogs.js             the blogs gallery: Substack links, Madras check (madrasField() in jamdani.js)
+  scenes/tools.js             the tools page: the cats' walk along the rug (scroll-driven flip-book)
+  scenes/jack.js              "Jack of all trades": the fish swimming across the red canvas strip
   scenes/busArt.js             the G3 itself, drawn as SVG (and as a line drawing for the stop pages)
   sound/soundToggle.js         one sound control: the film's audio, then the background music
   lib/motion.js                easing and animation helpers
@@ -136,11 +140,53 @@ five numbered points match the numbered callouts on the bus drawing. The letteri
 `assets/internships/roadside-*.webp` (the bus it was painted with, and a watermark, painted out); the bus
 parks over the space it left, positioned in percentages of the painting in `styles/internships.css`.
 
-## Open source
+## Open source and website design
 
-`<section id="open-source">` in `index.html`. The picture shown on hover is the `<img>` in `.proj__peek`
+`<section id="open-source">` and `<section id="website-design">` in `index.html` (same pattern; add more
+by copying one and giving it a new `data-proj`). The picture shown on hover is the `<img>` in `.proj__peek`
 (`assets/projects/cover-*.webp`); the page that opens on click is its `<template data-proj-page>`, where the
 `.todo` placeholders go.
+
+## The birds (a breaker)
+
+`<section class="flock">`. After the open source / website design page (which holds still, in `.pstage`), the
+birds' sky drops from the top like the curtain, then the two birds fly across it as you scroll. The birds are
+lifted from the photograph in layers in `assets/birds/` (`bird-a-body/up/down.png` and the same for `b`); the
+clouds behind them are the photograph's, recoloured blue (`clouds-blue.webp`). A wingbeat foreshortens each wing
+from the shoulder (`pose()` in `scripts/scenes/flock.js`). The drop's length is `fall` there; the flight's is
+`.flock__flight`'s height in `styles/flock.css`.
+
+## Blogs
+
+`<section id="blogs">` in `index.html`, newest first. **To link a post, paste its Substack URL into that post's
+`data-href=""`**; it then becomes clickable and opens in a new tab (until then it shows, but isn't a link). To add
+a post, copy an `<li class="blog">`, put its cover (any 3:2 image) in `assets/blogs/`, and set the title and date.
+The leaves and the blue parrot (`assets/blogs/leaves-top.webp`, `leaves-bottom.webp`) were cut out of the
+reference illustration; their placement is `.blogs__leaves--*` in `styles/blogs.css`. The Madras check is drawn by `madrasField()` in `scripts/scenes/jamdani.js`; how muted it is is set by the
+`filter` and the cream veil (`.blogs::after`) in `styles/blogs.css`.
+
+## Tools
+
+`<section id="tools">`: one screen, a sage wall with every tool on it, and a Persian rug along the bottom
+(`assets/tools/rug.webp`, cut from the reference and mirrored so it repeats seamlessly) that three cats walk across
+as you scroll. Each cat is cut out in three poses (`assets/tools/cat-<colour>-<0|1|2>.webp`). **To add a tool**,
+copy an `<li class="tool">`, put its picture in `assets/tools/kit/`, replace the placeholder, and drop the `todo`
+class; the rows of six reflow by themselves. In `scripts/scenes/tools.js`, `GAIT` is the order of poses and
+`STRIDE` how far they walk per pose.
+
+## Jack of all trades
+
+`<section id="jack">`: a notepad page that floats down onto the maroon and sticks as you scroll in (`float()` in
+`scripts/scenes/jack.js`), with a pencil fish swimming through the maroon above it. **To link a skill later**, fill
+in its `data-target=""` (each names its subject in `data-capability`) and add one click handler in `jack.js` —
+nothing is linked yet, by design. The doodles are inline SVGs in each `.cell`.
+
+## Contact
+
+`<footer id="contact">`: a post box on a mustard wall, drawn in `scripts/scenes/contact.js` (a letter drops into its
+slot as the page scrolls in). **Fill in** the LinkedIn, Substack and GitHub links and the email (they're marked
+`todo`: set each `href` and text, and drop the class). If you add Bengali text anywhere, add its characters to the
+Noto Serif Bengali `text=` list in `<head>`.
 
 ## Replacing the video
 
