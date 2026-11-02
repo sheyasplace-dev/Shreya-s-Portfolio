@@ -11,6 +11,11 @@ import { createCalendar } from './scenes/calendar.js';
 import { createCasefile } from './scenes/casefile.js';
 import { createInternships } from './scenes/internships.js';
 import { createProjects } from './scenes/projects.js';
+import { createFlock } from './scenes/flock.js';
+import { createBlogs } from './scenes/blogs.js';
+import { createTools } from './scenes/tools.js';
+import { createJack } from './scenes/jack.js';
+import { createContact } from './scenes/contact.js';
 import { createSoundToggle } from './sound/soundToggle.js';
 
 const reduced = prefersReducedMotion();
@@ -39,7 +44,12 @@ const experience = createExperience(document.querySelector('[data-exp]'), { redu
 const casefile = createCasefile(document.querySelector('[data-casefile]'), { reduced });
 const calendar = createCalendar(document.querySelector('[data-cal]'), { reduced, casefile });
 const internships = createInternships(document.querySelector('[data-ride]'), { reduced, casefile });
-const projects = createProjects(document.querySelector('[data-proj]'), { casefile });
+const projects = createProjects(document.querySelectorAll('[data-proj]'), { casefile });
+const flock = createFlock(document.querySelector('[data-flock]'), { reduced });
+const blogs = createBlogs(document.querySelector('[data-blogs]'));
+const tools = createTools(document.querySelector('[data-tools]'), { reduced });
+const jack = createJack(document.querySelector('[data-jack]'), { reduced });
+const contact = createContact(document.querySelector('[data-contact]'), { reduced });
 hello.usePortrait(hero.portrait);
 const sound = createSoundToggle(document.querySelector('[data-sound]'), {
   video: hero.media,
@@ -91,6 +101,11 @@ async function finishIntro({ skipped = false } = {}) {
   calendar.start();
   internships.start();
   projects.start();
+  flock.start();
+  blogs.start();
+  tools.start();
+  jack.start();
+  contact.start();
 }
 
 function offerPlay() {

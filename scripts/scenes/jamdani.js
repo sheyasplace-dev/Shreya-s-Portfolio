@@ -221,3 +221,32 @@ export function khakiBorder(c) {
   for (let y = 0; y < H; y += 4) for (const x of [1, 26]) { put(x - 1, y - 1, K.ink); put(x + 1, y - 1, K.ink); }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W * c}" height="${H * c}" shape-rendering="crispEdges">${L.paths(c)}</svg>`;
 }
+
+// Madras check, for the blogs page: blocks of colour where the warp and weft cross, gold threads running through
+// each block, and a fine twill over it all. One repeat of 3 × 4 blocks (the fourth row starts the cycle again).
+export function madrasField(block = 150) {
+  const rows = [
+    ['#0f5e4a', '#8e2f3a', '#8f8a1c'],
+    ['#8e2f3a', '#c2154f', '#d77b45'],
+    ['#a8682f', '#d9614a', '#eaaa26'],
+  ];
+  const W = block * 3, H = block * 3;
+  let rects = '';
+  rows.forEach((row, r) => row.forEach((c, k) => { rects += `<rect x="${k * block}" y="${r * block}" width="${block}" height="${block}" fill="${c}"/>`; }));
+  // Gold threads: a band of three through the middle of every block, both ways, and a hairline at each seam.
+  const band = (o) => [-6, 0, 6].map((d) => o + d);
+  let threads = '';
+  for (let i = 0; i < 3; i++) {
+    const mid = i * block + block * 0.55;
+    for (const t of band(mid)) {
+      threads += `<rect x="0" y="${t}" width="${W}" height="1.6" fill="#f2c96b" opacity=".75"/>`;
+      threads += `<rect x="${t}" y="0" width="1.6" height="${H}" fill="#f2c96b" opacity=".75"/>`;
+    }
+    threads += `<rect x="0" y="${i * block}" width="${W}" height="1" fill="#f2c96b" opacity=".45"/>`;
+    threads += `<rect x="${i * block}" y="0" width="1" height="${H}" fill="#f2c96b" opacity=".45"/>`;
+  }
+  // Twill: fine diagonal ribs, light and dark, so the colour reads as cloth rather than paint.
+  const twill = `<pattern id="twill" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="2" height="4" fill="#000" opacity=".14"/><rect x="2" width="1" height="4" fill="#fff" opacity=".07"/></pattern>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><defs>${twill}</defs>${rects}${threads}<rect width="${W}" height="${H}" fill="url(#twill)"/></svg>`;
+}
