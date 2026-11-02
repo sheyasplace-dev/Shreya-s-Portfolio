@@ -78,14 +78,34 @@
 }
 
 .bus__label {
-  padding: 0 6%;
-  font-family: 'Nanum Pen Script', var(--font-display);
-  font-size: max(10px, calc(var(--bw) * 0.032));
-  white-space: nowrap;
-  line-height: 1;
+  display: grid;
+  justify-items: center;
+  gap: 0.35em;
+  width: 100%;
+  padding: 0.7em 8%;
+  font-family: 'Cormorant Garamond', var(--font-display);
+  /* A soft shade on the slats behind the words, so the small role still reads. */
+  background: radial-gradient(closest-side, rgba(70, 38, 10, 0.5), rgba(70, 38, 10, 0));
   text-align: center;
-  color: #fff6e2;
-  text-shadow: 0 1px 0 rgba(60, 30, 0, 0.5);
+  color: #fff8ea;
+  text-shadow: 0 1px 2px rgba(50, 25, 0, 0.75), 0 0 10px rgba(60, 30, 0, 0.45);
+}
+
+/* The company: bold, on one line. Its role beneath, small and lowercase. */
+.bus__label b {
+  font-weight: 700;
+  font-size: max(15px, calc(var(--bw) * 0.032));
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.bus__label span {
+  font-weight: 700;
+  font-size: max(10px, calc(var(--bw) * 0.0175));
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
 }
 
 .ride.is-parked .bus__window:hover .bus__blind,
@@ -153,7 +173,6 @@
   font-size: 0.42em;
 }
 
-.todo-name { opacity: 0.55; }
 
 .ticket__grid {
   display: grid;
@@ -235,4 +254,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .bus__blind { transition: none; }
+}
+
+/* Phones: the windows are too small for the roles; the names alone, sized to fit (the roles are on each stop's page). */
+@media (max-width: 640px) {
+  .bus__label { padding: 0.4em 4%; }
+  .bus__label b { font-size: max(9px, calc(var(--bw) * 0.03)); }
+  .bus__label span { display: none; }
 }

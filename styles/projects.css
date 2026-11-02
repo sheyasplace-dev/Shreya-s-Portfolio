@@ -105,3 +105,30 @@
   color: var(--ink);
   text-shadow: 0 0 18px rgba(247, 245, 240, 0.85), 0 0 4px rgba(247, 245, 240, 0.7);
 }
+
+/* Website design follows open source directly: the two read as one page with two entries. */
+.proj + .proj { padding-top: 0; min-height: auto; }
+.proj + .proj .proj__label { display: none; }
+
+/* Its placeholder picture, in the site's olive until a real one goes in. */
+.proj--web .proj__ph {
+  background:
+    radial-gradient(120% 80% at 30% 20%, rgba(255, 240, 190, 0.35), transparent 60%),
+    linear-gradient(160deg, #8a8a3c, #3f4a2c 60%, #26291d);
+}
+.proj:has(+ .proj) { min-height: auto; padding-bottom: clamp(48px, 9vh, 96px); }
+
+/* The picture never taller than about half the screen, so it stays within its entry's room. */
+.proj__peek { width: min(36vw, 420px, 56svh * 0.8); }
+
+/* The entry being hovered comes forward, over its neighbours. */
+.proj { position: relative; }
+.proj:hover,
+.proj:focus-within { z-index: 2; }
+
+/* The last entry keeps room beneath its picture. */
+.proj:last-of-type { padding-bottom: max(200px, 22vh); }
+
+/* Room between the two entries, enough that one's picture never reaches the other's words. */
+.proj:has(+ .proj) { padding-bottom: clamp(150px, 24svh, 260px); }
+.proj__peek { width: min(36vw, 420px, 50svh * 0.8); }

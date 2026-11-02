@@ -1,0 +1,280 @@
+/* Jack of all trades: a notepad page, torn off its spiral (the punched holes along its top), that floats down
+   onto a maroon backdrop and sticks. On it, the headline in three voices and the skills in ruled cells, each with
+   a doodle and an arrow. A pencil fish swims through the maroon above it (scripts/scenes/jack.js). */
+
+.jack {
+  --maroon: #74202a;
+  --maroon-deep: #5e1820;
+  --paper: #fbf6ee;
+  --lavender: #c9c4f2;
+  --line: rgba(116, 32, 42, 0.85);
+  position: relative;
+  overflow: hidden;
+  padding: 0 max(16px, 5vw) clamp(72px, 12vh, 140px);
+  /* The painting behind it all — a Kathakali dancer and Shreya in a moonlit grove — washed in maroon so the
+     page stays in front. The sky (where the fish swims) is the least washed. */
+  background:
+    linear-gradient(180deg, rgba(60, 14, 22, 0.15) 0, rgba(94, 24, 32, 0.55) 30%, rgba(94, 24, 32, 0.72) 100%),
+    url('../assets/jack/kathakali.webp') 50% 0 / cover no-repeat,
+    var(--maroon);
+  color: var(--maroon);
+  perspective: 1400px;
+}
+
+/* ── The sea in the maroon above the page ── */
+
+.jack__sea {
+  position: relative;
+  display: block;
+  height: clamp(120px, 18vh, 190px);
+  margin: 0 calc(max(16px, 5vw) * -1);
+}
+
+.jack__waves {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: rgba(251, 246, 238, 0.35);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.jfish {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: clamp(120px, 13vw, 190px);
+  aspect-ratio: 220 / 90;
+  color: #f3e3cf;
+  will-change: transform;
+}
+
+.jfish svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.jfish__tail { transform-box: fill-box; transform-origin: 0% 50%; }
+
+/* ── The sheet ── */
+
+.jack__sheet {
+  position: relative;
+  max-width: 1160px;
+  margin: 0 auto;
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+/* The paper. Its colour is drawn by ::before, with the holes it was torn from punched through, and a window cut
+   where the skills are, so the boxes there are frosted glass over the painting. Its shadow is ::after. */
+.jack__paper {
+  position: relative;
+  z-index: 0;
+  padding: clamp(64px, 9vh, 96px) clamp(18px, 4vw, 56px) clamp(44px, 7vh, 72px);
+}
+
+.jack__paper::before,
+.jack__paper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+}
+
+.jack__paper::before {
+  z-index: -1;
+  background: var(--paper);
+  -webkit-mask:
+    linear-gradient(#000 0 0) var(--cx, 0) var(--cy, 0) / var(--cw, 0) var(--ch, 0) no-repeat,
+    radial-gradient(circle at 50% 16px, transparent 0 12px, #000 12.6px) 0 0 / 40px 32px repeat-x,
+    linear-gradient(#000 0 0) 0 32px / 100% calc(100% - 32px) no-repeat;
+  -webkit-mask-composite: xor, source-over;
+  mask:
+    linear-gradient(#000 0 0) var(--cx, 0) var(--cy, 0) / var(--cw, 0) var(--ch, 0) no-repeat,
+    radial-gradient(circle at 50% 16px, transparent 0 12px, #000 12.6px) 0 0 / 40px 32px repeat-x,
+    linear-gradient(#000 0 0) 0 32px / 100% calc(100% - 32px) no-repeat;
+  mask-composite: exclude, add;
+}
+
+.jack__paper::after {
+  z-index: -2;
+  top: 20px;
+  box-shadow: 0 var(--drop, 14px) var(--blur, 16px) -6px rgba(20, 0, 5, var(--shade, 0.55));
+}
+
+/* Tape, pressed on as it lands. */
+.jack__tape {
+  position: absolute;
+  top: 26px;
+  width: 92px;
+  height: 26px;
+  background: rgba(201, 196, 242, 0.75);
+  opacity: var(--taped, 1);
+  scale: calc(0.6 + var(--taped, 1) * 0.4);
+}
+
+.jack__tape--l { left: -26px; rotate: -38deg; }
+.jack__tape--r { right: -26px; rotate: 38deg; }
+
+/* The headline, three voices. */
+.jack__head {
+  display: grid;
+  justify-items: center;
+  gap: 0.2em;
+  margin: 0 0 clamp(36px, 6vh, 56px);
+  text-align: center;
+  font-weight: inherit;
+}
+
+.jack__jack {
+  font-family: var(--font-display);
+  font-weight: 560;
+  font-size: clamp(0.85rem, 0.75rem + 0.4vw, 1.05rem);
+  font-variation-settings: 'opsz' 14, 'SOFT' 0, 'WONK' 0;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.jack__none {
+  font-family: var(--font-display);
+  font-weight: 380;
+  font-style: normal;
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+  letter-spacing: -0.015em;
+  text-transform: none;
+  font-size: clamp(2.6rem, 1.4rem + 4.6vw, 5.6rem);
+  line-height: 1;
+}
+
+.jack__one {
+  margin-top: 0.25em;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 0.95rem + 1.2vw, 2rem);
+  font-variation-settings: 'opsz' 72, 'SOFT' 100, 'WONK' 1;
+  text-wrap: balance;
+  color: #c2412e;
+}
+
+/* The skills: ruled cells, as in a week's schedule. */
+.cells {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1.5px solid var(--line);
+}
+
+.cells li { border-right: 1.5px solid var(--line); border-bottom: 1.5px solid var(--line); }
+.cells li:nth-child(4n) { border-right: 0; }
+.cells li:nth-last-child(-n + 4) { border-bottom: 0; }
+
+.cell {
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+  backdrop-filter: blur(10px) saturate(1.1);
+  background: rgba(251, 246, 238, 0.66);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center;
+  gap: 14px;
+  width: 100%;
+  height: 100%;
+  min-height: clamp(170px, 24vh, 220px);
+  padding: 22px 16px 18px;
+  border: 0;
+  color: var(--maroon);
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.cell__icon {
+  width: 38px;
+  height: 38px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: rotate 0.5s var(--ease-out);
+}
+
+.cell__name {
+  align-self: center;
+  font-family: 'Figtree', var(--font-ui);
+  font-weight: 600;
+  font-size: clamp(0.92rem, 0.85rem + 0.3vw, 1.08rem);
+  line-height: 1.3;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  text-wrap: balance;
+}
+
+.cell__arrow {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  transition: translate 0.35s var(--ease-out), background 0.3s, color 0.3s;
+}
+
+.cell__arrow svg { width: 50%; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* The first cell inverted, as the reference's first day is. Every cell inverts on hover. */
+.cells li:first-child .cell,
+.cell:hover,
+.cell:focus-visible { background: rgba(116, 32, 42, 0.74); color: var(--paper); }
+
+.cell:hover .cell__arrow,
+.cell:focus-visible .cell__arrow { translate: 0 -4px; background: var(--paper); color: var(--maroon); }
+.cell:hover .cell__icon { rotate: -8deg; }
+
+/* The nudge beneath. */
+.jack__psst {
+  max-width: 1160px;
+  margin: clamp(28px, 4vh, 44px) auto 0;
+  padding: 18px 24px;
+  border-radius: 16px;
+  background: var(--lavender);
+  color: var(--maroon);
+  font-family: 'Figtree', var(--font-ui);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
+  will-change: transform;
+}
+
+.jack__psst span {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-left: 10px;
+  border-radius: 6px;
+  background: var(--maroon);
+  color: var(--paper);
+  letter-spacing: 0;
+}
+
+@media (max-width: 860px) {
+  .cells { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cells li:nth-child(4n) { border-right: 1.5px solid var(--line); }
+  .cells li:nth-child(2n) { border-right: 0; }
+  .cells li:nth-last-child(-n + 4) { border-bottom: 1.5px solid var(--line); }
+  .cells li:nth-last-child(-n + 2) { border-bottom: 0; }
+  .cell { min-height: 160px; }
+  .jack__psst { font-size: 0.72rem; letter-spacing: 0.1em; }
+  .jack__tape { width: 64px; height: 20px; top: 22px; }
+  .jack__tape--l { left: -18px; }
+  .jack__tape--r { right: -18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell, .cell__arrow, .cell__icon { transition: none; }
+}

@@ -1,0 +1,176 @@
+/* Blogs: a gallery catalogue page — covers like paintings, a short label under each — on a cream panel with
+   soft corners, framed by Madras check, with leaves (and a blue parrot) reaching in from the corners. */
+
+.blogs {
+  --paper: #f6f1e7;
+  --ink: #221f1b;
+  --soft: rgba(34, 31, 27, 0.62);
+  --red: #9a3b2c;
+  position: relative;
+  isolation: isolate;
+  padding: clamp(110px, 18vh, 200px) max(16px, 7vw) clamp(110px, 16vh, 180px);
+  overflow: hidden;
+  background: #b98a5a;
+}
+
+.blogs::before,
+.blogs::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.blogs::before {
+  background-image: var(--madras, none);
+  background-size: 360px 360px;
+  filter: saturate(0.88);
+}
+
+/* A cream veil, so the check reads as cloth in the background. */
+.blogs::after { background: rgba(244, 236, 220, 0.2); }
+
+/* The catalogue page. */
+.blogs__sheet {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(40px, 7vh, 88px) clamp(20px, 5vw, 72px) clamp(56px, 9vh, 104px);
+  border-radius: clamp(20px, 2.6vw, 36px);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 30px 60px -30px rgba(60, 25, 10, 0.55), 0 0 0 1px rgba(60, 25, 10, 0.08);
+}
+
+/* The leaves: the canopy and its parrot in the top-right corner (cut off by the screen's edge, as in the
+   picture), and a cluster rising from each bottom corner. Above the panel, but never in the way of a click. */
+.blogs__leaves {
+  position: absolute;
+  z-index: 2;
+  height: auto;
+  pointer-events: none;
+  transform-origin: var(--root, 100% 0);
+  animation: leaves 9s ease-in-out infinite alternate;
+}
+
+.blogs__leaves--top { top: 0; right: 0; width: min(46vw, 620px); --root: 100% 0; }
+.blogs__leaves--left { bottom: 0; left: 0; width: min(28vw, 340px); --root: 0 100%; animation-delay: -3s; }
+.blogs__leaves--right { bottom: 0; right: 0; width: min(20vw, 250px); scale: -1 1; --root: 50% 100%; animation-delay: -6s; }
+
+@keyframes leaves {
+  from { rotate: -0.8deg; }
+  to { rotate: 0.8deg; }
+}
+
+.blogs__head {
+  text-align: center;
+  margin-bottom: clamp(36px, 6vh, 64px);
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(34, 31, 27, 0.18);
+}
+
+.blogs__kicker {
+  margin: 0 0 0.6em;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+.blogs__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 380;
+  font-style: normal;
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+  letter-spacing: -0.015em;
+  text-transform: none;
+  font-size: clamp(2.6rem, 1.6rem + 3.4vw, 4.6rem);
+  line-height: 1;
+}
+
+.blogs__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(40px, 6vh, 64px) clamp(24px, 3vw, 44px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) { .blogs__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .blogs__grid { grid-template-columns: repeat(3, 1fr); } }
+
+.blog a { display: block; color: inherit; text-decoration: none; }
+.blog a[href] { cursor: pointer; }
+
+.blog__cover {
+  display: block;
+  border-radius: 10px;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: #e8e0d0;
+  box-shadow: 0 1px 0 rgba(34, 31, 27, 0.08);
+}
+
+.blog__cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease-out);
+}
+
+/* The label, as under a painting: who, what, when. */
+.blog { text-align: left; }
+.blog__by {
+  display: block;
+  font-family: 'Figtree', var(--font-ui);
+  font-size: 12px;
+  color: var(--soft);
+}
+
+.blog__title {
+  display: block;
+  margin: 0.25em 0 0.35em;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 380;
+  font-size: clamp(1.05rem, 0.98rem + 0.3vw, 1.22rem);
+  font-variation-settings: 'opsz' 24;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.blog__meta {
+  display: block;
+  font-family: 'Figtree', var(--font-ui);
+  font-size: 12px;
+  color: var(--soft);
+}
+
+.blog__go { display: inline-block; margin-left: 2px; transition: transform 0.3s var(--ease-out), color 0.3s; }
+
+.blog a[href]:hover .blog__cover img { transform: scale(1.035); }
+.blog a[href]:hover .blog__title { color: var(--red); }
+.blog a[href]:hover .blog__go { color: var(--red); transform: translate(2px, -2px); }
+
+/* Not yet linked: no arrow. */
+.blog .is-pending .blog__go { display: none; }
+
+/* Arriving, one after another. */
+.blogs.is-armed [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1s var(--ease-out), transform 1.2s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 0.08s);
+}
+
+.blogs.is-armed [data-reveal].is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .blogs.is-armed [data-reveal] { transform: none; transition: opacity 0.6s linear; }
+  .blog__cover img { transition: none; }
+  .blogs__leaves { animation: none; }
+}

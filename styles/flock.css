@@ -1,0 +1,88 @@
+/* A breaker: the birds' sky drops from the top over the projects page, like the curtain before the work page,
+   and two birds from the photograph fly across it (scripts/scenes/flock.js). */
+
+/* The projects page holds still while the sky comes down. */
+.pstage { position: relative; }
+.pstage__pin { position: sticky; top: var(--pin, 0px); }
+.pstage__runway { height: var(--runway, 0px); }
+
+.flock {
+  --sky: #f0eee4;   /* a pale grey-cream, matching the recoloured clouds' sky */
+  --dot: #a3182f;   /* crimson polka dots */
+  position: relative;
+  z-index: 3;
+  margin-top: -100svh; /* overlaps the end of the runway, so the sky is already in place when it lands */
+  pointer-events: none;
+}
+
+.flock__flight { position: relative; height: 230svh; }
+
+.flock__sky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  /* Small crimson polka dots, half-dropped, across the whole sky. */
+  background:
+    radial-gradient(circle, var(--dot) 0 2.6px, transparent 3.2px) 0 0 / 52px 52px,
+    radial-gradient(circle, var(--dot) 0 2.6px, transparent 3.2px) 26px 26px / 52px 52px,
+    var(--sky);
+}
+
+.flock__sky.is-fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  will-change: transform;
+}
+
+.flock__sky.is-away { visibility: hidden; }
+
+/* The photograph's clouds, recoloured a rich blue, grown large behind the flight. */
+.flock__sky::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 135svh;
+  aspect-ratio: 608 / 868;
+  min-width: 112vw;
+  translate: -50% -50%;
+  background: url('../assets/birds/clouds-blue.webp') center / cover no-repeat;
+}
+
+.flock__pair {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform, opacity;
+  filter: brightness(1.08) saturate(1.3) contrast(1.06);
+}
+
+/* A bird: three layers on one box. Each wing foreshortens along its length from the shoulder. */
+.bird { position: absolute; transform: translateY(var(--lift, 0)); }
+
+.bird img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.bird__up {
+  transform-origin: var(--up-o);
+  transform: rotate(var(--up-axis)) scaleX(var(--short, 1)) rotate(calc(var(--up-axis) * -1)) rotate(calc(var(--swing, 0deg) * -1));
+}
+
+.bird__down {
+  transform-origin: var(--down-o);
+  transform: rotate(var(--down-axis)) scaleX(var(--short, 1)) rotate(calc(var(--down-axis) * -1)) rotate(var(--swing, 0deg));
+}
+
+/* Reduced motion: no drop; the sky simply follows the projects, the birds resting in the middle of it. */
+.flock.is-still { margin-top: 0; }
+.flock.is-still .flock__flight { height: auto; }
+.flock.is-still .flock__sky { position: relative; height: 70svh; }
+.flock.is-still .flock__pair { left: 50%; top: 50%; translate: -50% -50%; width: min(60vw, 360px); aspect-ratio: 242 / 232; }
