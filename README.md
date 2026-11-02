@@ -29,7 +29,7 @@ scripts/
   scenes/calendar.js           where I've worked: the wall calendar's page flips and its index
   scenes/casefile.js           the full page that opens over the site (calendar "know more", bus windows)
   scenes/internships.js        early internships: the G3 bus driving in, its blinds, its stops' pages
-  scenes/roadsideArt.js        the bus page's roadside: banana plants, the Gond tree, its birds (SVG)
+  scenes/projects.js          the open source line: picture on hover, its own page on click
   scenes/busArt.js             the G3 itself, drawn as SVG (and as a line drawing for the stop pages)
   sound/soundToggle.js         one sound control: the film's audio, then the background music
   lib/motion.js                easing and animation helpers
@@ -132,8 +132,15 @@ In `index.html` under `<section id="internships">`. Each company appears twice: 
 (`<span class="bus__label">`) and in its stop page, a `<template data-intern=… data-label=…>` (the label is
 used for "next:"). Replace "Company one/two/three" in both, and the `.todo` placeholders in the template. The
 five numbered points match the numbered callouts on the bus drawing. The lettering on the bus ("KSRTC",
-"G3") is in `scripts/scenes/busArt.js`; the plants, tree and birds around it are drawn in
-`scripts/scenes/roadsideArt.js` and placed in `internships.js`.
+"G3") is in `scripts/scenes/busArt.js`. The painting behind it is
+`assets/internships/roadside-*.webp` (the bus it was painted with, and a watermark, painted out); the bus
+parks over the space it left, positioned in percentages of the painting in `styles/internships.css`.
+
+## Open source
+
+`<section id="open-source">` in `index.html`. The picture shown on hover is the `<img>` in `.proj__peek`
+(`assets/projects/cover-*.webp`); the page that opens on click is its `<template data-proj-page>`, where the
+`.todo` placeholders go.
 
 ## Replacing the video
 

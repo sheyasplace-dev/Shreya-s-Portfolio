@@ -193,6 +193,16 @@
   font-variation-settings: 'opsz' 144, 'SOFT' 100;
 }
 
+.fact dd .nobr { white-space: nowrap; } /* breaks only between whole phrases */
+
+.fact__when {
+  margin-left: 0.4em;
+  font-style: normal;
+  font-variant-numeric: lining-nums;
+  letter-spacing: 0.04em;
+  color: rgba(64, 3, 0, 0.45);
+}
+
 .fact__aside {
   display: block;
   margin-top: 0.42em;
@@ -245,7 +255,7 @@
   order: -1; /* small screens: the picture first, then the words */
   align-self: flex-end;
   width: var(--tw);
-  aspect-ratio: 2243 / 1710;
+  aspect-ratio: 2241 / 1731;
   margin: 0 calc(var(--tw) * -0.07) clamp(28px, 5vh, 56px) 0; /* the sofa's far arm runs off the page */
 }
 
@@ -267,11 +277,14 @@
 .tiger {
   position: absolute;
   inset: 0;
+  transform-origin: 70% 58%; /* its body, not the middle of the shared frame */
   will-change: transform, opacity;
 }
 
+.about__sofa,
 .tiger img {
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
@@ -280,19 +293,34 @@
   -webkit-user-drag: none;
 }
 
-/* Grounds the sofa and the paws once they've landed. */
+.about__sofa { transition: opacity 0.9s var(--ease-out); }
+
+/* Its front paws meet the bottom edge of the artwork: soften that edge rather than show a cut. */
+.tiger img {
+  -webkit-mask-image: linear-gradient(to top, transparent 0, #000 1.6%);
+  mask-image: linear-gradient(to top, transparent 0, #000 1.6%);
+}
+
+/* Shadows: the sofa's sits under its legs; the tiger's own arrives with it. */
+.about__ground,
 .tiger__shadow {
   position: absolute;
-  left: 6%;
-  right: 4%;
-  bottom: -2.5%;
-  height: 9%;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(64, 3, 0, 0.2), rgba(64, 3, 0, 0) 100%);
+  background: radial-gradient(closest-side, rgba(64, 3, 0, 0.18), rgba(64, 3, 0, 0) 100%);
+}
+
+.about__ground { left: 4%; right: 6%; bottom: 5.5%; height: 6%; }
+
+.tiger__shadow {
+  left: 26%;
+  right: 2%;
+  bottom: -3%;
+  height: 8%;
   opacity: var(--land, 1);
 }
 
-.about.is-waiting .tiger { opacity: 0; }
+.about.is-waiting .tiger,
+.about.is-waiting .about__sofa { opacity: 0; }
 
 /* ── Side by side: the words left, the tiger anchoring the bottom-right ── */
 

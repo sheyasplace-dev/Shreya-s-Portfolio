@@ -1,0 +1,106 @@
+/* Work experience, and the curtain that brings it in (scripts/scenes/work.js).
+   The about section holds still over a runway of scroll while the curtain falls on it; scrolling on, the
+   curtain rises with the work page and its hem stays behind as the page's valance. */
+
+.stage { position: relative; }
+.stage > .about { position: sticky; top: var(--pin, 0px); }
+.stage__runway { height: var(--runway, 0px); }
+
+/* ── The curtain ── */
+
+.curtain {
+  position: absolute;
+  left: 0;
+  top: calc(var(--valance-body, 12px) - var(--curtain-h, 100vh)); /* at rest: only the hem shows, at the page's top */
+  z-index: 25;
+  width: 100%;
+  height: var(--curtain-h, 100vh);
+  pointer-events: none;
+}
+
+.curtain.is-fixed {
+  position: fixed;
+  top: 0;
+  will-change: transform;
+}
+
+.curtain.is-away { visibility: hidden; }
+
+.curtain__art {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 10px 14px rgba(43, 41, 22, 0.22));
+}
+
+/* ── The page ── */
+
+.work {
+  --olive: #8a7d35;
+  position: relative;
+  min-height: 100svh;
+  padding: calc(var(--valance, 110px) + clamp(18px, 3.5vh, 44px)) 16px clamp(48px, 8vh, 96px);
+  text-align: center;
+}
+
+.work__head {
+  position: relative;
+  z-index: 26; /* in front of the deeper side scallops on narrow screens */
+  margin: 0 auto;
+}
+
+.work__title {
+  margin: 0;
+  font-family: 'Fredoka', 'Baloo Da 2', ui-rounded, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.5rem, 1.3rem + 4.6vw, 5.6rem);
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+  color: var(--olive);
+}
+
+/* The letters that hop, as in the artwork. */
+.work__title .lift {
+  display: inline-block;
+  transform: translateY(var(--y));
+}
+
+/* The Bengali, a few sizes below the English. */
+.work__bn {
+  margin: 0.15em 0 0;
+  font-family: 'Baloo Da 2', var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 0.8rem + 2.6vw, 3.3rem);
+  line-height: 1.2;
+  color: var(--olive);
+}
+
+.work__art {
+  margin: clamp(12px, 2.5vh, 36px) auto 0;
+  width: min(88vw, 1000px, (100svh - 330px) * 1.64);
+  min-width: min(88vw, 520px);
+  aspect-ratio: 2025 / 1232;
+}
+
+.work__art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+/* Arriving, as in the about section. */
+.work.is-armed [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1s var(--ease-out), transform 1.2s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 0.12s);
+}
+
+.work.is-armed [data-reveal].is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .work.is-armed [data-reveal] { transform: none; transition: opacity 0.8s linear; }
+}

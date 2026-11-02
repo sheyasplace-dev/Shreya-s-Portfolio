@@ -1,0 +1,285 @@
+/* Where I've worked: a wall calendar, one company to a page. The stage holds still (sticky) while the scroll
+   lifts each page up over the binding to reveal the next (scripts/scenes/calendar.js). */
+
+.cal {
+  --red: #9a3b2c;   /* the names on the pages, and the wall they hang on */
+  --black: #2b2723;
+  --paper: #f8f6f1;
+  --gold: #d9a640;
+  position: relative;
+  height: var(--cal-length, 300vh);
+  background: var(--red);
+  color: var(--black);
+}
+
+.cal__stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: var(--red);
+}
+
+/* The backdrop: the khaki Jamdani's weave in a single cream thread on red — its butis across the cloth, its
+   border columns down both sides. Faint, so the calendar stays in front. */
+.cal__field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cal__field::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--sari, none);
+  background-position: center;
+  opacity: 0.12;
+}
+
+.cal__field::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+  background:
+    var(--sari-border, none) left max(8px, 2vw) top / var(--sari-border-w, 112px) auto repeat-y,
+    var(--sari-border, none) right max(8px, 2vw) top / var(--sari-border-w, 112px) auto repeat-y;
+}
+
+/* A soft light on the wall where the calendar hangs. */
+.cal__stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(60% 55% at 50% 50%, rgba(255, 220, 190, 0.12), transparent 70%),
+    radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(40, 8, 4, 0.35));
+}
+
+/* The index: jump straight to a company. */
+.cal__index {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  gap: 6px;
+  bottom: max(16px, 3vh);
+  left: 50%;
+  translate: -50% 0;
+}
+
+.cal__index button {
+  padding: 8px 12px;
+  border: 1px solid rgba(248, 246, 241, 0.35);
+  border-radius: 999px;
+  background: rgba(60, 14, 8, 0.25);
+  color: rgba(248, 246, 241, 0.85);
+  font-family: 'Figtree', var(--font-ui);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.cal__index button span { color: #f2c9a8; margin-right: 4px; }
+.cal__index button[aria-current='true'] { background: var(--paper); color: var(--red); border-color: var(--paper); }
+.cal__index button[aria-current='true'] span { color: var(--red); }
+
+/* ── The calendar ── */
+
+.cal__calendar {
+  --w: min(90vw, 680px, (100svh - 120px) / 1.3);
+  position: relative;
+  z-index: 2;
+  width: var(--w);
+  aspect-ratio: 1 / 1.3;
+  margin-top: 26px;
+  filter: drop-shadow(0 24px 30px rgba(10, 10, 4, 0.45));
+}
+
+/* Wire binding: a row of coils, with the hook in the middle. */
+.cal__binding {
+  position: absolute;
+  z-index: 10;
+  top: -9px;
+  left: 3%;
+  right: 3%;
+  height: 20px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='20'%3E%3Crect x='2.5' y='1' width='3.4' height='18' rx='1.7' fill='%23161612'/%3E%3Crect x='3.2' y='2' width='1' height='12' rx='.5' fill='%23777' opacity='.7'/%3E%3C/svg%3E") repeat-x;
+}
+
+.cal__hook {
+  position: absolute;
+  left: 50%;
+  top: -14px;
+  width: 26px;
+  height: 26px;
+  translate: -50% 0;
+  border: 3px solid #161612;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.cal__pages {
+  position: absolute;
+  inset: 0;
+  perspective: 1800px;
+}
+
+.cal-page {
+  --flip: 0;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 62% 38%;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--black);
+  transform-origin: 50% 0;
+  transform: rotateX(calc(var(--flip) * 180deg));
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Shade as it lifts, and on the page underneath while it's still mostly covered. */
+.cal-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.45));
+  opacity: var(--shade, 0);
+}
+
+.cal-page__photo { position: relative; overflow: hidden; margin: 5% 5% 0; }
+.cal-page__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Placeholders, until the real photos go in. */
+.ph {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background:
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0 10px, transparent 10px 20px),
+    color-mix(in srgb, var(--ink) 70%, #f3eadb);
+}
+
+.ph span {
+  font-family: 'Figtree', var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.cal-page__foot {
+  position: relative;
+  padding: 6% 7% 7%;
+}
+
+/* Number and name; a hairline; the role and dates in italic on the left, "know more" on the right. */
+.cal-page__meta {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr auto auto;
+  align-items: center;
+  column-gap: 5%;
+}
+
+.cal-page__no {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-family: 'Figtree', var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: rgba(43, 39, 35, 0.6);
+}
+
+.cal-page__name {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 360;
+  font-style: italic;
+  font-size: calc(var(--w) * 0.105);
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--red);
+}
+
+.cal-page__aka {
+  display: block;
+  margin-top: 1.4em; /* clear of the descenders above */
+  font-family: 'Figtree', var(--font-ui);
+  font-style: normal;
+  font-weight: 400;
+  font-size: max(0.75rem, 0.2em);
+  letter-spacing: 0.02em;
+  color: rgba(43, 39, 35, 0.7);
+}
+
+.cal-page__rule {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin: 0 0 calc(var(--w) * 0.03);
+  border: 0;
+  border-top: 1px solid rgba(43, 39, 35, 0.22);
+}
+
+.cal-page__role {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 380;
+  font-size: clamp(0.85rem, calc(var(--w) * 0.03), 1.15rem);
+  font-variation-settings: 'opsz' 24;
+  color: rgba(43, 39, 35, 0.85);
+}
+
+.cal-page__more {
+  padding: 8px 18px;
+  border: 1px solid rgba(154, 59, 44, 0.45);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--red);
+  font-family: 'Figtree', var(--font-ui);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.cal-page__more:hover { background: var(--red); border-color: var(--red); color: var(--paper); }
+
+.todo { opacity: 0.6; font-style: italic; }
+
+/* Side by side on wide screens: the index runs down the right. */
+@media (min-width: 1000px) {
+  .cal__index {
+    flex-direction: column;
+    align-items: flex-start;
+    bottom: auto;
+    top: 50%;
+    left: auto;
+    right: calc(max(8px, 2vw) + var(--sari-border-w, 140px) + 20px); /* clear of the border column */
+    translate: 0 -50%;
+  }
+
+}
+
+/* Without the flip (reduced motion, or no JS): the pages simply stack. */
+.cal.is-static { height: auto; }
+.cal.is-static .cal__stage { position: relative; height: auto; padding: 72px 16px 96px; display: block; }
+.cal.is-static .cal__calendar { margin: 48px auto 0; aspect-ratio: auto; filter: none; }
+.cal.is-static .cal__pages { position: static; display: grid; gap: 40px; }
+.cal.is-static .cal-page { position: relative; aspect-ratio: 1 / 1.3; transform: none; }
+.cal.is-static .cal__index,
+.cal.is-static .cal__binding { display: none; }

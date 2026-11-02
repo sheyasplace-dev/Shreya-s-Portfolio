@@ -1,0 +1,238 @@
+/* Early internships: a painted Kerala roadside filling the screen, and the G3 pulling in over it
+   (scripts/scenes/internships.js). Its windows' blinds, slatted like a venetian blind, roll down with the
+   company names on them. */
+
+.ride {
+  --sky: #9b7122;
+  --earth: #2c4537;
+  position: relative;
+  height: var(--ride-length, 200vh);
+  background: var(--earth);
+}
+
+.ride__stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--sky) 0 50%, var(--earth) 50% 100%);
+}
+
+/* The painting covers the screen, centred; the bus is placed in percentages of it. */
+.ride__art {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: max(100vw, 100svh * 2164 / 1352);
+  aspect-ratio: 2164 / 1352;
+  container-type: inline-size;
+}
+
+.ride__painting { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+.ride__window { position: absolute; inset: 0; }
+
+/* Parked where the painting left room for it. */
+.bus {
+  --bw: 60.61cqw;
+  position: absolute;
+  left: 19.97%;
+  top: 53.7%;
+  width: var(--bw);
+  aspect-ratio: 1000 / 420;
+  will-change: transform;
+}
+
+.bus__art,
+.bus__svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
+
+.bus__wheel { transform: rotate(var(--spin, 0deg)); }
+
+.bus__svg text { font-family: 'Nanum Pen Script', var(--font-display); }
+.bus__name { font-size: 58px; letter-spacing: 10px; }
+.bus__number { font-size: 40px; }
+.bus__board { font-family: 'Figtree', var(--font-ui) !important; font-weight: 700; font-size: 13px; letter-spacing: 1px; }
+
+/* The windows: buttons over the glass, each with its blind. */
+.bus__window {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: none;
+  overflow: hidden;
+  clip-path: inset(5% 3% 5% 3% round 2px);
+  cursor: pointer;
+}
+
+.bus__blind {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: translateY(calc((var(--blind, 0) - 1) * 101%));
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 30%),
+    repeating-linear-gradient(180deg, #c98d4e 0 6px, #a46a34 6px 7px, #5e3a1a 7px 8px);
+}
+
+.bus__label {
+  padding: 0 6%;
+  font-family: 'Nanum Pen Script', var(--font-display);
+  font-size: max(10px, calc(var(--bw) * 0.032));
+  white-space: nowrap;
+  line-height: 1;
+  text-align: center;
+  color: #fff6e2;
+  text-shadow: 0 1px 0 rgba(60, 30, 0, 0.5);
+}
+
+.ride.is-parked .bus__window:hover .bus__blind,
+.bus__window:focus-visible .bus__blind { filter: brightness(1.12); }
+.bus__window:focus-visible { outline: 3px solid #fffaf0; outline-offset: -2px; }
+
+.ride__title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+/* Tall screens: the painting as large as the bus allows, its sky and ground continuing above and below. */
+@media (max-aspect-ratio: 1/1) {
+  .ride__art {
+    top: 58%;
+    width: 155vw;
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(180deg, transparent, #000 6%, #000 94%, transparent);
+  }
+}
+
+.ride.is-static { height: auto; }
+.ride.is-static .ride__stage { position: relative; }
+
+/* ── A stop's page: a bus-depot blueprint on kraft paper ── */
+
+.casefile--ticket {
+  --paper: #cdb68b;
+  --ink: #1b1915;
+  --rule: rgba(27, 25, 21, 0.3);
+  background:
+    linear-gradient(rgba(70, 45, 10, 0.1) 1px, transparent 1px) 0 0 / 72px 72px,
+    linear-gradient(90deg, rgba(70, 45, 10, 0.1) 1px, transparent 1px) 0 0 / 72px 72px,
+    var(--paper);
+}
+
+.ticket {
+  padding: clamp(32px, 7vh, 72px) var(--gutter) clamp(64px, 12vh, 120px);
+}
+
+.ticket__route {
+  margin: 0 0 1em;
+  font-family: 'Figtree', var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.ticket__name {
+  margin: 0;
+  font-family: 'Black Ops One', var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.2rem, 1rem + 9vw, 10rem);
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.ticket__and {
+  display: block;
+  margin-top: 0.12em;
+  font-size: 0.42em;
+}
+
+.todo-name { opacity: 0.55; }
+
+.ticket__grid {
+  display: grid;
+  gap: clamp(32px, 5vw, 64px);
+  margin-top: clamp(32px, 6vh, 64px);
+}
+
+.ticket__plan { margin: 0; }
+
+.bus--line { position: static; height: auto; }
+.bus--line :is(path, rect, circle, ellipse) { fill: none !important; stroke: var(--ink) !important; stroke-width: 1.6 !important; }
+.bus--line .bus__shadow,
+.bus--line .bus__glint { display: none; }
+.bus--line text { fill: var(--ink); }
+.bus--line .bus__callout line { stroke: var(--ink); stroke-width: 1.2; }
+.bus--line .bus__callout circle { fill: var(--ink) !important; }
+.bus--line .bus__callout text { font-family: 'Figtree', var(--font-ui); font-size: 26px; font-weight: 700; }
+
+.ticket__hand {
+  margin: 0 0 1.4em;
+  font-family: 'Cedarville Cursive', cursive;
+  font-size: clamp(1.15rem, 1rem + 0.5vw, 1.45rem);
+  line-height: 1.6;
+}
+
+.ticket__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  margin: 0 0 1.6em;
+  padding: 12px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.ticket__facts dt {
+  font-family: 'Figtree', var(--font-ui);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.ticket__facts dd { margin: 0.2em 0 0; font-family: var(--font-display); font-size: 1.1rem; }
+
+.ticket__parts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: part;
+  font-family: 'Figtree', var(--font-ui);
+  line-height: 1.6;
+}
+
+/* Numbered like the parts on the drawing. */
+.ticket__parts li {
+  counter-increment: part;
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  align-items: baseline;
+  padding: 0.55em 0;
+}
+
+.ticket__parts li::before {
+  content: counter(part);
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.8rem;
+  font-style: normal;
+}
+
+@media (min-width: 900px) {
+  .ticket__grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bus__blind { transition: none; }
+}

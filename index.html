@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..500,0..100;1,9..144,300..500,0..100&family=Inter:wght@500&family=Italiana&family=Fredoka:wght@600&family=Nanum+Pen+Script&family=Figtree:wght@400;700&family=Black+Ops+One&family=Cedarville+Cursive&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..500,0..100;1,9..144,300..500,0..100&family=Inter:wght@500&family=Italiana&family=Fredoka:wght@600&family=Nanum+Pen+Script&family=Figtree:wght@400;700&family=Black+Ops+One&family=Cedarville+Cursive&family=DM+Mono:wght@400&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500&text=%E0%A6%95%E0%A6%BE%E0%A6%9C%E0%A7%87%E0%A6%B0%20%E0%A6%85%E0%A6%AD%E0%A6%BF%E0%A6%9C%E0%A7%8D%E0%A6%9E%E0%A6%A4%E0%A6%BE&display=swap">
   <!-- Bengali numerals and her name only, so the subset stays tiny. -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400&text=%E0%A7%A7%E0%A7%A8%E0%A7%A9%E0%A7%AA%E0%A7%AB%E0%A7%AC%E0%A6%B6%E0%A7%8D%E0%A6%B0%E0%A7%87%E0%A6%AF%E0%A6%BC%E0%A6%BE%20%E0%A6%B2%E0%A6%B9%E0%A6%BF%E0%A6%A1%E0%A7%80&display=swap">
@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="styles/calendar.css">
   <link rel="stylesheet" href="styles/casefile.css">
   <link rel="stylesheet" href="styles/internships.css">
+  <link rel="stylesheet" href="styles/projects.css">
   <link rel="stylesheet" href="styles/chrome.css">
 
   <noscript><style>.intro, .chrome { display: none !important; } .hello .word { opacity: 1; transform: none; filter: none; }</style></noscript>
@@ -373,14 +374,11 @@
     <!-- Early internships: the G3 drives in as you scroll; its windows open onto each internship (scripts/scenes/internships.js). -->
     <section id="internships" class="ride" aria-labelledby="ride-title" data-ride>
       <div class="ride__stage">
-        <div class="ride__ground" aria-hidden="true"></div>
-        <div class="ride__words">
-          <h2 id="ride-title" class="ride__title">early internships</h2>
-          <p class="ride__sub">route G3 · three stops</p>
-        </div>
-        <div class="ride__flyer" data-flyer aria-hidden="true"></div>
-        <div class="ride__road">
-          <div class="ride__roadside" data-roadside aria-hidden="true"></div>
+        <h2 id="ride-title" class="ride__title">Early internships</h2>
+        <div class="ride__art">
+          <!-- The painting (the lettering is part of it) fills the screen; the bus drives in over it. -->
+          <img class="ride__painting" src="assets/internships/roadside-1600.webp" srcset="assets/internships/roadside-1600.webp 1600w, assets/internships/roadside-2164.webp 2164w" sizes="max(100vw, 160svh)" width="2164" height="1352" alt="A painted Kerala roadside: banana groves on a mustard sky, patterned birds and blue flowers, with the words early internships, route G3, three stops" decoding="async">
+          <div class="ride__window">
           <div class="bus" data-bus>
             <div class="bus__art" data-bus-art></div>
             <button class="bus__window" type="button" style="--i:0" data-window="intern-1">
@@ -392,6 +390,7 @@
             <button class="bus__window" type="button" style="--i:2" data-window="intern-3">
               <span class="bus__blind"><span class="bus__label">Company three</span></span>
             </button>
+          </div>
           </div>
         </div>
       </div>
@@ -472,6 +471,41 @@
       </template>
     </section>
 
+
+
+    <!-- Open source: one line, and a picture on hover; a click opens the projects' own page (scripts/scenes/projects.js).
+         The picture shown on hover is the <img> in .proj__peek. -->
+    <section id="open-source" class="proj" aria-labelledby="proj-title" data-proj>
+      <p class="proj__label">explore my work</p>
+      <a class="proj__link" href="#open-source-projects" data-proj-open>
+        <span class="proj__peek" aria-hidden="true">
+          <img src="assets/projects/cover-700.webp" srcset="assets/projects/cover-700.webp 700w, assets/projects/cover-1100.webp 1100w" sizes="min(44vw, 520px)" alt="" loading="lazy" decoding="async">
+        </span>
+        <span id="proj-title" class="proj__line">Open Source Projects</span>
+        <span class="proj__line proj__line--small">click to know more</span>
+      </a>
+      <template data-proj-page>
+        <article class="case" aria-label="Open source project">
+          <header class="case__intro">
+            <div class="case__lead">
+              <p class="case__tag">| open source |</p>
+              <h2 class="case__title">Things I&rsquo;ve <em>built</em><br>in the open</h2>
+            </div>
+            <div class="case__text">
+              <p class="todo">A paragraph on why you build in the open, and what you like to make.</p>
+            </div>
+          </header>
+          <section class="case__box">
+            <p class="case__tag">| projects |</p>
+            <ol class="case__list">
+              <li class="todo">Project name: what it does, and a link to it.</li>
+              <li class="todo">Another project: what it does, and a link to it.</li>
+              <li class="todo">And another.</li>
+            </ol>
+          </section>
+        </article>
+      </template>
+    </section>
   </main>
 
   <div id="intro" class="intro">

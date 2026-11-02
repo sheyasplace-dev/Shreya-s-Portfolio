@@ -5,6 +5,12 @@ import { DesktopScene } from './intro/desktopScene.js';
 import { circleReveal } from './intro/circleReveal.js';
 import { createHello } from './scenes/hello.js';
 import { createAbout } from './scenes/about.js';
+import { createWork } from './scenes/work.js';
+import { createExperience } from './scenes/experience.js';
+import { createCalendar } from './scenes/calendar.js';
+import { createCasefile } from './scenes/casefile.js';
+import { createInternships } from './scenes/internships.js';
+import { createProjects } from './scenes/projects.js';
 import { createSoundToggle } from './sound/soundToggle.js';
 
 const reduced = prefersReducedMotion();
@@ -28,6 +34,12 @@ const hero = desktop
   : new HeroStage(introEl, config.intro);
 const hello = createHello(helloEl);
 const about = createAbout(document.querySelector('[data-about]'), { reduced });
+const work = createWork(document.querySelector('[data-work]'), { reduced });
+const experience = createExperience(document.querySelector('[data-exp]'), { reduced });
+const casefile = createCasefile(document.querySelector('[data-casefile]'), { reduced });
+const calendar = createCalendar(document.querySelector('[data-cal]'), { reduced, casefile });
+const internships = createInternships(document.querySelector('[data-ride]'), { reduced, casefile });
+const projects = createProjects(document.querySelector('[data-proj]'), { casefile });
 hello.usePortrait(hero.portrait);
 const sound = createSoundToggle(document.querySelector('[data-sound]'), {
   video: hero.media,
@@ -74,6 +86,11 @@ async function finishIntro({ skipped = false } = {}) {
   body.dataset.phase = 'hello';
   hello.reveal();
   about.start();
+  work.start();
+  experience.start();
+  calendar.start();
+  internships.start();
+  projects.start();
 }
 
 function offerPlay() {

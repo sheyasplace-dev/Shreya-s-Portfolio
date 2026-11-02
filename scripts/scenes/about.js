@@ -3,12 +3,13 @@ import { clamp, cubicBezier, segment } from '../lib/motion.js';
 // Soft to start, long to settle: the tiger eases into its place rather than stopping on it.
 const prowl = cubicBezier(0.42, 0, 0.18, 1);
 
-// "tell me about yourself": the words settle in as they reach the screen, and the tiger walks in from the
-// top-left corner to its place at the bottom-right, tied to the scroll (and reversing with it).
+// "tell me about yourself": the words settle in as they reach the screen. She and the sofa wait in place while
+// the tiger alone comes in from the top-left corner to settle in front of them, tied to the scroll (and
+// reversing with it).
 export function createAbout(root, { reduced }) {
   const home = root.querySelector('[data-tiger-home]');
   const tiger = home.querySelector('[data-tiger]');
-  const img = home.querySelector('[data-tiger-img]');
+  const images = [...home.querySelectorAll('img[data-lazy]')];
   const hello = document.getElementById('hello');
   const cue = hello.querySelector('[data-cue]');
 
@@ -29,7 +30,9 @@ export function createAbout(root, { reduced }) {
     const r = home.getBoundingClientRect();
     const side = r.width < vw * 0.75; // side-by-side layout
     const w = r.width, h = r.height;
-    const docTop = r.top + window.scrollY;
+    // Measured from the stage around the section, which (unlike the section) never sticks.
+    const stageTop = root.parentElement.getBoundingClientRect().top;
+    const docTop = stageTop + window.scrollY + (r.top - root.getBoundingClientRect().top);
     const maxScroll = document.documentElement.scrollHeight - vh;
 
     // Where its top is on screen at the moment it comes to rest: side by side, with the section filling
@@ -59,9 +62,11 @@ export function createAbout(root, { reduced }) {
     const top = land + range * (1 - p); // where its resting place is on screen right now
     const x = startX * (1 - ex);
     const y = startY + (land - startY) * ey - top;
-    const turn = -6 * (1 - e);
+    // A slow rise and fall in its stride, fading out as it settles.
+    const stride = Math.sin(p * Math.PI * 3) * path.h * 0.012 * (1 - e);
+    const turn = -7 * (1 - e) + Math.sin(p * Math.PI * 3 + 0.8) * 1.2 * (1 - e);
     const s = 0.94 + 0.06 * e;
-    tiger.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${turn.toFixed(3)}deg) scale(${s.toFixed(4)})`;
+    tiger.style.transform = `translate3d(${x.toFixed(2)}px, ${(y + stride).toFixed(2)}px, 0) rotate(${turn.toFixed(3)}deg) scale(${s.toFixed(4)})`;
     tiger.style.opacity = segment(p, 0, 0.22).toFixed(3);
     home.style.setProperty('--land', segment(p, 0.6, 1).toFixed(3));
   }
@@ -113,11 +118,13 @@ export function createAbout(root, { reduced }) {
         window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
       });
       window.addEventListener('scroll', onScroll, { passive: true });
-      img.sizes = img.getAttribute('sizes');
-      img.srcset = img.dataset.srcset;
-      img.src = img.dataset.src;
-      img.decode().catch(() => {}).then(() => {
-        if (!img.naturalWidth) return home.remove();
+      for (const img of images) {
+        img.sizes = img.getAttribute('sizes');
+        img.srcset = img.dataset.srcset;
+        img.src = img.dataset.src;
+      }
+      Promise.all(images.map((img) => img.decode().catch(() => {}))).then(() => {
+        if (images.some((img) => !img.naturalWidth)) return home.remove();
         root.classList.remove('is-waiting');
         if (reduced) return; // it simply rests in place
         measure();
