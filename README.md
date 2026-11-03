@@ -1,4 +1,4 @@
-# Pieces of Me — Shreya Lahiri
+# The ultimate portfolio — Shreya Lahiri
 
 Plain HTML, CSS and ES modules. No build step.
 
