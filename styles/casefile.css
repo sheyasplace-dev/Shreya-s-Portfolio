@@ -295,3 +295,13 @@ html.has-casefile { overflow: hidden; }
 .case__path a, .case__link { color: var(--red); }
 .case__link { display: inline-block; margin-top: 1em; font-weight: 600; border-bottom: 1.5px solid currentColor; text-decoration: none; }
 .case__stack { margin-top: 1.6em; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(35, 32, 28, 0.7); }
+
+/* A chooser: a ruled list of places, each opening its own page. */
+.pick { border-top: 1px solid var(--rule); }
+.pick__item { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr) auto; gap: 18px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; font-family: 'Figtree', var(--font-ui); }
+.pick__name { font-weight: 700; font-size: clamp(1.4rem, 1rem + 1.4vw, 2.2rem); letter-spacing: -0.03em; }
+.pick__what { font-size: 1rem; color: rgba(0, 0, 0, 0.55); }
+.pick__go { font-size: 1.4rem; transition: translate 0.3s var(--ease-out); }
+.pick__item:hover .pick__name { color: var(--red, #9a3b2c); }
+.pick__item:hover .pick__go { translate: 6px 0; }
+@media (max-width: 640px) { .pick__item { grid-template-columns: 1fr auto; } .pick__what { grid-column: 1; } }

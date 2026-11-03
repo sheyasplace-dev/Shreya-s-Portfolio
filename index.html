@@ -870,32 +870,32 @@
           <span class="jack__one">but often better than master of one.</span>
         </h2>
         <ul class="cells" aria-label="What I work across">
-            <li><button class="cell" type="button" data-capability="community-events" data-target="">
+            <li><button class="cell" type="button" data-capability="community-events" data-target="work-ai-plus">
               <svg class="cell__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 14h3l7 4V6L8 10H5z"/><path d="M18 9c1.5 1.5 1.5 4.5 0 6"/><path d="M8 14l1 4"/></svg>
               <span class="cell__name">Community and event marketing</span>
               <span class="cell__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span>
             </button></li>
-            <li><button class="cell" type="button" data-capability="newsletter-content" data-target="">
+            <li><button class="cell" type="button" data-capability="newsletter-content" data-target="work-ai-plus">
               <svg class="cell__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="1.5"/><path d="M4 7l8 6 8-6"/></svg>
               <span class="cell__name">Newsletter and content marketing</span>
               <span class="cell__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span>
             </button></li>
-            <li><button class="cell" type="button" data-capability="partnerships" data-target="">
+            <li><button class="cell" type="button" data-capability="partnerships" data-target="partnerships">
               <svg class="cell__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l4-4 4 3 3-2 3 2 4 1"/><path d="M7 8l5 6c1 1 2 1 3 0"/><path d="M10 15l2 2"/></svg>
               <span class="cell__name">Partnership and sponsor marketing</span>
               <span class="cell__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span>
             </button></li>
-            <li><button class="cell" type="button" data-capability="social" data-target="">
+            <li><button class="cell" type="button" data-capability="social" data-target="intern-1">
               <svg class="cell__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M12 14c-2-1.5-3-2.5-3-3.7 0-.9.7-1.5 1.5-1.5.6 0 1.1.3 1.5.8.4-.5.9-.8 1.5-.8.8 0 1.5.6 1.5 1.5 0 1.2-1 2.2-3 3.7z"/></svg>
               <span class="cell__name">Social media marketing</span>
               <span class="cell__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span>
             </button></li>
-            <li><button class="cell" type="button" data-capability="web-landing" data-target="">
+            <li><button class="cell" type="button" data-capability="web-landing" data-target="website-design">
               <svg class="cell__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/><circle cx="6" cy="7" r=".4"/><path d="M7 13h6M7 16h4"/></svg>
               <span class="cell__name">Web and landing page design</span>
               <span class="cell__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span>
             </button></li>
-            <li><button class="cell" type="button" data-capability="lifecycle-email" data-target="">
+            <li><button class="cell" type="button" data-capability="lifecycle-email" data-target="work-quizizz">
               <svg class="cell__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12a7 7 0 1 1-2-5"/><path d="M19 4v4h-4"/><path d="M9 11l3 2 3-2"/></svg>
               <span class="cell__name">Life cycle and email infrastructure</span>
               <span class="cell__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span>
@@ -904,6 +904,21 @@
         </div>
       </div>
       <p class="jack__psst" data-jack-psst>psst! click on any arrow to know more <span aria-hidden="true">↑</span></p>
+
+      <!-- Partnership and sponsor marketing: where it happened. Each card opens that job's own page. -->
+      <template data-pick-page="partnerships" data-label="Partnerships">
+        <article class="works" aria-label="Partnership and sponsor marketing">
+          <header class="works__head">
+            <h2 class="works__title">Partnership &amp; sponsor marketing</h2>
+            <p class="works__note">(Where I did it)</p>
+          </header>
+          <div class="pick">
+            <a class="pick__item" href="#work-ai-plus" data-open-case="work-ai-plus"><span class="pick__name">AI+</span><span class="pick__what">50+ partners, $250,000+ in sponsorship, 89% came back</span><span class="pick__go" aria-hidden="true">→</span></a>
+            <a class="pick__item" href="#intern-2" data-open-case="intern-2"><span class="pick__name">Joveo</span><span class="pick__what">Partnership strategy for 50+ clients across the US, UK and Portugal</span><span class="pick__go" aria-hidden="true">→</span></a>
+            <a class="pick__item" href="#work-arctus" data-open-case="work-arctus"><span class="pick__name">Arctus Aerospace</span><span class="pick__what">LOIs and strategic partnerships ahead of the next round</span><span class="pick__go" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </template>
     </section>
 
 
@@ -937,7 +952,7 @@
             <p class="post__label">elsewhere</p>
             <ul>
               <li><a href="https://www.linkedin.com/in/shreya-lahiri-515229262/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.5 10.5v6M7.5 7.6v.1M11 16.5v-6M11 13c0-1.6 1-2.6 2.4-2.6s2.1 1 2.1 2.6v3.5"/></svg><span>LinkedIn</span></a></li>
-              <li><a class="todo" href="#" aria-label="Substack"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h14M5 8h14M5 11.5h14v8.5l-7-4-7 4z"/></svg><span>Substack</span></a></li>
+              <li><a href="https://aiplusfounderscommunity.substack.com/" target="_blank" rel="noopener" aria-label="Substack"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h14M5 8h14M5 11.5h14v8.5l-7-4-7 4z"/></svg><span>Substack</span></a></li>
               <li><a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.4a3 3 0 0 0-.8-2.3c2.7-.3 5.5-1.3 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6 0C6.5 2.7 5.5 3 5.5 3a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.4c0 4.6 2.8 5.6 5.5 6a3 3 0 0 0-.8 2.2V21"/></svg><span>GitHub</span></a></li>
             </ul>
           </nav>

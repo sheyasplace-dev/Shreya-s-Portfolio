@@ -18,7 +18,7 @@ const FISH = `<svg viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg" aria-
   </g>
 </svg>`;
 
-export function createJack(root, { reduced }) {
+export function createJack(root, { reduced, casefile }) {
   const sea = root.querySelector('[data-jack-sea]');
   const fish = root.querySelector('[data-jack-fish]');
   const waves = root.querySelector('[data-jack-waves]');
@@ -95,6 +95,14 @@ export function createJack(root, { reduced }) {
 
   return {
     start() {
+      // Each skill opens the page it names in data-target (see casefile.js).
+      root.querySelectorAll('template[data-pick-page]').forEach((t) => casefile.register(t.dataset.pickPage, {
+        label: t.dataset.label,
+        build: () => ({ content: t.content.cloneNode(true), variant: 'works' }),
+      }));
+      root.querySelectorAll('[data-target]').forEach((b) => b.addEventListener('click', () => {
+        if (b.dataset.target) casefile.open(b.dataset.target);
+      }));
       drawWaves();
       cutWindow();
       document.fonts?.ready.then(cutWindow);
@@ -103,7 +111,6 @@ export function createJack(root, { reduced }) {
       if (reduced) return;
       window.addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(render); }, { passive: true });
       window.addEventListener('resize', () => { drawWaves(); render(); });
-      // Each skill is ready to lead somewhere: set its data-target and wire it here (deliberately inert for now).
     },
   };
 }

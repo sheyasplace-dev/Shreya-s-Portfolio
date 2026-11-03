@@ -56,7 +56,7 @@ const flock = createFlock(document.querySelector('[data-flock]'), { reduced });
 const blogs = createBlogs(document.querySelector('[data-blogs]'));
 const tools = createTools(document.querySelector('[data-tools]'), { reduced });
 const table = createTable(document.querySelector('[data-table]'), { reduced });
-const jack = createJack(document.querySelector('[data-jack]'), { reduced });
+const jack = createJack(document.querySelector('[data-jack]'), { reduced, casefile });
 const rail = createRail(document.querySelector('[data-rail]'), { reduced });
 const contact = createContact(document.querySelector('[data-contact]'), { reduced });
 hello.usePortrait(hero.portrait);

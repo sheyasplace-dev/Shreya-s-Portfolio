@@ -184,7 +184,7 @@ nothing is linked yet, by design. The doodles are inline SVGs in each `.cell`.
 
 `<footer id="contact">`, the last page: the hand-painted post box (`assets/contact/postbox*.webp`, cut from its
 painted checkerboard), a letter dropping into its slot as you arrive (`scripts/scenes/contact.js`), and a postcard
-stamped with the শ্রেয়া badge (`favicon-192.png`). The Substack link under "elsewhere" is still a placeholder (marked `todo`: set its `href`, drop the class).
+stamped with the শ্রেয়া badge (`favicon-192.png`).
 
 ## Favicon
 
