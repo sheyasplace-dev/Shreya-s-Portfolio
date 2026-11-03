@@ -320,10 +320,10 @@
                   <p class="case__tag">| what I did |</p>
                   <div class="case__boxgrid">
                     <ol class="case__list">
-                      <li><b>Investor readiness and brand positioning.</b> Led brand development and positioning ahead of the upcoming fundraising round, refining the company’s narrative, value proposition, market positioning and investor-facing materials.</li>
-                      <li><b>LOI acquisition and strategic partnerships.</b> Drove customer discovery and strategic outreach to secure Letters of Intent, building a pipeline of prospective customers and industry partners to establish early traction and validate demand.</li>
-                      <li><b>Enterprise business development.</b> Opened ~30 named accounts across aerospace and adjacent sectors from a cold start, advancing 20 prospects into Stage 3 and Stage 4 procurement discussions, towards a $1M LOI pipeline ahead of the next round.</li>
-                      <li><b>Market entry strategy.</b> Built the market-entry thesis through primary research into aerospace industry fundamentals, demand drivers, customer segments, competitive positioning and customer acquisition economics.</li>
+                      <li><span><b>Investor readiness and brand positioning.</b> Led brand development and positioning ahead of the upcoming fundraising round, refining the company’s narrative, value proposition, market positioning and investor-facing materials.</span></li>
+                      <li><span><b>LOI acquisition and strategic partnerships.</b> Drove customer discovery and strategic outreach to secure Letters of Intent, building a pipeline of prospective customers and industry partners to establish early traction and validate demand.</span></li>
+                      <li><span><b>Enterprise business development.</b> Opened ~30 named accounts across aerospace and adjacent sectors from a cold start, advancing 20 prospects into Stage 3 and Stage 4 procurement discussions, towards a $1M LOI pipeline ahead of the next round.</span></li>
+                      <li><span><b>Market entry strategy.</b> Built the market-entry thesis through primary research into aerospace industry fundamentals, demand drivers, customer segments, competitive positioning and customer acquisition economics.</span></li>
                     </ol>
                   </div>
                 </section>
@@ -504,23 +504,38 @@
         <span class="proj__line proj__line--small">click to know more</span>
       </a>
       <template data-proj-page>
-        <article class="case" aria-label="Open source project">
+        <article class="case" aria-label="Open source: Shipped">
           <header class="case__intro">
             <div class="case__lead">
-              <p class="case__tag">| open source |</p>
-              <h2 class="case__title">Things I&rsquo;ve <em>built</em><br>in the open</h2>
+              <p class="case__tag">| open source · python |</p>
+              <h2 class="case__title">Shipped</h2>
+              <p class="case__when">A pipeline that finds the people who asked for what you just launched.</p>
+              <p class="case__path"><a href="https://github.com/sheyasplace-dev/Shipped_it" target="_blank" rel="noopener">github.com/sheyasplace-dev/Shipped_it ↗</a></p>
             </div>
             <div class="case__text">
-              <p class="todo">A paragraph on why you build in the open, and what you like to make.</p>
+              <p>Somewhere in every devtool&rsquo;s issue tracker is a person who asked for a feature eighteen months ago and never heard back. The release ships, the changelog goes out, and the one human who most wanted that thing finds out the same way as everyone else, which is to say, not at all.</p>
+              <p>That bothered me. It&rsquo;s the warmest list a company will ever have, written in public, timestamped, in the person&rsquo;s own words. Nobody reads it.</p>
             </div>
           </header>
+          <figure class="case__band case__band--shot">
+            <img src="assets/projects/shipped/repo.webp" alt="The Shipped_it repository on GitHub" loading="lazy" decoding="async">
+          </figure>
           <section class="case__box">
-            <p class="case__tag">| projects |</p>
-            <ol class="case__list">
-              <li class="todo">Project name: what it does, and a link to it.</li>
-              <li class="todo">Another project: what it does, and a link to it.</li>
-              <li class="todo">And another.</li>
-            </ol>
+            <p class="case__tag">| how it works |</p>
+            <div class="case__prose">
+              <p>So I built the thing that reads it. Point it at a GitHub repo. It opens the release, works out which issues that release actually closed, and pulls out the non-maintainer humans behind them: who opened it, who commented, who quietly hit &#x1F44D; and waited. Out comes a list you could actually send.</p>
+              <p>A second tool answers the only question that decides whether this is a product or a toy: how many of these people can you really reach? A targeted segment you can&rsquo;t contact isn&rsquo;t a segment.</p>
+            </div>
+          </section>
+          <section class="case__end">
+            <h3 class="case__endtitle">The hard part was the <em>honesty</em></h3>
+            <div class="case__endtext">
+              <p class="case__tag">| what I learned |</p>
+              <p>My first version looked at what closed between two releases and called it shipped. Beautiful list. Confidently wrong: timing isn&rsquo;t cause. So now the first column of every row is provenance, where that row&rsquo;s claim actually comes from. A pull request named in the notes. A pull request in the tag&rsquo;s real commit range. A verified duplicate. Or, labelled plainly and excluded by default, mere coincidence of timing. Only the first three earn the sentence &ldquo;you asked for this, and it shipped.&rdquo; The tool will not let you say it otherwise.</p>
+              <p>Then it caught me out. Testing the matcher, I generated a subscriber list from the requester handles themselves and got a gorgeous overlap rate where every fuzzy match scored a perfect 1.000. It was measuring itself. That number is now a comment in the source code, next to the list of placeholder domains the tool refuses to count, because the dangerous metric is never the one that&rsquo;s wrong, it&rsquo;s the one that&rsquo;s flattering and wrong.</p>
+              <p class="case__stack">Python · GitHub&rsquo;s GraphQL API · no dependencies</p>
+              <a class="case__link" href="https://github.com/sheyasplace-dev/Shipped_it" target="_blank" rel="noopener">View on GitHub ↗</a>
+            </div>
           </section>
         </article>
       </template>
@@ -543,18 +558,18 @@
             <p class="works__note">(Selected works)</p>
           </header>
           <div class="works__grid">
-            <a class="wcard wcard--big" href="#web-1" data-open-case="web-1">
-              <span class="wcard__img"><!-- cover: <img src="assets/websites/web-1/cover.webp" alt=""> --><span class="wcard__ph">cover image</span></span>
-              <span class="wcard__name">AI+ Partnership Deck</span>
-              <span class="wcard__meta">Sales &amp; Partnerships, 2026</span>
-            </a>
-            <a class="wcard" href="#web-2" data-open-case="web-2">
-              <span class="wcard__img"><!-- cover: <img src="assets/websites/web-2/cover.webp" alt=""> --><span class="wcard__ph">cover image</span></span>
+            <a class="wcard wcard--big" href="#web-2" data-open-case="web-2">
+              <span class="wcard__img"><img src="assets/websites/web-2/1.webp" alt="The AI+ website on a laptop and a phone" loading="lazy" decoding="async" style="object-position:42% 50%"></span>
               <span class="wcard__name">AI+ Website</span>
               <span class="wcard__meta">Web Design, 2026</span>
             </a>
+            <a class="wcard" href="#web-1" data-open-case="web-1">
+              <span class="wcard__img"><img src="assets/websites/web-1/1.webp" alt="AI+ partnership deck on a laptop: Why this audience matters" loading="lazy" decoding="async" style="object-position:50% 50%"></span>
+              <span class="wcard__name">AI+ Partnership Deck</span>
+              <span class="wcard__meta">Sales &amp; Partnerships, 2026</span>
+            </a>
             <a class="wcard" href="#web-3" data-open-case="web-3">
-              <span class="wcard__img"><!-- cover: <img src="assets/websites/web-3/cover.webp" alt=""> --><span class="wcard__ph">cover image</span></span>
+              <span class="wcard__img"><img src="assets/websites/web-3/4.webp" alt="Venue Finder on two phones" loading="lazy" decoding="async" style="object-position:50% 50%"></span>
               <span class="wcard__name">AI+ Venue Finder</span>
               <span class="wcard__meta">Event Planning and Operations, 2026</span>
             </a>
@@ -581,17 +596,17 @@
             </dl>
             <a class="wproj__live" href="https://aiplus-partner-deck.netlify.app/" target="_blank" rel="noopener">View live site</a>
           </div>
-          <div class="wproj__shots"><figure class="wproj__shot"><span class="wcard__ph">picture 1</span></figure><figure class="wproj__shot"><span class="wcard__ph">picture 2</span></figure><figure class="wproj__shot"><span class="wcard__ph">picture 3</span></figure><figure class="wproj__shot"><span class="wcard__ph">picture 4</span></figure></div>
+          <div class="wproj__shots"><div class="wproj__row"><figure class="wproj__shot" style="--ar:0.807"><img src="assets/websites/web-1/1.webp" alt="AI+ partnership deck, audience slide" loading="lazy" decoding="async"></figure><figure class="wproj__shot" style="--ar:1.546"><img src="assets/websites/web-1/2.webp" alt="AI+ partnership deck, opening slide" loading="lazy" decoding="async"></figure></div></div>
           <section class="works works--more">
             <header class="works__head"><h3 class="works__title">More works</h3><p class="works__note">(You might also like)</p></header>
             <div class="works__grid works__grid--two">
             <a class="wcard" href="#web-2" data-open-case="web-2">
-              <span class="wcard__img"><!-- cover: <img src="assets/websites/web-2/cover.webp" alt=""> --><span class="wcard__ph">cover image</span></span>
+              <span class="wcard__img"><img src="assets/websites/web-2/1.webp" alt="The AI+ website on a laptop and a phone" loading="lazy" decoding="async" style="object-position:42% 50%"></span>
               <span class="wcard__name">AI+ Website</span>
               <span class="wcard__meta">Web Design, 2026</span>
             </a>
             <a class="wcard" href="#web-3" data-open-case="web-3">
-              <span class="wcard__img"><!-- cover: <img src="assets/websites/web-3/cover.webp" alt=""> --><span class="wcard__ph">cover image</span></span>
+              <span class="wcard__img"><img src="assets/websites/web-3/4.webp" alt="Venue Finder on two phones" loading="lazy" decoding="async" style="object-position:50% 50%"></span>
               <span class="wcard__name">AI+ Venue Finder</span>
               <span class="wcard__meta">Event Planning and Operations, 2026</span>
             </a>
@@ -617,17 +632,17 @@
             </dl>
             <a class="wproj__live" href="https://sheyasplace-dev.github.io/AIPlus_Website/" target="_blank" rel="noopener">View live site</a>
           </div>
-          <div class="wproj__shots"><figure class="wproj__shot"><span class="wcard__ph">picture 1</span></figure><figure class="wproj__shot"><span class="wcard__ph">picture 2</span></figure><figure class="wproj__shot"><span class="wcard__ph">picture 3</span></figure><figure class="wproj__shot"><span class="wcard__ph">picture 4</span></figure></div>
+          <div class="wproj__shots"><div class="wproj__row"><figure class="wproj__shot" style="--ar:1.546"><img src="assets/websites/web-2/1.webp" alt="The AI+ website home page, laptop and phone" loading="lazy" decoding="async"></figure><figure class="wproj__shot" style="--ar:1.546"><img src="assets/websites/web-2/2.webp" alt="The AI+ website partners page, laptop and phone" loading="lazy" decoding="async"></figure></div></div>
           <section class="works works--more">
             <header class="works__head"><h3 class="works__title">More works</h3><p class="works__note">(You might also like)</p></header>
             <div class="works__grid works__grid--two">
             <a class="wcard" href="#web-1" data-open-case="web-1">
-              <span class="wcard__img"><!-- cover: <img src="assets/websites/web-1/cover.webp" alt=""> --><span class="wcard__ph">cover image</span></span>
+              <span class="wcard__img"><img src="assets/websites/web-1/1.webp" alt="AI+ partnership deck on a laptop: Why this audience matters" loading="lazy" decoding="async" style="object-position:50% 50%"></span>
               <span class="wcard__name">AI+ Partnership Deck</span>
               <span class="wcard__meta">Sales &amp; Partnerships, 2026</span>
             </a>
             <a class="wcard" href="#web-3" data-open-case="web-3">
-              <span class="wcard__img"><!-- cover: <img src="assets/websites/web-3/cover.webp" alt=""> --><span class="wcard__ph">cover image</span></span>
+              <span class="wcard__img"><img src="assets/websites/web-3/4.webp" alt="Venue Finder on two phones" loading="lazy" decoding="async" style="object-position:50% 50%"></span>
               <span class="wcard__name">AI+ Venue Finder</span>
               <span class="wcard__meta">Event Planning and Operations, 2026</span>
             </a>
@@ -653,17 +668,17 @@
             </dl>
             <a class="wproj__live" href="https://sheyasplace-dev.github.io/Venue-Website/" target="_blank" rel="noopener">View live site</a>
           </div>
-          <div class="wproj__shots"><figure class="wproj__shot"><span class="wcard__ph">picture 1</span></figure><figure class="wproj__shot"><span class="wcard__ph">picture 2</span></figure><figure class="wproj__shot"><span class="wcard__ph">picture 3</span></figure><figure class="wproj__shot"><span class="wcard__ph">picture 4</span></figure></div>
+          <div class="wproj__shots"><div class="wproj__row"><figure class="wproj__shot" style="--ar:1.546"><img src="assets/websites/web-3/1.webp" alt="Venue Finder on a laptop" loading="lazy" decoding="async"></figure><figure class="wproj__shot" style="--ar:0.807"><img src="assets/websites/web-3/2.webp" alt="Venue Finder filters on a phone" loading="lazy" decoding="async"></figure></div><div class="wproj__row"><figure class="wproj__shot" style="--ar:0.807"><img src="assets/websites/web-3/3.webp" alt="Venue Finder on a laptop on a striped sofa" loading="lazy" decoding="async"></figure><figure class="wproj__shot" style="--ar:0.807"><img src="assets/websites/web-3/4.webp" alt="Venue Finder on two phones" loading="lazy" decoding="async"></figure></div></div>
           <section class="works works--more">
             <header class="works__head"><h3 class="works__title">More works</h3><p class="works__note">(You might also like)</p></header>
             <div class="works__grid works__grid--two">
             <a class="wcard" href="#web-1" data-open-case="web-1">
-              <span class="wcard__img"><!-- cover: <img src="assets/websites/web-1/cover.webp" alt=""> --><span class="wcard__ph">cover image</span></span>
+              <span class="wcard__img"><img src="assets/websites/web-1/1.webp" alt="AI+ partnership deck on a laptop: Why this audience matters" loading="lazy" decoding="async" style="object-position:50% 50%"></span>
               <span class="wcard__name">AI+ Partnership Deck</span>
               <span class="wcard__meta">Sales &amp; Partnerships, 2026</span>
             </a>
             <a class="wcard" href="#web-2" data-open-case="web-2">
-              <span class="wcard__img"><!-- cover: <img src="assets/websites/web-2/cover.webp" alt=""> --><span class="wcard__ph">cover image</span></span>
+              <span class="wcard__img"><img src="assets/websites/web-2/1.webp" alt="The AI+ website on a laptop and a phone" loading="lazy" decoding="async" style="object-position:42% 50%"></span>
               <span class="wcard__name">AI+ Website</span>
               <span class="wcard__meta">Web Design, 2026</span>
             </a>

@@ -276,3 +276,22 @@ html.has-casefile { overflow: hidden; }
 .wproj__shot { display: grid; place-items: center; margin: 0; aspect-ratio: 1; background: #e6e3dc; overflow: hidden; }
 .wproj__shot img { width: 100%; height: 100%; object-fit: cover; }
 @media (max-width: 640px) { .wproj__info dl > div { grid-template-columns: 6rem 1fr; } .wproj__shots { grid-template-columns: 1fr; } }
+
+/* Real pictures keep their own shape, two to a row, each row one height: widths share the row by shape
+   (--ar is the picture's width ÷ height), so nothing is cropped and the edges line up. */
+.wproj__shots { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.wproj__row { display: flex; gap: 14px; }
+.wproj__row .wproj__shot { flex: var(--ar, 1) 1 0; aspect-ratio: var(--ar, 1); background: none; }
+.wproj__row .wproj__shot img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 640px) { .wproj__row { flex-direction: column; } }
+.wcard--big .wcard__img { aspect-ratio: 4 / 3; }
+.wcard__img:has(img) { display: block; }
+
+/* Open source: a screenshot instead of a black-and-white band, and running prose instead of a list. */
+.case__band--shot { padding: 0 var(--gutter); }
+.case__band--shot img { height: auto; max-height: none; filter: none; border: 1px solid var(--rule); }
+.case__prose { max-width: 46rem; line-height: 1.7; }
+.case__prose p { margin: 0 0 1.1em; }
+.case__path a, .case__link { color: var(--red); }
+.case__link { display: inline-block; margin-top: 1em; font-weight: 600; border-bottom: 1.5px solid currentColor; text-decoration: none; }
+.case__stack { margin-top: 1.6em; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(35, 32, 28, 0.7); }
