@@ -1,18 +1,26 @@
-/* Contact: a mustard wall with a paper grain, everything in post-box red. A post box where a logo would be,
-   columns of ways in, and the name, huge, running off the bottom of the page. */
+/* Contact, the last page: an old red wall (limewash and grain), the yellow post box with its vine, a letter
+   slipping into the slot as you arrive, and a postcard — stamped with the শ্রেয়া badge, postmarked Bengaluru —
+   carrying the ways to reach me. Mustard and cream on red: the post box's colours, turned around. */
 
 .post {
-  --wall: #e9a92c;
-  --red: #a3161b;
-  --red-soft: rgba(163, 22, 27, 0.72);
+  --wall: #92302b;      /* a faded, sun-washed post-box red */
+  --wall-deep: #6f1d1c;
+  --mustard: #f2b632;
+  --cream: #fbf1dc;
+  --soft: rgba(251, 241, 220, 0.7);
+  --card: #f7ecd4;
+  --ink: #3a1410;
   position: relative;
   overflow: hidden;
   padding: clamp(64px, 11vh, 120px) max(20px, 6vw) 0;
+  /* Washed and uneven, like the old mustard wall: soft lighter patches, a few darker ones, then the grain. */
   background:
-    radial-gradient(60% 50% at 25% 30%, rgba(255, 220, 140, 0.35), transparent 70%),
-    radial-gradient(50% 50% at 85% 80%, rgba(170, 100, 10, 0.2), transparent 70%),
+    radial-gradient(60% 50% at 25% 30%, rgba(255, 190, 150, 0.2), transparent 70%),
+    radial-gradient(45% 40% at 78% 22%, rgba(255, 205, 170, 0.14), transparent 70%),
+    radial-gradient(50% 50% at 85% 80%, rgba(70, 10, 5, 0.22), transparent 70%),
+    radial-gradient(40% 35% at 40% 75%, rgba(255, 180, 140, 0.1), transparent 70%),
     var(--wall);
-  color: var(--red);
+  color: var(--cream);
 }
 
 .post::after {
@@ -25,111 +33,244 @@
 
 .post a { color: inherit; text-decoration: none; }
 
-.post__top {
+.post__scene {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(180px, 1.1fr) 0.8fr 0.8fr 1.3fr;
-  gap: clamp(28px, 4vw, 64px);
-  align-items: start;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 80px);
+  max-width: 1240px;
+  margin: 0 auto;
 }
+
+/* ── The words ── */
+
+.post__kicker {
+  margin: 0 0 1em;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mustard);
+}
+
+.post__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 380;
+  font-size: clamp(3.2rem, 1.6rem + 5vw, 6.8rem);
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+}
+
+.post__lede {
+  max-width: 30rem;
+  margin: 1.2em 0 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1rem, 0.92rem + 0.35vw, 1.2rem);
+  line-height: 1.5;
+  color: var(--soft);
+}
+
+.post__lede span { font-family: 'Noto Serif Bengali', var(--font-display); font-style: normal; color: var(--mustard); }
+
+/* ── The postcard ── */
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 34rem;
+  margin-top: clamp(28px, 5vh, 48px);
+  padding: 26px 24px 22px;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(58, 20, 16, 0.25) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+    var(--card);
+  color: var(--ink);
+  border-radius: 3px;
+  box-shadow: 0 22px 34px -18px rgba(20, 0, 0, 0.7);
+  rotate: -2.2deg;
+  transition: rotate 0.6s var(--ease-out);
+}
+
+.card:hover { rotate: -0.8deg; }
+
+.card__left { padding-right: 18px; }
+
+.card__note {
+  margin: 0 0 0.4em;
+  font-family: 'Cedarville Cursive', cursive;
+  font-size: 1.15rem;
+}
+
+.card__note--2 { letter-spacing: 0.3em; opacity: 0.6; }
+
+.card__sign {
+  margin: 1.6em 0 0;
+  font-family: 'Cedarville Cursive', cursive;
+  font-size: 0.95rem;
+  opacity: 0.75;
+}
+
+.card__right { position: relative; display: grid; align-content: end; gap: 2px; padding: 92px 0 0 18px; }
+
+/* The stamp: her badge on a perforated edge; the postmark half over it. */
+.card__stamp {
+  position: absolute;
+  top: -6px;
+  right: -4px;
+  width: 72px;
+  padding: 5px;
+  background: #fffaf0;
+  -webkit-mask: radial-gradient(circle 3px at 3px 3px, transparent 98%, #000) -3px -3px / 8px 8px;
+  mask: radial-gradient(circle 3px at 3px 3px, transparent 98%, #000) -3px -3px / 8px 8px;
+  rotate: 4deg;
+}
+
+.card__stamp img { display: block; width: 100%; height: auto; }
+
+.card__mark {
+  position: absolute;
+  top: 4px;
+  right: 52px;
+  width: 80px;
+  rotate: -14deg;
+  opacity: 0.75;
+}
+
+.card__mark svg { display: block; width: 100%; overflow: visible; }
+.card__mark circle, .card__mark path { fill: none; stroke: #9e1b22; stroke-width: 2; }
+.card__mark text { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; fill: #9e1b22; }
+
+.card__to {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+/* The address lines: each link written on a ruled line. */
+.card__line {
+  display: block;
+  padding: 3px 0 2px;
+  border-bottom: 1px solid rgba(58, 20, 16, 0.3);
+  font-family: 'Cedarville Cursive', cursive;
+  font-size: 1.05rem;
+  transition: color 0.3s, padding-left 0.3s var(--ease-out);
+}
+
+.card__line:hover { color: #9e1b22; padding-left: 6px; }
+.post .todo { opacity: 0.55; }
+
+.post__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin-top: clamp(20px, 3vh, 28px);
+  font-family: 'Figtree', var(--font-ui);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--soft);
+}
+
+.post__nav a { background: linear-gradient(var(--mustard), var(--mustard)) 0 100% / 0 1.5px no-repeat; transition: background-size 0.4s var(--ease-out), color 0.3s; }
+.post__nav a:hover { color: var(--mustard); background-size: 100% 1.5px; }
+
+/* Elsewhere: the socials, each a small ring with its mark, the name beside it. */
+.post__social { margin-top: clamp(28px, 5vh, 44px); }
+
+.post__label {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--soft);
+}
+
+.post__social ul { display: flex; flex-wrap: wrap; gap: 10px 14px; margin: 0; padding: 0; list-style: none; }
+
+.post__social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 6px;
+  border: 1px solid rgba(251, 241, 220, 0.3);
+  border-radius: 999px;
+  font-family: 'Figtree', var(--font-ui);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--cream);
+  transition: background 0.3s, color 0.3s, border-color 0.3s, translate 0.35s var(--ease-out);
+}
+
+.post__social svg {
+  width: 28px;
+  height: 28px;
+  padding: 5px;
+  border-radius: 50%;
+  background: var(--mustard);
+  fill: none;
+  stroke: var(--wall-deep);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.post__social a:hover { background: var(--mustard); border-color: var(--mustard); color: var(--wall-deep); translate: 0 -2px; }
+.post__social a:hover svg { background: var(--wall-deep); stroke: var(--mustard); }
+.post__social a.todo { opacity: 0.85; font-style: normal; }
+
+.card__line--blank { height: 1.6em; }
+.card__line--city { font-size: 0.95rem; opacity: 0.75; }
 
 /* ── The post box ── */
 
-.post__brand { display: grid; justify-items: start; }
-
-.pbox {
+.post__box {
   position: relative;
-  width: clamp(130px, 14vw, 190px);
-  aspect-ratio: 220 / 300;
+  justify-self: center;
+  width: min(100%, 440px, 46svh);
+  aspect-ratio: 1281 / 2325;
+  filter: drop-shadow(18px 26px 26px rgba(25, 0, 0, 0.55));
 }
 
-.pbox__svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.pbox__bn { font-family: 'Noto Serif Bengali', var(--font-display); font-size: 30px; fill: #f7e4cc; }
-.pbox__time { font-family: 'Noto Serif Bengali', var(--font-display); font-size: 13px; fill: #f7e4cc; }
+.post__boximg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
-/* The letter: above the slot, then in through it (clipped to above the slot's lower lip). */
-.pbox__letter {
+/* The letter: drifts in from above and to the left, then slips into the slot (clipped at the slot's lip). */
+.post__letter {
   position: absolute;
-  left: 28%;
-  top: 8%;
-  width: 44%;
+  z-index: 1;
+  left: 54%;
+  top: 14.5%;
+  width: 28%;
   transform: translate(var(--x, 0), var(--y, 0)) rotate(var(--r, 0));
-  clip-path: inset(-400% -400% calc(var(--in, 0) * 100%) -400%);
-  filter: drop-shadow(0 6px 6px rgba(90, 30, 0, 0.25));
+  clip-path: inset(-500% -500% calc(var(--in, 0) * 100%) -500%);
+  filter: drop-shadow(0 6px 6px rgba(40, 0, 0, 0.3));
   will-change: transform;
 }
 
-.pbox__letter svg { display: block; width: 100%; height: auto; }
-
-.post__sign {
-  margin: 18px 0 0;
-  font-family: 'Noto Serif Bengali', var(--font-display);
-  font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.3rem);
-  line-height: 1.1;
-  rotate: -4deg;
-}
-
-.post__signen {
-  margin: 4px 0 0;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--red-soft);
-}
-
-/* ── The columns ── */
-
-.post__col { display: grid; gap: 0.7em; align-content: start; font-family: 'Figtree', var(--font-ui); }
-
-.post__label {
-  margin: 0 0 0.4em;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 0.95rem;
-  color: var(--red-soft);
-}
-
-.post__col > a {
-  justify-self: start;
-  font-weight: 700;
-  font-size: 0.95rem;
-  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat;
-  transition: background-size 0.4s var(--ease-out);
-}
-
-.post__col > a:hover { background-size: 100% 1.5px; }
-
-.post__ask {
-  margin: 0 0 0.5em;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
-  font-variation-settings: 'opsz' 72, 'SOFT' 100, 'WONK' 1;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-}
-
-.post__mail { font-size: 1.05rem !important; }
-.post__where { margin: 0.2em 0 0; font-size: 0.85rem; color: var(--red-soft); }
-
-.post .todo { opacity: 0.6; }
+.post__letter svg { display: block; width: 100%; height: auto; }
 
 /* ── The name, running off the bottom ── */
 
 .post__name {
   position: relative;
   z-index: 1;
-  margin: clamp(40px, 8vh, 96px) 0 0;
+  margin: clamp(32px, 6vh, 72px) 0 0;
   font-family: var(--font-display);
-  font-weight: 420;
-  font-size: 33vw;
+  font-weight: 460;
+  font-size: 30vw;
   font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
   line-height: 0.74;
   letter-spacing: -0.04em;
   text-align: center;
   white-space: nowrap;
-  translate: 0 0.12em;
+  color: var(--mustard);
+  translate: 0 0.2em; /* sunk into the page's bottom edge, half showing */
 }
 
 .post__fine {
@@ -141,17 +282,24 @@
   font-family: 'Figtree', var(--font-ui);
   font-size: 11px;
   letter-spacing: 0.06em;
-  color: #fbe6c2;
+  color: var(--soft);
   mix-blend-mode: normal;
 }
 
+.post [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 1s var(--ease-out), transform 1.2s var(--ease-out); }
+.post [data-reveal].is-in { opacity: 1; transform: none; }
+
 @media (max-width: 900px) {
-  .post__top { grid-template-columns: 1fr 1fr; }
-  .post__brand { grid-column: 1 / -1; grid-template-columns: auto 1fr; grid-template-rows: 1fr auto auto; column-gap: 24px; }
-  .post__brand .pbox { grid-row: 1 / -1; }
-  .post__sign { grid-row: 2; margin: 0; }
-  .post__signen { grid-row: 3; margin-bottom: 8%; }
-  .post__fine { position: static; margin-top: 28px; padding-bottom: 18px; color: var(--red-soft); }
-  .post__name { translate: 0; line-height: 0.9; }
-  .post__col:last-child { grid-column: 1 / -1; }
+  .post__scene { grid-template-columns: 1fr; }
+  .post__box { order: -1; width: min(62vw, 300px); }
+  .card { grid-template-columns: 1fr; }
+  .card__left { padding: 0 0 14px; border-bottom: 1px solid rgba(58, 20, 16, 0.2); margin-bottom: 14px; }
+  .card { background: var(--card); }
+  .card__right { padding-left: 0; min-height: 0; padding-top: 70px; }
+  .post__name { font-size: 34vw; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post [data-reveal] { opacity: 1; transform: none; }
+  .card { transition: none; }
 }

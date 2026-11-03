@@ -13,7 +13,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..500,0..100;1,9..144,300..500,0..100&family=Inter:wght@500&family=Italiana&family=Fredoka:wght@600&family=Nanum+Pen+Script&family=Figtree:wght@400;700&family=Black+Ops+One&family=Cedarville+Cursive&family=Cormorant+Garamond:wght@500;700&family=DM+Mono:wght@400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..500,0..100;1,9..144,300..500,0..100&family=Inter:wght@500&family=Italiana&family=Fredoka:wght@600&family=Nanum+Pen+Script&family=Figtree:wght@400;700&family=Black+Ops+One&family=Cedarville+Cursive&family=Anton&family=Pinyon+Script&family=Cormorant+Garamond:wght@500;700&family=DM+Mono:wght@400&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500&text=%E0%A6%95%E0%A6%BE%E0%A6%9C%E0%A7%87%E0%A6%B0%20%E0%A6%85%E0%A6%AD%E0%A6%BF%E0%A6%9C%E0%A7%8D%E0%A6%9E%E0%A6%A4%E0%A6%BE&display=swap">
   <!-- Bengali numerals and her name only, so the subset stays tiny. -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400&text=%E0%A6%85%E0%A6%93%E0%A6%95%E0%A6%9A%E0%A6%9C%E0%A6%9E%E0%A6%A0%E0%A6%A1%E0%A6%A4%E0%A6%A6%E0%A6%AC%E0%A6%AD%E0%A6%AF%E0%A6%B0%E0%A6%B2%E0%A6%B6%E0%A6%B8%E0%A6%B9%E0%A6%BC%E0%A6%BE%E0%A6%BF%E0%A7%80%E0%A7%87%E0%A7%8D%E0%A7%A7%E0%A7%A8%E0%A7%A9%E0%A7%AA%E0%A7%AB%E0%A7%AC%20&display=swap">
@@ -23,6 +23,8 @@
   <link rel="stylesheet" href="styles/scene.css">
   <link rel="stylesheet" href="styles/hello.css">
   <link rel="stylesheet" href="styles/about.css">
+  <link rel="stylesheet" href="styles/contents.css">
+  <link rel="stylesheet" href="styles/wipe.css">
   <link rel="stylesheet" href="styles/work.css">
   <link rel="stylesheet" href="styles/experience.css">
   <link rel="stylesheet" href="styles/calendar.css">
@@ -64,6 +66,8 @@
     <!-- About. To add a field, copy a .fact block and give it the next Bengali numeral and --i. -->
     <!-- The about section holds still (sticky) over its runway while the curtain falls on it. -->
     <div class="stage" data-stage>
+    <!-- About, then the contents page, scroll by together; the curtain falls over the contents page. -->
+    <div class="stage__pin" data-pin>
     <section id="about" class="about" aria-labelledby="about-title" data-about>
       <div class="about__copy">
         <h2 id="about-title" class="about__title" data-reveal>
@@ -130,6 +134,39 @@
         </div>
       </figure>
     </section>
+
+    <!-- The wipe: About holds still while a 1px rule rises up the screen, revealing Contents beneath it
+         (scripts/scenes/wipe.js). -->
+    <div class="wipe" data-wipe>
+      <div class="wipe__inner">
+    <!-- Contents: an index to the rest of the site, on Shreya's illustration (scripts/scenes/contents.js). -->
+    <nav id="contents" class="contents" aria-labelledby="contents-title">
+      <div class="contents__art">
+        <img class="contents__img" data-src="assets/contents/contents-1400.webp" data-srcset="assets/contents/contents-1400.webp 1400w, assets/contents/contents-2400.webp 2400w" sizes="max(100vw, 134svh)" width="2400" height="1792" loading="lazy" decoding="async" alt="An illustrated Shreya in glasses beside a black cat and a ladybird, her hands held out as if presenting the list beside her">
+        <div class="contents__text">
+          <h2 id="contents-title" class="contents__title">Content</h2>
+          <ol class="contents__list">
+            <li><a href="#work" data-jump>Work Experience</a></li>
+            <li><a href="#worked" data-jump>Where I've Worked</a></li>
+            <li><a href="#internships" data-jump>Early Internships</a></li>
+            <li><a href="#open-source" data-jump>Open Source Projects</a></li>
+            <li><a href="#website-design" data-jump data-jump-align="end">Website Design</a></li>
+            <li><a href="#blogs" data-jump>Blogs</a></li>
+            <li><a href="#tools" data-jump>Tools</a></li>
+            <li><a href="#jack" data-jump>Marketing Experiences</a></li>
+            <li><a href="#contact" data-jump>Say Hello</a></li>
+          </ol>
+        </div>
+      </div>
+    </nav>
+        <div class="wipe__rule" aria-hidden="true">
+          <span class="wipe__glitch"></span>
+          <span class="wipe__label wipe__label--l">about</span>
+          <span class="wipe__label wipe__label--r" data-wipe-read>contents 00%</span>
+        </div>
+      </div>
+    </div>
+    </div>
     <div class="stage__runway" data-runway aria-hidden="true"></div>
     </div>
 
@@ -635,64 +672,67 @@
     <section id="tools" class="tools" aria-labelledby="tools-title" data-tools>
       <div class="tools__walk">
         <div class="tools__stage">
+          <!-- The park (assets/tools/park-*.webp); its foreground plants are laid again over the cats (.park__front),
+               so they walk through the grass rather than over the picture. -->
+          <div class="park" data-lazy-bg aria-hidden="true"></div>
           <div class="tools__wall">
             <header class="tools__head" data-reveal>
-              <p class="tools__kicker">what I carry</p>
               <h2 id="tools-title" class="tools__title">Tools</h2>
-              <p class="tools__intro">The things I reach for every day. The cats only came along for the walk.</p>
+              <p class="tools__intro">strung up between the trees: the things I reach for every day.</p>
             </header>
-            <ul class="tools__list">
-              <li class="tool" data-reveal style="--i:0">
-                <span class="tool__frame"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tool__ph">logo</span></span>
-                <span class="tool__name todo">tool name</span>
+            <!-- The tools, as tags on two strings of bunting. To add one, copy an <li class="tag">, put its picture in
+                 assets/tools/kit/, replace the placeholder, and drop the todo class. --t is its place along the
+                 string (0–1). -->
+            <div class="garland garland--a">
+              <svg class="garland__string" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 Q50 20 100 0"/></svg>
+              <ul class="garland__tags">
+              <li class="tag" data-reveal style="--i:0; --t:0.083">
+                <span class="tag__card"><span class="tag__logo"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tag__ph">logo</span></span><span class="tag__name todo">tool name</span></span>
               </li>
-              <li class="tool" data-reveal style="--i:1">
-                <span class="tool__frame"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tool__ph">logo</span></span>
-                <span class="tool__name todo">tool name</span>
+              <li class="tag" data-reveal style="--i:1; --t:0.250">
+                <span class="tag__card"><span class="tag__logo"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tag__ph">logo</span></span><span class="tag__name todo">tool name</span></span>
               </li>
-              <li class="tool" data-reveal style="--i:2">
-                <span class="tool__frame"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tool__ph">logo</span></span>
-                <span class="tool__name todo">tool name</span>
+              <li class="tag" data-reveal style="--i:2; --t:0.417">
+                <span class="tag__card"><span class="tag__logo"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tag__ph">logo</span></span><span class="tag__name todo">tool name</span></span>
               </li>
-              <li class="tool" data-reveal style="--i:3">
-                <span class="tool__frame"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tool__ph">logo</span></span>
-                <span class="tool__name todo">tool name</span>
+              <li class="tag" data-reveal style="--i:3; --t:0.583">
+                <span class="tag__card"><span class="tag__logo"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tag__ph">logo</span></span><span class="tag__name todo">tool name</span></span>
               </li>
-              <li class="tool" data-reveal style="--i:4">
-                <span class="tool__frame"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tool__ph">logo</span></span>
-                <span class="tool__name todo">tool name</span>
+              <li class="tag" data-reveal style="--i:4; --t:0.750">
+                <span class="tag__card"><span class="tag__logo"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tag__ph">logo</span></span><span class="tag__name todo">tool name</span></span>
               </li>
-              <li class="tool" data-reveal style="--i:5">
-                <span class="tool__frame"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tool__ph">logo</span></span>
-                <span class="tool__name todo">tool name</span>
+              <li class="tag" data-reveal style="--i:5; --t:0.917">
+                <span class="tag__card"><span class="tag__logo"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tag__ph">logo</span></span><span class="tag__name todo">tool name</span></span>
               </li>
-              <li class="tool" data-reveal style="--i:6">
-                <span class="tool__frame"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tool__ph">logo</span></span>
-                <span class="tool__name todo">tool name</span>
+              </ul>
+            </div>
+            <div class="garland garland--b">
+              <svg class="garland__string" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 Q50 20 100 0"/></svg>
+              <ul class="garland__tags">
+              <li class="tag" data-reveal style="--i:6; --t:0.083">
+                <span class="tag__card"><span class="tag__logo"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tag__ph">logo</span></span><span class="tag__name todo">tool name</span></span>
               </li>
-              <li class="tool" data-reveal style="--i:7">
-                <span class="tool__frame"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tool__ph">logo</span></span>
-                <span class="tool__name todo">tool name</span>
+              <li class="tag" data-reveal style="--i:7; --t:0.250">
+                <span class="tag__card"><span class="tag__logo"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tag__ph">logo</span></span><span class="tag__name todo">tool name</span></span>
               </li>
-              <li class="tool" data-reveal style="--i:8">
-                <span class="tool__frame"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tool__ph">logo</span></span>
-                <span class="tool__name todo">tool name</span>
+              <li class="tag" data-reveal style="--i:8; --t:0.417">
+                <span class="tag__card"><span class="tag__logo"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tag__ph">logo</span></span><span class="tag__name todo">tool name</span></span>
               </li>
-              <li class="tool" data-reveal style="--i:9">
-                <span class="tool__frame"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tool__ph">logo</span></span>
-                <span class="tool__name todo">tool name</span>
+              <li class="tag" data-reveal style="--i:9; --t:0.583">
+                <span class="tag__card"><span class="tag__logo"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tag__ph">logo</span></span><span class="tag__name todo">tool name</span></span>
               </li>
-              <li class="tool" data-reveal style="--i:10">
-                <span class="tool__frame"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tool__ph">logo</span></span>
-                <span class="tool__name todo">tool name</span>
+              <li class="tag" data-reveal style="--i:10; --t:0.750">
+                <span class="tag__card"><span class="tag__logo"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tag__ph">logo</span></span><span class="tag__name todo">tool name</span></span>
               </li>
-              <li class="tool" data-reveal style="--i:11">
-                <span class="tool__frame"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tool__ph">logo</span></span>
-                <span class="tool__name todo">tool name</span>
+              <li class="tag" data-reveal style="--i:11; --t:0.917">
+                <span class="tag__card"><span class="tag__logo"><!-- the tool's picture: <img src="assets/tools/kit/name.webp" alt=""> --><span class="tag__ph">logo</span></span><span class="tag__name todo">tool name</span></span>
               </li>
-            </ul>
+              </ul>
+            </div>
           </div>
-          <div class="rug" aria-hidden="true" data-lazy-bg><div class="troupe" data-troupe></div></div>
+          <div class="rug" aria-hidden="true"><div class="troupe" data-troupe></div></div>
+          <div class="park park__front" data-lazy-bg aria-hidden="true"></div>
+          <p class="tools__aside" aria-hidden="true">the cats only came along for the walk</p>
         </div>
       </div>
     </section>
@@ -761,39 +801,51 @@
     </section>
 
 
-    <!-- Contact: a post box on a mustard wall (scripts/scenes/contact.js). The links marked .todo are placeholders:
-         set each href and its text. -->
+    <!-- Contact: the last page — a red wall, the post box (assets/contact/postbox*.webp), a letter dropping into
+         its slot as you arrive, and a postcard with the ways to reach me (scripts/scenes/contact.js). Links marked
+         .todo are placeholders: set each href and its text. -->
     <footer id="contact" class="post" aria-labelledby="post-title" data-contact>
-      <div class="post__top">
-        <div class="post__brand">
-          <div class="pbox" data-pbox>
-            <span class="pbox__letter" data-letter></span>
+      <div class="post__scene">
+        <div class="post__words">
+          <p class="post__kicker">the last page</p>
+          <h2 id="post-title" class="post__title">Drop me<br>a letter.</h2>
+          <p class="post__lede"><span lang="bn">চিঠি দিও</span> — about a role, an idea, a story to swap, or just to say you liked the fish.</p>
+
+          <div class="card" data-reveal>
+            <div class="card__left">
+              <p class="card__note">Dear Shreya,</p>
+              <p class="card__note card__note--2">&hellip;</p>
+              <p class="card__sign">with love, a visitor</p>
+            </div>
+            <div class="card__right">
+              <span class="card__stamp"><img src="favicon-192.png" width="192" height="192" alt="" loading="lazy"></span>
+              <span class="card__mark" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="pm" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1 -88 0"/></defs><circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="36"/><text><textPath href="#pm">BENGALURU · INDIA · 2026 ·</textPath></text><path d="M2 54h20M2 62h20M2 70h20M98 54h20M98 62h20M98 70h20"/></svg></span>
+              <p class="card__to">to</p>
+              <a class="card__line todo" href="#">your@email.com</a>
+              <span class="card__line card__line--blank" aria-hidden="true"></span>
+              <span class="card__line card__line--city">Bengaluru, India</span>
+            </div>
           </div>
-          <p class="post__sign">চিঠি দিও</p>
-          <p class="post__signen">write to me</p>
+
+          <nav class="post__social" aria-label="Elsewhere">
+            <p class="post__label">elsewhere</p>
+            <ul>
+              <li><a class="todo" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7.5 10.5v6M7.5 7.6v.1M11 16.5v-6M11 13c0-1.6 1-2.6 2.4-2.6s2.1 1 2.1 2.6v3.5"/></svg><span>LinkedIn</span></a></li>
+              <li><a class="todo" href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20" opacity="0"/><path d="M4.5 4.5h4.2l10.8 15h-4.2z"/><path d="M19.5 4.5l-6.2 7M10.7 13.5l-6.2 6"/></svg><span>Twitter</span></a></li>
+              <li><a class="todo" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".6"/></svg><span>Instagram</span></a></li>
+              <li><a class="todo" href="#" aria-label="Substack"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h14M5 8h14M5 11.5h14v8.5l-7-4-7 4z"/></svg><span>Substack</span></a></li>
+              <li><a class="todo" href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.4a3 3 0 0 0-.8-2.3c2.7-.3 5.5-1.3 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6 0C6.5 2.7 5.5 3 5.5 3a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.4c0 4.6 2.8 5.6 5.5 6a3 3 0 0 0-.8 2.2V21"/></svg><span>GitHub</span></a></li>
+            </ul>
+          </nav>
+
+          <nav class="post__nav" aria-label="Around here">
+            <a href="#about">About</a><a href="#contents">Contents</a><a href="#worked">Work</a><a href="#internships">Internships</a><a href="#blogs">Blogs</a><a href="#tools">Tools</a>
+          </nav>
         </div>
 
-        <nav class="post__col" aria-label="Pages">
-          <p class="post__label">around here</p>
-          <a href="#about">About</a>
-          <a href="#worked">Work</a>
-          <a href="#internships">Internships</a>
-          <a href="#blogs">Blogs</a>
-          <a href="#tools">Tools</a>
-        </nav>
-
-        <nav class="post__col" aria-label="Elsewhere">
-          <p class="post__label">elsewhere</p>
-          <a class="todo" href="#">LinkedIn</a>
-          <a class="todo" href="#">Substack</a>
-          <a class="todo" href="#">GitHub</a>
-        </nav>
-
-        <div class="post__col">
-          <p class="post__label">let&rsquo;s talk</p>
-          <h2 id="post-title" class="post__ask">Have an idea, a role, or a story to swap?</h2>
-          <a class="post__mail todo" href="#">your@email.com</a>
-          <p class="post__where">Bengaluru, India</p>
+        <div class="post__box" data-pbox>
+          <img class="post__boximg" src="assets/contact/postbox-700.webp" srcset="assets/contact/postbox-700.webp 700w, assets/contact/postbox-900.webp 900w" sizes="(min-width: 900px) min(440px, 46vh), min(62vw, 300px)" width="1281" height="2325" loading="lazy" decoding="async" alt="A hand-painted yellow Bengali post box, চিঠির বাক্স, wrapped in a vine of heart-shaped leaves">
+          <span class="post__letter" data-letter></span>
         </div>
       </div>
 

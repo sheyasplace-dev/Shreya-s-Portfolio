@@ -1,0 +1,120 @@
+/* Contents: Shreya's illustration with the index set beside her outstretched hands — a big yellow CONTENT and,
+   under it, every section of the site, right-aligned (scripts/scenes/contents.js). */
+
+.contents {
+  --paper: #e4e2df;
+  --yellow: #e8c63e;
+  --ink: #2a2723;
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* The picture, anchored left so she bleeds off the page's edge; any extra width on the right is paper. */
+.contents__art {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: min(100vw, 170svh);
+  aspect-ratio: 2400 / 1792;
+  translate: 0 -50%;
+  container-type: inline-size;
+}
+
+.contents__img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+/* On very wide screens, where plain paper continues past the picture, its right edge fades into it. */
+.contents__art::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -1px;
+  width: 5%;
+  background: linear-gradient(90deg, transparent, var(--paper));
+  pointer-events: none;
+}
+
+/* Where the illustration left room: above the hands, right-aligned to its 92% line. */
+.contents__text {
+  position: absolute;
+  right: 8%;
+  top: 15.5%;
+  text-align: right;
+}
+
+.contents__title {
+  margin: 0;
+  font-family: 'Anton', 'Impact', sans-serif;
+  font-weight: 400;
+  font-size: 13cqw;
+  line-height: 0.86;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.contents__list {
+  margin: 2.2cqw 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: 'Figtree', var(--font-ui);
+  font-weight: 500;
+  font-size: max(11px, 1.12cqw);
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.contents__list a {
+  color: inherit;
+  text-decoration: none;
+  background: linear-gradient(var(--yellow), var(--yellow)) 100% 92% / 0 0.45em no-repeat;
+  transition: background-size 0.35s var(--ease-out), color 0.25s;
+}
+
+.contents__list a:hover,
+.contents__list a:focus-visible { background-size: 100% 0.45em; background-position: 0 92%; }
+
+.contents__list a::after {
+  content: '↓';
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  vertical-align: bottom;
+  transition: width 0.3s var(--ease-out), opacity 0.3s;
+}
+
+.contents__list a:hover::after,
+.contents__list a:focus-visible::after { width: 1.1em; opacity: 1; }
+
+/* Tall screens: the index first, on paper, then the picture beneath it, whole. */
+@media (max-aspect-ratio: 11/10) {
+  /* At least a full screen, so the curtain only starts to fall once this page fills the view. */
+  .contents { height: 100svh; display: flex; }
+  .contents__art {
+    position: static;
+    translate: none;
+    width: 100%;
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    container-type: normal;
+  }
+  .contents__art::after { display: none; }
+  .contents { background: #eceae7; }
+  .contents__img {
+    position: static;
+    height: auto;
+    order: 2;
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%);
+    mask-image: linear-gradient(180deg, transparent, #000 12%);
+  }
+  .contents__text { position: static; order: 1; padding: clamp(48px, 9svh, 96px) max(20px, 7vw) 20px; }
+  .contents__title { font-size: min(26vw, 9rem); }
+  .contents__list { margin-top: 16px; font-size: 0.92rem; line-height: 1.85; }
+}

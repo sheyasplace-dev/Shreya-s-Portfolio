@@ -1,13 +1,12 @@
-/* Tools: one screen. A mottled sage wall with the heading and every tool hung on it; along the bottom, a purple
-   Persian rug the three cats walk across as you scroll (scripts/scenes/tools.js). */
+/* Tools: a sunlit park, painted. The heading hangs in the sky; the tools are paper tags on two strings of
+   bunting slung between the trees; three cats walk across the meadow as you scroll (scripts/scenes/tools.js),
+   through the grass — the painting's own foreground plants are laid over them again. */
 
 .tools {
-  --sage: #b9cbb1;
-  --sage-deep: #9fb596;
-  --plum: #3a1f5c;
-  --ink: #23271f;
+  --ink: #1f3322;
+  --tag: #fbf7ec;
   position: relative;
-  background: var(--sage);
+  background: #8fae63;
   color: var(--ink);
 }
 
@@ -18,117 +17,202 @@
   top: 0;
   height: 100svh;
   overflow: hidden;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  /* The wall: soft, uneven washes of sage, like the painted wall in the picture. */
-  background:
-    radial-gradient(40% 30% at 18% 22%, rgba(255, 255, 255, 0.18), transparent 70%),
-    radial-gradient(35% 40% at 80% 30%, rgba(120, 150, 110, 0.22), transparent 70%),
-    radial-gradient(50% 35% at 60% 75%, rgba(255, 255, 255, 0.14), transparent 70%),
-    radial-gradient(30% 30% at 30% 70%, rgba(110, 140, 100, 0.18), transparent 70%),
-    var(--sage);
 }
 
-/* ── The wall ── */
+/* ── The park: the whole painting, and its foreground again, above the cats ── */
+
+.park {
+  position: absolute;
+  inset: 0;
+  background: var(--park, #a9c27d) 50% 100% / cover no-repeat;
+}
+
+.park.is-near { --park: url('../assets/tools/park-1500.webp'); }
+@media (min-width: 1500px), (min-resolution: 1.5dppx) and (min-width: 900px) {
+  .park.is-near { --park: url('../assets/tools/park-2528.webp'); }
+}
+
+/* Only the bottom of the painting — the near grass, ferns and flowers — over the cats' legs. */
+.park__front {
+  z-index: 3;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to top, #000 0 6svh, transparent 10svh);
+  mask-image: linear-gradient(to top, #000 0 6svh, transparent 10svh);
+}
+
+/* ── The sky: the heading, and the bunting ── */
 
 .tools__wall {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   display: grid;
-  align-content: center;
+  grid-template-rows: auto auto auto 1fr;
   justify-items: center;
-  gap: clamp(28px, 5svh, 56px);
-  padding: clamp(28px, 6svh, 72px) max(20px, 6vw) clamp(20px, 4svh, 40px);
+  padding: clamp(36px, 7svh, 72px) 0 0;
 }
 
 .tools__head { text-align: center; }
 
-.tools__kicker {
-  margin: 0 0 0.5em;
-  font-family: 'DM Mono', ui-monospace, monospace;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(35, 39, 31, 0.6);
-}
-
+/* Set exactly like "Open Source Projects" (Fraunces, opsz 144, no soft or wonky forms), upright. */
 .tools__title {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 380;
-  font-style: normal;
+  font-size: clamp(4.4rem, 2rem + 7.4vw, 9.6rem);
   font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
-  letter-spacing: -0.015em;
-  text-transform: none;
-  font-size: clamp(3rem, 1.8rem + 4.5vw, 6rem);
   line-height: 0.95;
-  color: var(--plum);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-shadow: 0 1px 16px rgba(255, 255, 240, 0.6);
 }
 
 .tools__intro {
-  margin: 0.8em 0 0;
+  margin: 1.1em 0 0;
   font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.1rem);
-  color: rgba(35, 39, 31, 0.75);
+  font-weight: 380;
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  font-variation-settings: 'opsz' 36, 'SOFT' 0, 'WONK' 0;
+  padding: 0 20px;
+  text-wrap: balance;
+  color: rgba(31, 51, 34, 0.8);
 }
 
-/* The tools: small frames hung in even rows, a name beneath each. */
-.tools__list {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: clamp(20px, 3.4svh, 36px) clamp(20px, 3vw, 44px);
-  width: min(100%, 980px);
+/* A string of bunting: a cord slung in a curve, tags hanging from it, each at its place along the dip. */
+.garland {
+  --sag: clamp(18px, 4svh, 40px);
+  position: relative;
+  width: min(76vw, 1040px);
+  margin-top: clamp(14px, 3svh, 30px);
+}
+
+.garland--b { width: min(68vw, 920px); margin-top: clamp(4px, 1svh, 12px); }
+
+.garland__string {
+  position: absolute;
+  left: -2%;
+  top: 0;
+  width: 104%;
+  height: calc(var(--sag) * 2);
+  overflow: visible;
+}
+
+.garland__string path {
+  fill: none;
+  stroke: rgba(70, 52, 30, 0.75);
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.garland__tags {
+  display: flex;
+  justify-content: space-around;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.tool {
+/* Each tag hangs at the cord's height there (a parabola: deepest in the middle) and sways from its pin. */
+.tag {
+  --drop: calc(var(--sag) * 4 * var(--t) * (1 - var(--t)));
+  padding-top: var(--drop);
+  transform-origin: 50% 0;
+}
+
+.tag__card {
+  position: relative;
   display: grid;
   justify-items: center;
-  gap: 10px;
+  gap: 6px;
+  width: clamp(64px, min(8.6vw, 12.5svh), 122px);
+  margin-top: 14px;
+  padding: 10px 6px 9px;
+  background: var(--tag);
+  border-radius: 4px 4px 10px 10px;
+  box-shadow: 0 8px 14px -8px rgba(30, 40, 10, 0.55);
+  transform-origin: 50% -14px;
+  animation: tag-sway 5.5s ease-in-out calc(var(--i) * -0.7s) infinite alternate;
+}
+
+/* The little thread from the cord, and the punched hole it goes through. */
+.tag__card::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -14px;
+  width: 1px;
+  height: 18px;
+  background: rgba(70, 52, 30, 0.7);
+}
+
+.tag__card::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px rgba(70, 52, 30, 0.5);
+}
+
+@keyframes tag-sway {
+  from { rotate: -3deg; }
+  to { rotate: 3deg; }
+}
+
+.tag__logo {
+  display: grid;
+  place-items: center;
+  width: 78%;
+  aspect-ratio: 1;
+  margin-top: 6px;
+}
+
+.tag__logo img { width: 100%; height: 100%; object-fit: contain; }
+
+.tag__ph {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(31, 51, 34, 0.4);
+}
+
+.tag__name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(0.72rem, 0.64rem + 0.3vw, 0.95rem);
+  font-variation-settings: 'opsz' 14, 'SOFT' 0, 'WONK' 0;
+  line-height: 1.1;
   text-align: center;
 }
 
-.tool__frame {
-  display: grid;
-  place-items: center;
-  width: clamp(56px, min(9vw, 11svh), 104px);
-  aspect-ratio: 1;
-  padding: 16%;
-  border-radius: 22%;
-  background: #f4f1e8;
-  box-shadow:
-    0 0 0 1px rgba(58, 31, 92, 0.08),
-    0 10px 18px -10px rgba(40, 50, 30, 0.45);
-  transition: translate 0.4s var(--ease-out), box-shadow 0.4s;
+.tag:hover .tag__card { animation-play-state: paused; rotate: 0deg; }
+
+/* A pencilled aside, low in the grass. */
+.tools__aside {
+  position: absolute;
+  z-index: 4;
+  right: max(20px, 5vw);
+  bottom: 3svh;
+  margin: 0;
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.6rem);
+  color: #f6f0d8;
+  text-shadow: 0 1px 6px rgba(10, 20, 5, 0.6);
 }
 
-.tool__frame img { width: 100%; height: 100%; object-fit: contain; }
-
-.tool:hover .tool__frame { translate: 0 -4px; box-shadow: 0 0 0 1px rgba(58, 31, 92, 0.12), 0 16px 22px -12px rgba(40, 50, 30, 0.5); }
-
-.tool__ph {
-  font-family: 'DM Mono', ui-monospace, monospace;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(35, 39, 31, 0.4);
-}
-
-.tool__name {
-  font-family: 'Figtree', var(--font-ui);
-  font-size: 0.82rem;
-  letter-spacing: 0.01em;
-  text-transform: lowercase;
-}
-
-/* ── The rug, and the cats walking on it ── */
+/* ── The cats, walking across the meadow (their walk is set in tools.js) ── */
 
 .rug {
-  position: relative;
-  height: clamp(130px, 24svh, 240px);
-  background: var(--rug, #3a1f5c) 0 0 / auto 100% repeat-x;
-  box-shadow: 0 -2px 0 #1e1030, 0 -14px 24px -10px rgba(30, 40, 20, 0.35);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  height: 40svh;
 }
 
 .troupe {
@@ -136,7 +220,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 22%;
+  bottom: 5svh;
   height: var(--ch);
 }
 
@@ -158,35 +242,39 @@
   object-position: 50% 100%;
   opacity: 0;
   transition: opacity 0.09s linear;
+  /* In the park's afternoon light: a little warmth, a soft edge of shade. */
+  filter: sepia(0.08) saturate(0.95) brightness(1.02) drop-shadow(0 3px 4px rgba(20, 35, 10, 0.3));
 }
 
 .cat img.is-on { opacity: 1; }
 
+/* Dappled shade on the grass under each cat. */
 .cat__shadow {
   position: absolute;
-  left: 8%;
-  right: 8%;
-  bottom: -4%;
-  height: 10%;
+  left: 4%;
+  right: 4%;
+  bottom: -5%;
+  height: 12%;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(15, 5, 25, 0.6), rgba(15, 5, 25, 0));
+  background: radial-gradient(closest-side, rgba(25, 45, 15, 0.5), rgba(25, 45, 15, 0));
 }
 
-.tools [data-reveal] { opacity: 0; transform: translateY(12px); transition: opacity 0.8s var(--ease-out), transform 1s var(--ease-out); transition-delay: calc(var(--i, 0) * 0.04s); }
+.tools [data-reveal] { opacity: 0; transform: translateY(12px); transition: opacity 0.8s var(--ease-out), transform 1s var(--ease-out); transition-delay: calc(var(--i, 0) * 0.05s); }
 .tools [data-reveal].is-in { opacity: 1; transform: none; }
 
-@media (max-width: 900px) { .tools__list { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-
-@media (max-width: 520px) {
-  .tools__list { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px 14px; }
-  .tool__frame { width: 58px; }
-  .tool__name { font-size: 0.72rem; }
-  .rug { height: 120px; }
-  .troupe { --ch: 128px; }
+/* Phones: smaller tags, deeper cords, the cats a little bigger. */
+@media (max-width: 640px) {
+  .garland, .garland--b { width: 96vw; }
+  .tools__title { font-size: 22vw; }
+  .tag__card { width: 14.5vw; padding: 7px 3px; }
+  .tag__name { font-size: 0.6rem; }
+  .troupe { --ch: 30vw; bottom: 6svh; }
+  .tools__aside { left: 0; right: 0; text-align: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .tools__walk { height: auto; }
   .tools__stage { position: relative; }
+  .tag__card { animation: none; }
   .tools [data-reveal] { opacity: 1; transform: none; }
 }

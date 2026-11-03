@@ -3,7 +3,7 @@
    curtain rises with the work page and its hem stays behind as the page's valance. */
 
 .stage { position: relative; }
-.stage > .about { position: sticky; top: var(--pin, 0px); }
+.stage > .stage__pin { position: sticky; top: var(--pin, 0px); }
 .stage__runway { height: var(--runway, 0px); }
 
 /* ── The curtain ── */

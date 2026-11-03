@@ -31,7 +31,7 @@ export function createAbout(root, { reduced }) {
     const side = r.width < vw * 0.75; // side-by-side layout
     const w = r.width, h = r.height;
     // Measured from the stage around the section, which (unlike the section) never sticks.
-    const stageTop = root.parentElement.getBoundingClientRect().top;
+    const stageTop = root.closest('[data-stage]').getBoundingClientRect().top;
     const docTop = stageTop + window.scrollY + (r.top - root.getBoundingClientRect().top);
     const maxScroll = document.documentElement.scrollHeight - vh;
 

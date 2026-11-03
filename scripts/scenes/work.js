@@ -2,14 +2,14 @@ import { clamp, ease, lerp } from '../lib/motion.js';
 import { curtainSVG, hemDepths } from './curtainArt.js';
 
 // The curtain between "tell me about yourself" and the work page, tied to the scroll:
-//   1. falls  — the about section holds still (sticky) while the curtain drops over the whole screen;
+//   1. falls  — the contents page holds still (sticky) while the curtain drops over the whole screen;
 //   2. holds  — a beat, fully closed;
 //   3. rises  — it lifts with the work page as that scrolls up, and its hem stays on as the page's valance.
 // In 1–2 the curtain is fixed to the screen; from 3 on it is simply part of the work section, so it scrolls
 // exactly with the page. The two hand over at the same position, so there is no jump.
 export function createWork(root, { reduced }) {
   const stage = document.querySelector('[data-stage]');
-  const about = stage.querySelector('[data-about]');
+  const pinned = stage.querySelector('[data-pin]'); // the about and contents pages, scrolling as one
   const runway = stage.querySelector('[data-runway]');
   const curtain = root.querySelector('[data-curtain]');
   const img = root.querySelector('img');
@@ -40,12 +40,12 @@ export function createWork(root, { reduced }) {
     root.style.setProperty('--valance-body', `${strip}px`);
     root.style.setProperty('--valance', `${strip + depth.middle}px`);
 
-    // The about section pins where its bottom meets the bottom of the screen, for as long as the runway lasts.
-    stage.style.setProperty('--pin', `${Math.min(0, vh - about.offsetHeight)}px`);
+    // The pages above pin where their bottom meets the bottom of the screen, for as long as the runway lasts.
+    stage.style.setProperty('--pin', `${Math.min(0, vh - pinned.offsetHeight)}px`);
     stage.style.setProperty('--runway', `${fall + hold}px`);
 
     const stageTop = stage.getBoundingClientRect().top + window.scrollY;
-    const start = stageTop + about.offsetHeight - vh; // the scroll at which it starts to fall
+    const start = stageTop + pinned.offsetHeight - vh; // the scroll at which it starts to fall
     t = { start, fall, hold, body, deepest: depth.max };
   }
 
@@ -108,7 +108,7 @@ export function createWork(root, { reduced }) {
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onResize);
     },
-    // The about section changes height when its pictures load; the timeline follows.
+    // The pages above change height as their pictures load; the timeline follows.
     remeasure: onResize,
   };
 }

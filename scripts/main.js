@@ -6,6 +6,8 @@ import { DesktopScene } from './intro/desktopScene.js';
 import { circleReveal } from './intro/circleReveal.js';
 import { createHello } from './scenes/hello.js';
 import { createAbout } from './scenes/about.js';
+import { createContents } from './scenes/contents.js';
+import { createWipe } from './scenes/wipe.js';
 import { createWork } from './scenes/work.js';
 import { createExperience } from './scenes/experience.js';
 import { createCalendar } from './scenes/calendar.js';
@@ -40,6 +42,8 @@ const hero = desktop
   : new HeroStage(introEl, config.intro);
 const hello = createHello(helloEl);
 const about = createAbout(document.querySelector('[data-about]'), { reduced });
+const wipe = createWipe(document.querySelector('[data-wipe]'), { reduced });
+const contents = createContents(document.querySelector('#contents'), { reduced });
 const work = createWork(document.querySelector('[data-work]'), { reduced });
 const experience = createExperience(document.querySelector('[data-exp]'), { reduced });
 const casefile = createCasefile(document.querySelector('[data-casefile]'), { reduced });
@@ -98,6 +102,8 @@ async function finishIntro({ skipped = false } = {}) {
   body.dataset.phase = 'hello';
   hello.reveal();
   about.start();
+  wipe.start();
+  contents.start();
   work.start();
   experience.start();
   calendar.start();

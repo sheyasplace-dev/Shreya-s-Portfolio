@@ -167,12 +167,12 @@ reference illustration; their placement is `.blogs__leaves--*` in `styles/blogs.
 
 ## Tools
 
-`<section id="tools">`: one screen, a sage wall with every tool on it, and a Persian rug along the bottom
-(`assets/tools/rug.webp`, cut from the reference and mirrored so it repeats seamlessly) that three cats walk across
-as you scroll. Each cat is cut out in three poses (`assets/tools/cat-<colour>-<0|1|2>.webp`). **To add a tool**,
-copy an `<li class="tool">`, put its picture in `assets/tools/kit/`, replace the placeholder, and drop the `todo`
-class; the rows of six reflow by themselves. In `scripts/scenes/tools.js`, `GAIT` is the order of poses and
-`STRIDE` how far they walk per pose.
+`<section id="tools">`: a painted park (`assets/tools/park-*.webp`, watermark painted out). The heading hangs in the
+sky; the tools are paper tags on two strings of bunting; three cats walk across the meadow as you scroll, and the
+painting's foreground is laid over them again (`.park__front`, masked to the bottom of the screen) so they pass
+through the grass. **To add a tool**, copy an `<li class="tag">` into a `.garland__tags` list, put its picture in
+`assets/tools/kit/`, replace the placeholder and drop the `todo` class; `--t` is its place along the string (0–1).
+The cats' walk (`scripts/scenes/tools.js`) is unchanged.
 
 ## Jack of all trades
 
@@ -183,15 +183,24 @@ nothing is linked yet, by design. The doodles are inline SVGs in each `.cell`.
 
 ## Contact
 
-`<footer id="contact">`: a post box on a mustard wall, drawn in `scripts/scenes/contact.js` (a letter drops into its
-slot as the page scrolls in). **Fill in** the LinkedIn, Substack and GitHub links and the email (they're marked
-`todo`: set each `href` and text, and drop the class). If you add Bengali text anywhere, add its characters to the
-Noto Serif Bengali `text=` list in `<head>`.
+`<footer id="contact">`, the last page: the hand-painted post box (`assets/contact/postbox*.webp`, cut from its
+painted checkerboard), a letter dropping into its slot as you arrive (`scripts/scenes/contact.js`), and a postcard
+stamped with the শ্রেয়া badge (`favicon-192.png`). **Fill in** the email on the postcard and the LinkedIn,
+Twitter, Instagram, Substack and GitHub links under "elsewhere" (marked `todo`: set each `href`, drop the class).
 
 ## Favicon
 
 `favicon.ico` (16/32/48 px), `favicon-32.png`, `favicon-192.png`, `apple-touch-icon.png` (on the site's paper) and
 `icon-512.png`, all cut from the শ্রেয়া badge, with `site.webmanifest`; linked in `<head>`.
+
+## Contents
+
+`<nav id="contents">`, right after "tell me about yourself": Shreya's illustration (`assets/contents/`, with its
+baked-in text and a watermark painted out) and a live index of every section. Each entry is an `<a href="#id"
+data-jump>`; `scripts/scenes/contents.js` glides to it. `data-jump-align="end"` lands a section with its bottom at
+the screen's bottom (used for Website Design, so the birds' sky doesn't start to drop). The curtain now falls over
+this page: the about and contents pages scroll together inside `.stage__pin`. Between them, a 1px rule wipes
+from About to Contents (`.wipe`, `scripts/scenes/wipe.js`, `styles/wipe.css`; its length is `--wipe-run`).
 
 ## Replacing the video
 
