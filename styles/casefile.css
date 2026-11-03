@@ -283,7 +283,7 @@ html.has-casefile { overflow: hidden; }
 .wproj__row { display: flex; gap: 14px; }
 .wproj__row .wproj__shot { flex: var(--ar, 1) 1 0; aspect-ratio: var(--ar, 1); background: none; }
 .wproj__row .wproj__shot img { width: 100%; height: 100%; object-fit: cover; }
-@media (max-width: 640px) { .wproj__row { flex-direction: column; } }
+.wproj__row { min-width: 0; } /* always two side by side, even on narrow screens */
 .wcard--big .wcard__img { aspect-ratio: 4 / 3; }
 .wcard__img:has(img) { display: block; }
 
