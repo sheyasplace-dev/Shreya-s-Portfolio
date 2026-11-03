@@ -16,6 +16,12 @@ export function createProjects(roots, { casefile }) {
     });
   });
 
+  // Each website project's own page (opened from its card on the Website design page).
+  document.querySelectorAll('template[data-web-page]').forEach((t) => casefile.register(t.dataset.webPage, {
+    label: t.dataset.label,
+    build: () => ({ content: t.content.cloneNode(true), variant: 'works' }),
+  }));
+
   return {
     start() {
       sections.forEach((root) => {

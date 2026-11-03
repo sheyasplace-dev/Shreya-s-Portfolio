@@ -47,6 +47,15 @@ export function createCasefile(el, { reduced }) {
   const requestClose = () => (history.state?.casefile ? history.back() : close());
 
   closeButton.addEventListener('click', requestClose);
+  // Links inside a page that open another page (data-open-case="hash").
+  body.addEventListener('click', (e) => {
+    const a = e.target.closest('[data-open-case]');
+    if (!a || !pages.has(a.dataset.openCase)) return;
+    e.preventDefault();
+    const hash = a.dataset.openCase;
+    history.pushState({ casefile: hash }, '', `#${hash}`);
+    show(hash);
+  });
   nextButton.addEventListener('click', () => {
     const hash = nextButton.dataset.next;
     history.replaceState({ casefile: hash }, '', `#${hash}`);

@@ -37,7 +37,9 @@ export function createInternships(root, { reduced, casefile }) {
     next: templates[(i + 1) % templates.length].dataset.intern,
     build: () => {
       const content = t.content.cloneNode(true);
-      content.querySelector('[data-plan]').innerHTML = busSVG({ line: true, callouts });
+      // One callout on the drawing per point in the list.
+      const n = content.querySelectorAll('.ticket__parts li').length;
+      content.querySelector('[data-plan]').innerHTML = busSVG({ line: true, callouts: callouts.slice(0, n) });
       return { content, variant: 'ticket' };
     },
   }));
