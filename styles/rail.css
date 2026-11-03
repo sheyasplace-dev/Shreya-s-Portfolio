@@ -1,0 +1,101 @@
+/* The section rail: a column of hairline ticks on the right edge, one per section. The current one is longer
+   and in the accent; hovering a tick slides its name out to the left in a small chip. Ink on light pages, cream
+   on dark ones (scripts/ui/rail.js sets data-tone). */
+
+.rail {
+  --line: rgba(58, 20, 16, 0.38);
+  --accent: #c2412e;
+  --chip: #2b1712;
+  --chip-ink: #fbf1dc;
+  position: fixed;
+  z-index: 35;
+  right: max(14px, 1.5rem);
+  top: 50%;
+  translate: 0 -50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s var(--ease-out);
+}
+
+.rail[data-tone='dark'] {
+  --line: rgba(251, 241, 220, 0.5);
+  --accent: #f2b632;
+  --chip: #fbf1dc;
+  --chip-ink: #3a1410;
+}
+
+body[data-phase='hello'] .rail.is-on { opacity: 1; pointer-events: auto; }
+
+.rail ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; }
+
+.rail a {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 36px;
+  height: 18px;          /* a generous hit area around a 1px line */
+  color: inherit;
+  text-decoration: none;
+}
+
+.rail__tick {
+  width: 14px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--line);
+  transition: width 0.4s var(--ease-out), background 0.4s, height 0.3s;
+}
+
+.rail a:hover .rail__tick,
+.rail a:focus-visible .rail__tick { width: 22px; background: var(--accent); }
+
+.rail a[aria-current='true'] .rail__tick { width: 26px; height: 2.5px; background: var(--accent); }
+
+/* The chip: to the left, a little arrow pointing at the tick. */
+.rail__tip {
+  position: absolute;
+  right: calc(100% + 8px);
+  top: 50%;
+  translate: 8px -50%;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--chip-ink);
+  font-family: 'Figtree', var(--font-ui);
+  font-size: 12.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.25s, translate 0.35s var(--ease-out);
+}
+
+.rail__tip::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  translate: 0 -50%;
+  border: 5px solid transparent;
+  border-right: 0;
+  border-left-color: var(--chip);
+}
+
+.rail__tip b { margin-right: 4px; font-weight: 600; color: var(--accent); }
+.rail[data-tone='dark'] .rail__tip b { color: #c2412e; }
+
+.rail a:hover .rail__tip,
+.rail a:focus-visible .rail__tip { opacity: 1; translate: 0 -50%; }
+
+.rail a:focus-visible { outline: none; }
+
+/* Phones and tablets held upright: no hover there, and the edge belongs to the thumb. */
+@media (max-width: 760px), (hover: none) and (max-width: 1024px) {
+  .rail { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail__tick, .rail__tip { transition: none; }
+}

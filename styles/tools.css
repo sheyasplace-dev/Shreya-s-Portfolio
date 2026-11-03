@@ -1,280 +1,174 @@
-/* Tools: a sunlit park, painted. The heading hangs in the sky; the tools are paper tags on two strings of
-   bunting slung between the trees; three cats walk across the meadow as you scroll (scripts/scenes/tools.js),
-   through the grass — the painting's own foreground plants are laid over them again. */
+/* Tools: a lotus block print, muted; Shreya in the middle; and the tools as die-cut stickers that fly in from
+   every edge and corner as you scroll, and stick down all around her (scripts/scenes/tools.js). */
 
 .tools {
-  --ink: #1f3322;
-  --tag: #fbf7ec;
+  --ink: #2a2a3a;
+  --maroon: #7a1f26;
   position: relative;
-  background: #8fae63;
+  background: #a9bccb;
   color: var(--ink);
 }
 
-.tools__walk { position: relative; height: 240svh; }
+/* The print: one block, mirrored so it repeats sideways without a seam, exactly as tall as the screen (it sits
+   on the pinned stage, so it never has to repeat downwards). */
+.tools.is-near .tools__stage { --print: url('../assets/tools/lotus.webp'); }
+
+.tools__walk { position: relative; height: 300svh; }
 
 .tools__stage {
   position: sticky;
   top: 0;
   height: 100svh;
   overflow: hidden;
-}
-
-/* ── The park: the whole painting, and its foreground again, above the cats ── */
-
-.park {
-  position: absolute;
-  inset: 0;
-  background: var(--park, #a9c27d) 50% 100% / cover no-repeat;
-}
-
-.park.is-near { --park: url('../assets/tools/park-1500.webp'); }
-@media (min-width: 1500px), (min-resolution: 1.5dppx) and (min-width: 900px) {
-  .park.is-near { --park: url('../assets/tools/park-2528.webp'); }
-}
-
-/* Only the bottom of the painting — the near grass, ferns and flowers — over the cats' legs. */
-.park__front {
-  z-index: 3;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to top, #000 0 6svh, transparent 10svh);
-  mask-image: linear-gradient(to top, #000 0 6svh, transparent 10svh);
-}
-
-/* ── The sky: the heading, and the bunting ── */
-
-.tools__wall {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
   display: grid;
-  grid-template-rows: auto auto auto 1fr;
-  justify-items: center;
-  padding: clamp(36px, 7svh, 72px) 0 0;
+  grid-template-rows: auto 1fr auto;
+  /* A soft pale haze in the middle, so the heading and figure read clearly on the print. */
+  background:
+    var(--print, none) 50% 0 / auto 100% repeat-x,
+    #a9bccb;
 }
 
-.tools__head { text-align: center; }
+/* Over the print: muted further, then a light pink veil, uneven warm and cool hues like light through a window,
+   shaded edges, and a fine grain — so it sits back like old cloth. (Under the figure and the stickers.) */
+.tools__stage::before,
+.tools__stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
 
-/* Set exactly like "Open Source Projects" (Fraunces, opsz 144, no soft or wonky forms), upright. */
+.tools__stage::before {
+  background:
+    radial-gradient(45% 50% at 50% 52%, rgba(250, 238, 236, 0.55), rgba(250, 238, 236, 0) 75%),
+    radial-gradient(40% 35% at 18% 22%, rgba(255, 214, 196, 0.28), transparent 70%),
+    radial-gradient(38% 40% at 85% 75%, rgba(170, 150, 200, 0.18), transparent 70%),
+    radial-gradient(35% 30% at 80% 18%, rgba(255, 230, 200, 0.2), transparent 70%),
+    radial-gradient(130% 110% at 50% 50%, transparent 55%, rgba(70, 45, 60, 0.32) 100%),
+    rgba(244, 214, 218, 0.34);
+  -webkit-backdrop-filter: saturate(0.72);
+  backdrop-filter: saturate(0.72);
+}
+
+.tools__stage::after {
+  background-image: var(--grain, none);
+  opacity: 0.9;
+  mix-blend-mode: multiply;
+}
+
+.tools__stage > * { position: relative; z-index: 1; }
+
+.tools__head {
+  position: relative;
+  z-index: 2;
+  padding: clamp(18px, 4svh, 44px) 16px 0;
+  text-align: center;
+}
+
+.tools__kicker {
+  margin: 0 0 0.6em;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--maroon);
+}
+
+/* Set exactly like "Open Source Projects" (Fraunces, opsz 144, no soft or wonky forms), straight on the print:
+   large, dark, with a soft pale halo so it reads over the flowers. */
 .tools__title {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 380;
-  font-size: clamp(4.4rem, 2rem + 7.4vw, 9.6rem);
+  font-size: clamp(3rem, 1.4rem + 5vw, 6.6rem);
   font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  text-shadow: 0 1px 16px rgba(255, 255, 240, 0.6);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: #1c1820;
+  text-shadow: 0 0 18px rgba(250, 240, 238, 0.95), 0 0 6px rgba(250, 240, 238, 0.9), 0 1px 2px rgba(250, 240, 238, 0.9);
 }
 
-.tools__intro {
-  margin: 1.1em 0 0;
-  font-family: var(--font-display);
-  font-weight: 380;
-  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
-  font-variation-settings: 'opsz' 36, 'SOFT' 0, 'WONK' 0;
-  padding: 0 20px;
-  text-wrap: balance;
-  color: rgba(31, 51, 34, 0.8);
-}
-
-/* A string of bunting: a cord slung in a curve, tags hanging from it, each at its place along the dip. */
-.garland {
-  --sag: clamp(18px, 4svh, 40px);
+/* The stage the stickers land on: the whole space between the heading and the hint. */
+.stack {
+  --sticker: 96px;
   position: relative;
-  width: min(76vw, 1040px);
-  margin-top: clamp(14px, 3svh, 30px);
+  width: min(100%, 1320px);
+  margin: 0 auto;
 }
 
-.garland--b { width: min(68vw, 920px); margin-top: clamp(4px, 1svh, 12px); }
-
-.garland__string {
-  position: absolute;
-  left: -2%;
-  top: 0;
-  width: 104%;
-  height: calc(var(--sag) * 2);
-  overflow: visible;
-}
-
-.garland__string path {
-  fill: none;
-  stroke: rgba(70, 52, 30, 0.75);
-  stroke-width: 1.4;
-  vector-effect: non-scaling-stroke;
-}
-
-.garland__tags {
-  display: flex;
-  justify-content: space-around;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-/* Each tag hangs at the cord's height there (a parabola: deepest in the middle) and sways from its pin. */
-.tag {
-  --drop: calc(var(--sag) * 4 * var(--t) * (1 - var(--t)));
-  padding-top: var(--drop);
-  transform-origin: 50% 0;
-}
-
-.tag__card {
-  position: relative;
-  display: grid;
-  justify-items: center;
-  gap: 6px;
-  width: clamp(64px, min(8.6vw, 12.5svh), 122px);
-  margin-top: 14px;
-  padding: 10px 6px 9px;
-  background: var(--tag);
-  border-radius: 4px 4px 10px 10px;
-  box-shadow: 0 8px 14px -8px rgba(30, 40, 10, 0.55);
-  transform-origin: 50% -14px;
-  animation: tag-sway 5.5s ease-in-out calc(var(--i) * -0.7s) infinite alternate;
-}
-
-/* The little thread from the cord, and the punched hole it goes through. */
-.tag__card::before {
-  content: '';
+.stack__figure {
   position: absolute;
   left: 50%;
-  top: -14px;
-  width: 1px;
-  height: 18px;
-  background: rgba(70, 52, 30, 0.7);
+  top: 50%;
+  height: 70%;
+  width: auto;
+  translate: -50% -50%;
+  filter: drop-shadow(0 22px 26px rgba(30, 40, 60, 0.35));
+  pointer-events: none;
+  user-select: none;
 }
 
-.tag__card::after {
-  content: '';
+.stack__stickers { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
+
+/* A sticker: centred on its place; --mx/--my/--spin carry it in from off-screen as you scroll (tools.js). */
+.sticker {
   position: absolute;
-  left: 50%;
-  top: 4px;
-  width: 6px;
-  height: 6px;
-  margin-left: -3px;
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 1.5px rgba(70, 52, 30, 0.5);
-}
-
-@keyframes tag-sway {
-  from { rotate: -3deg; }
-  to { rotate: 3deg; }
-}
-
-.tag__logo {
+  width: var(--sticker);
+  height: var(--sticker);
   display: grid;
   place-items: center;
-  width: 78%;
-  aspect-ratio: 1;
-  margin-top: 6px;
-}
-
-.tag__logo img { width: 100%; height: 100%; object-fit: contain; }
-
-.tag__ph {
-  font-family: 'DM Mono', ui-monospace, monospace;
-  font-size: 8px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(31, 51, 34, 0.4);
-}
-
-.tag__name {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(0.72rem, 0.64rem + 0.3vw, 0.95rem);
-  font-variation-settings: 'opsz' 14, 'SOFT' 0, 'WONK' 0;
-  line-height: 1.1;
-  text-align: center;
-}
-
-.tag:hover .tag__card { animation-play-state: paused; rotate: 0deg; }
-
-/* A pencilled aside, low in the grass. */
-.tools__aside {
-  position: absolute;
-  z-index: 4;
-  right: max(20px, 5vw);
-  bottom: 3svh;
-  margin: 0;
-  font-family: 'Pinyon Script', cursive;
-  font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.6rem);
-  color: #f6f0d8;
-  text-shadow: 0 1px 6px rgba(10, 20, 5, 0.6);
-}
-
-/* ── The cats, walking across the meadow (their walk is set in tools.js) ── */
-
-.rug {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  height: 40svh;
-}
-
-.troupe {
-  --ch: min(27svh, 25vw);
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 5svh;
-  height: var(--ch);
-}
-
-.cat {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: calc(var(--ch) * 0.8);
-  height: var(--ch);
+  cursor: grab;
+  touch-action: none;
+  --s: 1;
+  transform:
+    translate(-50%, -50%)
+    translate(var(--dx, 0px), var(--dy, 0px))
+    translate(var(--mx, 0px), var(--my, 0px))
+    rotate(calc(var(--rot, 0deg) + var(--spin, 0deg)))
+    scale(var(--s));
+  filter: drop-shadow(0 6px 8px rgba(30, 30, 50, 0.35));
   will-change: transform;
+  transition: filter 0.3s ease;
 }
 
-.cat img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: 50% 100%;
-  opacity: 0;
-  transition: opacity 0.09s linear;
-  /* In the park's afternoon light: a little warmth, a soft edge of shade. */
-  filter: sepia(0.08) saturate(0.95) brightness(1.02) drop-shadow(0 3px 4px rgba(20, 35, 10, 0.3));
+.sticker img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; user-select: none; }
+
+/* Hover, once it's down: lift, tilt the other way, and a soft white glow. */
+.sticker.is-down:hover {
+  --s: 1.15;
+  rotate: calc(var(--rot, 0deg) * -0.6);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.85)) drop-shadow(0 12px 14px rgba(30, 30, 50, 0.4));
+  transition: filter 0.3s ease, rotate 0.35s var(--ease-out);
+  z-index: 5;
 }
 
-.cat img.is-on { opacity: 1; }
-
-/* Dappled shade on the grass under each cat. */
-.cat__shadow {
-  position: absolute;
-  left: 4%;
-  right: 4%;
-  bottom: -5%;
-  height: 12%;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(25, 45, 15, 0.5), rgba(25, 45, 15, 0));
+.sticker.is-dragging {
+  cursor: grabbing;
+  --s: 1.12;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8)) drop-shadow(0 18px 18px rgba(30, 30, 50, 0.45));
 }
 
-.tools [data-reveal] { opacity: 0; transform: translateY(12px); transition: opacity 0.8s var(--ease-out), transform 1s var(--ease-out); transition-delay: calc(var(--i, 0) * 0.05s); }
-.tools [data-reveal].is-in { opacity: 1; transform: none; }
+.tools__hint {
+  position: relative;
+  z-index: 2;
+  justify-self: center;
+  margin: 0 0 clamp(14px, 3svh, 28px);
+  padding: 0.1em 0.8em 0.2em;
+  border-radius: 999px;
+  background: rgba(246, 241, 230, 0.8);
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.4rem);
+  color: var(--maroon);
+}
 
-/* Phones: smaller tags, deeper cords, the cats a little bigger. */
-@media (max-width: 640px) {
-  .garland, .garland--b { width: 96vw; }
-  .tools__title { font-size: 22vw; }
-  .tag__card { width: 14.5vw; padding: 7px 3px; }
-  .tag__name { font-size: 0.6rem; }
-  .troupe { --ch: 30vw; bottom: 6svh; }
-  .tools__aside { left: 0; right: 0; text-align: center; }
+@media (max-width: 600px) {
+  .tools__walk { height: 260svh; }
+  .stack__figure { height: 48%; }
+  .tools__title { font-size: 13vw; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .tools__walk { height: auto; }
-  .tools__stage { position: relative; }
-  .tag__card { animation: none; }
-  .tools [data-reveal] { opacity: 1; transform: none; }
+  .tools__stage { position: relative; min-height: 100svh; }
+  .sticker.is-down:hover { --s: 1; rotate: none; }
 }

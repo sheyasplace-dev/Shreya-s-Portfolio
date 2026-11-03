@@ -17,9 +17,11 @@ import { createProjects } from './scenes/projects.js';
 import { createFlock } from './scenes/flock.js';
 import { createBlogs } from './scenes/blogs.js';
 import { createTools } from './scenes/tools.js';
+import { createTable } from './scenes/table.js';
 import { createJack } from './scenes/jack.js';
 import { createContact } from './scenes/contact.js';
 import { createSoundToggle } from './sound/soundToggle.js';
+import { createRail } from './ui/rail.js';
 
 const reduced = prefersReducedMotion();
 const body = document.body;
@@ -53,7 +55,9 @@ const projects = createProjects(document.querySelectorAll('[data-proj]'), { case
 const flock = createFlock(document.querySelector('[data-flock]'), { reduced });
 const blogs = createBlogs(document.querySelector('[data-blogs]'));
 const tools = createTools(document.querySelector('[data-tools]'), { reduced });
+const table = createTable(document.querySelector('[data-table]'), { reduced });
 const jack = createJack(document.querySelector('[data-jack]'), { reduced });
+const rail = createRail(document.querySelector('[data-rail]'), { reduced });
 const contact = createContact(document.querySelector('[data-contact]'), { reduced });
 hello.usePortrait(hero.portrait);
 const sound = createSoundToggle(document.querySelector('[data-sound]'), {
@@ -112,8 +116,10 @@ async function finishIntro({ skipped = false } = {}) {
   flock.start();
   blogs.start();
   tools.start();
+  table.start();
   jack.start();
   contact.start();
+  rail.start();
 }
 
 function offerPlay() {

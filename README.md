@@ -167,12 +167,11 @@ reference illustration; their placement is `.blogs__leaves--*` in `styles/blogs.
 
 ## Tools
 
-`<section id="tools">`: a painted park (`assets/tools/park-*.webp`, watermark painted out). The heading hangs in the
-sky; the tools are paper tags on two strings of bunting; three cats walk across the meadow as you scroll, and the
-painting's foreground is laid over them again (`.park__front`, masked to the bottom of the screen) so they pass
-through the grass. **To add a tool**, copy an `<li class="tag">` into a `.garland__tags` list, put its picture in
-`assets/tools/kit/`, replace the placeholder and drop the `todo` class; `--t` is its place along the string (0–1).
-The cats' walk (`scripts/scenes/tools.js`) is unchanged.
+`<section id="tools">`: twenty die-cut stickers (`assets/tools/stack/*.webp`, cut from the illustration, one per
+tool) snap in around the illustrated Shreya (`assets/tools/stack/shreya.webp`) when the section comes into view,
+and can be dragged about (`scripts/scenes/tools.js`). **To add a tool**, put its sticker (transparent background,
+white die-cut edge) in `assets/tools/stack/` and add an `<li class="sticker">`; the ring respaces itself. The
+earlier park-and-cats version is in git history (commit 599c0a4).
 
 ## Jack of all trades
 
@@ -185,8 +184,7 @@ nothing is linked yet, by design. The doodles are inline SVGs in each `.cell`.
 
 `<footer id="contact">`, the last page: the hand-painted post box (`assets/contact/postbox*.webp`, cut from its
 painted checkerboard), a letter dropping into its slot as you arrive (`scripts/scenes/contact.js`), and a postcard
-stamped with the শ্রেয়া badge (`favicon-192.png`). **Fill in** the email on the postcard and the LinkedIn,
-Twitter, Instagram, Substack and GitHub links under "elsewhere" (marked `todo`: set each `href`, drop the class).
+stamped with the শ্রেয়া badge (`favicon-192.png`). The Substack link under "elsewhere" is still a placeholder (marked `todo`: set its `href`, drop the class).
 
 ## Favicon
 
@@ -201,6 +199,18 @@ data-jump>`; `scripts/scenes/contents.js` glides to it. `data-jump-align="end"` 
 the screen's bottom (used for Website Design, so the birds' sky doesn't start to drop). The curtain now falls over
 this page: the about and contents pages scroll together inside `.stage__pin`. Between them, a 1px rule wipes
 from About to Contents (`.wipe`, `scripts/scenes/wipe.js`, `styles/wipe.css`; its length is `--wipe-run`).
+
+## The section rail
+
+`<nav class="rail">` near the end of `index.html`: a tick per section on the right edge (hidden on phones). Each
+`<a href="#id">` names its section and `data-tone` the background there (`light` → ink ticks, `dark` → cream).
+To add a section, add an `<li>`. `scripts/ui/rail.js` marks the one in view and glides to a clicked one.
+
+## What I bring to the table
+
+`<section id="table">`, after Tools: Shreya's painted thali (`assets/table/thali.webp`, the dishes lifted out as
+`dish-*.webp` and their places repainted as bare leaf) on a gamcha; a dish is served for each strength as you scroll,
+beside a cabin-style menu card (`scripts/scenes/table.js`, `styles/table.css`). Each dish's place is its `--x/--y/--w/--h`.
 
 ## Replacing the video
 
