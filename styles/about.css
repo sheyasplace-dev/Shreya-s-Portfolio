@@ -212,15 +212,6 @@
   color: var(--vermilion);
 }
 
-/* Placeholder answers: obviously unfinished, but still in the voice of the page. */
-.fact__todo {
-  color: rgba(64, 3, 0, 0.42);
-  font-style: italic;
-  text-decoration: underline dotted rgba(229, 66, 53, 0.55);
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 0.22em;
-}
-
 /* ── Arriving: each line settles in as it reaches the screen ── */
 
 .about.is-armed [data-reveal] {

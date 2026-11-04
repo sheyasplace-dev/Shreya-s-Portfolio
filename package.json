@@ -1,8 +1,10 @@
 {
   "name": "shreya-portfolio",
+  "description": "Shreya Lahiri's portfolio: a scroll-driven site in plain HTML, CSS and ES modules, with no build step.",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node server.mjs"
+    "dev": "node tools/serve.mjs",
+    "check": "node tools/check.mjs"
   }
 }

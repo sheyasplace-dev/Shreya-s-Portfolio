@@ -6,7 +6,7 @@ const PORTRAIT_BELOW = 0.82; // viewport aspect (w / h) under which the film sit
 // Decides where the frame and the video sit for a given viewport.
 // Landscape: full bleed, but never cropping into the safe area — leftover space shows the blurred backdrop.
 // Portrait: an arch window exactly as wide as the safe area, at full source height.
-export function computeLayout(vw, vh, { width: W, height: H, safeArea: S }) {
+function computeLayout(vw, vh, { width: W, height: H, safeArea: S }) {
   const safeCx = S.x + S.w / 2;
   const safeCy = S.y + S.h / 2;
   const aspect = S.w / H;

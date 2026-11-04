@@ -1,0 +1,16 @@
+# macOS and editors
+.DS_Store
+.vscode/
+.idea/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Local environment files (the project doesn't use any today)
+.env
+.env.*
+
+# Source video and scratch files that shouldn't ship. The site only needs assets/video/hero.mp4.
+*.mov
+*.psd

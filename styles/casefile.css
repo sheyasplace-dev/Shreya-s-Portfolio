@@ -149,28 +149,6 @@ html.has-casefile { overflow: hidden; }
   gap: clamp(24px, 4vw, 48px);
 }
 
-.case__photo {
-  min-height: 240px;
-  aspect-ratio: 4 / 5;
-  background: #d9d3c6;
-}
-
-.case__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-.case__photo .ph {
-  height: 100%;
-  display: grid;
-  place-items: center;
-  background: repeating-linear-gradient(135deg, rgba(35, 32, 28, 0.05) 0 10px, transparent 10px 20px);
-}
-
-.case__photo .ph span {
-  font-size: 10.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(35, 32, 28, 0.55);
-}
-
 .case__list {
   margin: 0;
   padding: 0;
@@ -254,7 +232,6 @@ html.has-casefile { overflow: hidden; }
 .wcard--big .wcard__img { aspect-ratio: 4 / 5; }
 .wcard__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out); }
 .wcard:hover img { transform: scale(1.03); }
-.wcard__ph { font-family: 'DM Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(0, 0, 0, 0.4); }
 .wcard__name { font-family: 'Figtree', var(--font-ui); font-weight: 600; font-size: 1.3rem; }
 .wcard__meta { font-family: 'Figtree', var(--font-ui); font-weight: 600; font-size: 1.15rem; color: rgba(0, 0, 0, 0.42); }
 .wcard:hover .wcard__name::before { content: '→ '; }
@@ -263,9 +240,6 @@ html.has-casefile { overflow: hidden; }
 .wproj__top { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 18px; }
 .wproj__name { margin: 0; font-family: 'Figtree', var(--font-ui); font-weight: 700; font-size: clamp(2.6rem, 1.4rem + 4vw, 5.6rem); line-height: 0.9; letter-spacing: -0.05em; }
 .wproj__note { margin: 0; font-family: 'Figtree', var(--font-ui); font-weight: 600; }
-.wproj__video { display: grid; place-items: center; place-content: center; aspect-ratio: 16 / 9; background: #0b0b0b; overflow: hidden; }
-.wproj__video video { width: 100%; height: 100%; object-fit: cover; }
-.wproj__video .wcard__ph { color: rgba(255, 255, 255, 0.5); align-self: center; }
 .wproj__info { max-width: 980px; margin: clamp(40px, 8vh, 88px) 0 0 auto; font-family: 'Figtree', var(--font-ui); }
 .wproj__info dl { margin: 0; border-top: 1px solid var(--rule); }
 .wproj__info dl > div { display: grid; grid-template-columns: 9rem 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--rule); }
@@ -305,3 +279,71 @@ html.has-casefile { overflow: hidden; }
 .pick__item:hover .pick__name { color: var(--red, #9a3b2c); }
 .pick__item:hover .pick__go { translate: 6px 0; }
 @media (max-width: 640px) { .pick__item { grid-template-columns: 1fr auto; } .pick__what { grid-column: 1; } }
+
+/* AI+: in the room — the invitation beside the story, then three photographs, each with room to breathe. */
+.case__room { margin: clamp(56px, 10vh, 110px) var(--gutter); }
+.room { display: grid; gap: clamp(28px, 4vw, 56px); grid-template-columns: 1fr; }
+.room figure { margin: 0; }
+.room img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.room figcaption { margin-top: 10px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(35, 32, 28, 0.6); }
+.room__invite img { aspect-ratio: 1026 / 1098; box-shadow: 0 24px 40px -26px rgba(40, 25, 10, 0.5); }
+.room__story { align-self: center; max-width: 34rem; line-height: 1.7; }
+.room__story p { margin: 0 0 1.1em; }
+.room__title { margin: 0 0 0.4em; font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 1.4rem + 2vw, 3.2rem); font-variation-settings: 'opsz' 144; line-height: 1; }
+.room__title em { color: var(--red); }
+.room__lede { font-family: var(--font-display); font-style: italic; font-size: 1.15rem; }
+.room__quote { margin: 1.6em 0 0; padding: 0 0 0 18px; border-left: 2px solid var(--red); }
+.room__quote p { margin: 0 0 0.3em; font-family: var(--font-display); font-size: 1.4rem; }
+.room__quote footer { font-size: 0.8rem; color: rgba(35, 32, 28, 0.65); }
+.room__film img { aspect-ratio: 1398 / 1076; }
+.room__shot img { aspect-ratio: 1.1; }
+@media (min-width: 900px) {
+  .room { grid-template-columns: repeat(12, minmax(0, 1fr)); row-gap: clamp(56px, 9vh, 96px); }
+  .room__invite { grid-column: 1 / 6; }
+  .room__story { grid-column: 7 / 13; }
+  .room__film { grid-column: 1 / 13; }
+  .room__film img { aspect-ratio: 16 / 8; }
+  .room__shot--l { grid-column: 1 / 7; }
+  .room__shot--r { grid-column: 7 / 13; margin-top: clamp(40px, 8vh, 96px); }
+}
+
+/* Arctus: sample outreach letters (names hidden), and links out. */
+.outbox { display: grid; gap: 22px; }
+.outbox .room__title, .outbox .room__lede { margin-bottom: 0; }
+.letter { max-width: 40rem; padding: 26px 30px; background: #fffdf8; border: 1px solid var(--rule); box-shadow: 0 18px 30px -24px rgba(40, 25, 10, 0.45); font-size: 0.95rem; line-height: 1.65; }
+.letter p { margin: 0 0 0.8em; }
+.letter--tilt { rotate: -0.8deg; margin-left: clamp(0px, 4vw, 60px); }
+.letter__sign { margin: 1em 0 0 !important; font-family: 'Cedarville Cursive', cursive; }
+.redact { display: inline-block; width: 4.2em; height: 0.95em; vertical-align: -0.12em; background: var(--ink); border-radius: 2px; }
+.redact--long { width: 6.5em; }
+.links { display: grid; gap: 16px; align-content: start; }
+.links__item { display: grid; grid-template-columns: 120px 1fr; gap: 18px; align-items: center; padding: 14px; border: 1px solid var(--rule); color: inherit; text-decoration: none; transition: background 0.3s; }
+.links__item:hover { background: rgba(154, 59, 44, 0.06); }
+.links__item img { width: 120px; aspect-ratio: 9 / 16; object-fit: cover; }
+.links__item span { display: grid; gap: 4px; font-size: 0.9rem; color: rgba(35, 32, 28, 0.7); }
+.links__item b { font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; color: var(--ink); }
+.links__item--plain { grid-template-columns: 1fr; padding: 22px; }
+@media (min-width: 900px) { .outbox { grid-column: 1 / 13; } }
+@media (min-width: 900px) {
+  .outbox { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; align-items: start; }
+  .outbox .room__title, .outbox .room__lede { grid-column: 1 / -1; }
+  .outbox .letter { padding: 22px 22px; font-size: 0.88rem; }
+  .outbox .letter:nth-of-type(1) { rotate: -1deg; }
+  .outbox .letter--tilt { margin: 28px 0 0; rotate: 0.8deg; }
+  .outbox .letter:nth-of-type(3) { rotate: -0.5deg; margin-top: 10px; }
+}
+
+/* Wayground: "what I did" in four groups, numbered straight through; then the people and the photos. */
+.case__boxgrid.case__groups { display: block; max-width: 52rem; counter-reset: point; }
+.case__groups .case__list { counter-reset: none; }
+.case__groupslede { margin: 0 0 1.4em; font-family: var(--font-display); font-size: 1.15rem; line-height: 1.6; }
+.case__group { margin: 2em 0 0.2em; padding-bottom: 0.5em; border-bottom: 1px solid var(--rule); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); }
+.room__invite--photo img { aspect-ratio: 1566 / 1694; box-shadow: none; }
+.room__film--low img { object-position: center 62%; }
+.room__shot--low img { object-position: 15% center; }
+.room__shot--wide img { aspect-ratio: 4 / 3; }
+.letter a, .letter u { color: #2b55c9; text-decoration: underline; text-underline-offset: 2px; }
+/* AI+: the groups are numbered, so the points under them are bullets. */
+.case__groups--bullets .case__list li { grid-template-columns: 1.4rem 1fr; }
+.case__groups--bullets .case__list li::before { content: '•'; }
+.case__groups--bullets .case__group:first-child { margin-top: 0; }

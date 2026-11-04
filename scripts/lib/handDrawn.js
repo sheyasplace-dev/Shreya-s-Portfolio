@@ -11,7 +11,7 @@ export function seeded(seed) {
 export const f = (n) => (Math.round(n * 10) / 10).toString();
 
 // Smooth closed curve through points (Catmull-Rom as cubic Béziers).
-export function closedCurve(p) {
+function closedCurve(p) {
   const n = p.length;
   let d = `M${f(p[0][0])} ${f(p[0][1])}`;
   for (let i = 0; i < n; i++) {

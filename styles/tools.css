@@ -65,15 +65,6 @@
   text-align: center;
 }
 
-.tools__kicker {
-  margin: 0 0 0.6em;
-  font-family: 'DM Mono', ui-monospace, monospace;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--maroon);
-}
-
 /* Set exactly like "Open Source Projects" (Fraunces, opsz 144, no soft or wonky forms), straight on the print:
    large, dark, with a soft pale halo so it reads over the flowers. */
 .tools__title {

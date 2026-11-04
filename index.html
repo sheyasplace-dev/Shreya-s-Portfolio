@@ -236,7 +236,7 @@
                 <button class="cal-page__more" type="button" data-more>know more <span aria-hidden="true">→</span></button>
               </div>
             </div>
-            <!-- The page that opens on "know more". Text marked .todo is a placeholder: replace it and drop the class. -->
+            <!-- The "know more" page, cloned into the casefile overlay when it opens (scripts/scenes/casefile.js). -->
             <template class="cal-page__story">
               <article class="case" aria-label="AI+: GTM Manager">
                 <header class="case__intro">
@@ -249,12 +249,12 @@
                   </div>
                   <div class="case__text">
                     <p>AI+ is an invite-only community and events platform for AI founders, researchers and investors, in San Francisco and Bengaluru.</p>
-                    <p>I own go-to-market for the full event portfolio across both markets, from positioning and the sponsor pitch to on-site delivery.</p>
+                    <p>I own <b>go-to-market for the full event portfolio across two markets</b>, from positioning and sponsor partnerships to marketing, creative direction and on-site execution.</p>
                     <ul class="case__marks">
-                      <li>20+ events, 200+ senior attendees</li>
-                      <li>$250,000+ in sponsorship closed</li>
-                      <li>89% of event partners came back</li>
-                      <li>43,000+ Substack subscribers, 54.86% average open rate</li>
+                      <li><b>20+ events</b> · 200+ senior attendees</li>
+                      <li><b>&#36;250,000+</b> in sponsorships closed</li>
+                      <li><b>89%</b> of event partners returned for subsequent activations</li>
+                      <li><b>43,000+ Substack subscribers</b> · 54.86% average open rate</li>
                     </ul>
                   </div>
                 </header>
@@ -264,16 +264,48 @@
                 </figure>
                 <section class="case__box">
                   <p class="case__tag">| what I did |</p>
-                  <div class="case__boxgrid">
-                    <ol class="case__list">
-                      <li>Own go-to-market for the full event portfolio across two markets, from positioning and sponsor pitch to on-site delivery: 20+ events, 200+ senior attendees, and over $250,000 in sponsorship closed across flagship and community events.</li>
-                      <li>Developed strategic partnerships with 50+ AI companies, venture capital firms and technology brands, turning relationships into co-hosted events, sponsored activations and cross-promotional campaigns.</li>
-                      <li>Managed the complete sponsorship lifecycle, from prospecting and outreach to proposals, commercial negotiations, partner onboarding and post-event relationship management.</li>
-                      <li>Drove sponsor retention and repeat collaborations, with 89% of event partners returning for later activations.</li>
-                      <li>Managed partner-facing marketing and promotional deliverables across brand collaborations: event listings, newsletters, creative assets and community distribution.</li>
-                      <li>Manage a 43,000+ subscriber technology community on Substack, writing and publishing weekly AI and technology editorial, with a 54.86% average open rate through content strategy, audience engagement and distribution.</li>
-                      <li>Ran 17+ exclusive roundtables across San Francisco: 500+ participants in all, founders, AI researchers, marketers and data scientists in curated groups of about 30, with end-to-end logistics, guest curation, partnerships and community engagement.</li>
-                    </ol>
+                  <div class="case__boxgrid case__groups case__groups--bullets">
+                    <h4 class="case__group">01. GTM &amp; Partnerships</h4>
+                    <ul class="case__list">
+                      <li><span>Lead GTM and execution across the event portfolio, covering event positioning, sponsor pitches, partnerships, marketing and on-ground delivery.</span></li>
+                      <li><span>Build and manage relationships with <b>50+ AI companies, VC firms and technology brands</b>, bringing them on board for co-hosted events, sponsored activations and cross-promotional campaigns.</span></li>
+                      <li><span>Own the end-to-end sponsorship process, from partner research and outreach to proposals, negotiations, deliverable coordination and long-term relationship management.</span></li>
+                      <li><span>Develop partnerships that extend beyond individual events, with <b>89% of event partners returning</b> for subsequent activations.</span></li>
+                    </ul>
+                    <h4 class="case__group">02. Events &amp; Experiences</h4>
+                    <ul class="case__list">
+                      <li><span>Have been involved in <b>20+ events</b>, bringing together 200+ senior attendees across two markets and contributing to over <b>&#36;250,000 in sponsorships</b>.</span></li>
+                      <li><span>Organise and execute <b>17+ private roundtables across San Francisco</b>, bringing together 500+ founders, AI researchers, marketers and data scientists in curated groups of approximately 30.</span></li>
+                      <li><span>Oversee the event experience end to end, including guest curation, outreach, partnerships, logistics and on-ground execution.</span></li>
+                      <li><span>Work closely with speakers through outreach, coordination, briefings, speaker notes, introductions and key talking points.</span></li>
+                    </ul>
+                    <h4 class="case__group">03. Brand, Creative &amp; Marketing</h4>
+                    <ul class="case__list">
+                      <li><span>Drive social media and event marketing, from content planning and creation to channel management, event promotion and community engagement.</span></li>
+                      <li><span>Shape the creative direction and visual identity of events, working on themes, merchandise, attendee goodies, speaker kits, signage, branded creatives and other on-ground assets.</span></li>
+                      <li><span>Coordinate partner marketing deliverables, including newsletter placements, event listings, social media promotions, sponsor visibility and community distribution.</span></li>
+                    </ul>
+                    <h4 class="case__group">04. Content &amp; Community</h4>
+                    <ul class="case__list">
+                      <li><span>Manage and contribute to a <b>43,000+ subscriber technology newsletter on Substack</b>, writing and publishing weekly content around AI and technology, with a <b>54.86% average open rate</b>.</span></li>
+                      <li><span>Work on content strategy, audience engagement and distribution to grow the newsletter&rsquo;s readership and maintain an active technology community.</span></li>
+                    </ul>
+                  </div>
+                </section>
+                <section class="case__room">
+                  <p class="case__tag">| in the room |</p>
+                  <div class="room">
+                    <figure class="room__invite"><img src="assets/companies/aiplus/invite.webp" alt="Invitation to Compute &amp; Caviar, a private dinner reception by General Compute and APAC Compute with Kaleidoscope Ventures and AI+, Prelude, San Francisco" loading="lazy" decoding="async"></figure>
+                    <div class="room__story">
+                      <h3 class="room__title">Compute <em>&amp;</em> Caviar</h3>
+                      <p class="room__lede">A very small, private evening in San Francisco for leaders building, financing and operating across the AI infrastructure stack, co-hosted with General Compute and Kaleidoscope Ventures.</p>
+                      <p>In the room: SemiAnalysis, SambaNova, Exa, Artificial Analysis, Composio, Fireworks AI, OpenAI, Nebius, Qualcomm, Etched and Ricursive Intelligence, with investors from Andreessen Horowitz, DCVC, Temasek and Theory Ventures.</p>
+                      <p>A pretty serious room, and an evening that was anything but: caviar, champagne and conversations about inference economics that turned into partnerships, deals and new relationships.</p>
+                      <blockquote class="room__quote"><p>&ldquo;Was an amazing event!&rdquo;</p><footer>Deb Mukherjee, Founding Head of Marketing, Akai (by Deel)</footer></blockquote>
+                    </div>
+                    <figure class="room__film"><img src="assets/companies/aiplus/caviar-night.webp" alt="Four guests smiling with glasses of wine at Compute &amp; Caviar" loading="lazy" decoding="async"><figcaption>Compute &amp; Caviar, on film</figcaption></figure>
+                    <figure class="room__shot room__shot--l"><img src="assets/companies/aiplus/talk.webp" alt="Founders deep in conversation at an AI+ event" loading="lazy" decoding="async"><figcaption>Conversations that turn into opportunities</figcaption></figure>
+                    <figure class="room__shot room__shot--r"><img src="assets/companies/aiplus/booth.webp" alt="Attendees at a sponsor booth at an AI+ event" loading="lazy" decoding="async"><figcaption>Partners on the floor</figcaption></figure>
                   </div>
                 </section>
               </article>
@@ -292,7 +324,7 @@
                 <button class="cal-page__more" type="button" data-more>know more <span aria-hidden="true">→</span></button>
               </div>
             </div>
-            <!-- The page that opens on "know more". Text marked .todo is a placeholder: replace it and drop the class. -->
+            <!-- The "know more" page, cloned into the casefile overlay when it opens (scripts/scenes/casefile.js). -->
             <template class="cal-page__story">
               <article class="case" aria-label="Arctus Aerospace: Founder’s Office Associate">
                 <header class="case__intro">
@@ -303,12 +335,12 @@
                     
                   </div>
                   <div class="case__text">
-                    <p>In the founder’s office at Arctus Aerospace, I worked on getting the company ready for its next fundraising round.</p>
-                    <p>That meant the brand and the investor story on one side, and early commercial traction on the other: customers, partners and letters of intent.</p>
+                    <p><em>A short stint working closely with the founder across business development, industry research and brand development.</em></p>
+                    <p>That meant the <b>brand and investor story</b> on one side, and <em>early commercial traction</em> on the other: customers, partners and letters of intent.</p>
                     <ul class="case__marks">
-                      <li>~30 named accounts opened from a cold start</li>
-                      <li>20 prospects advanced to Stage 3 and Stage 4 procurement</li>
-                      <li>Target: a $1M LOI pipeline before the next round</li>
+                      <li><b>~30 named accounts</b> opened from a cold start</li>
+                      <li><b>20 prospects</b> advanced to Stage 3 and Stage 4 procurement</li>
+                      <li><b>Target:</b> a &#36;1M LOI pipeline before the next round</li>
                     </ul>
                   </div>
                 </header>
@@ -318,13 +350,41 @@
                 </figure>
                 <section class="case__box">
                   <p class="case__tag">| what I did |</p>
-                  <div class="case__boxgrid">
-                    <ol class="case__list">
-                      <li><span><b>Investor readiness and brand positioning.</b> Led brand development and positioning ahead of the upcoming fundraising round, refining the company’s narrative, value proposition, market positioning and investor-facing materials.</span></li>
-                      <li><span><b>LOI acquisition and strategic partnerships.</b> Drove customer discovery and strategic outreach to secure Letters of Intent, building a pipeline of prospective customers and industry partners to establish early traction and validate demand.</span></li>
-                      <li><span><b>Enterprise business development.</b> Opened ~30 named accounts across aerospace and adjacent sectors from a cold start, advancing 20 prospects into Stage 3 and Stage 4 procurement discussions, towards a $1M LOI pipeline ahead of the next round.</span></li>
-                      <li><span><b>Market entry strategy.</b> Built the market-entry thesis through primary research into aerospace industry fundamentals, demand drivers, customer segments, competitive positioning and customer acquisition economics.</span></li>
-                    </ol>
+                  <div class="case__boxgrid case__groups case__groups--bullets">
+                    <h4 class="case__group">01. Industry &amp; Market Research</h4>
+                    <ul class="case__list">
+                      <li><span>Spent considerable time understanding the <b>aerospace industry and adjacent sectors</b>, getting familiar with how different industries operate, their <em>procurement processes, key decision-makers</em> and where Arctus&rsquo; solutions could fit.</span></li>
+                      <li><span>Learned to navigate different kinds of <b>enterprise conversations</b>, understanding what potential partners actually look for, what concerns they have, what they respond to and how to tailor the <em>pitch and communication</em> to each industry and decision-maker.</span></li>
+                    </ul>
+                    <h4 class="case__group">02. Business Development &amp; Pipeline</h4>
+                    <ul class="case__list">
+                      <li><span>Worked on identifying and opening conversations with potential enterprise partners across <b>aerospace, oil &amp; gas, energy, agriculture, geospatial technology and wildlife conservation</b>, understanding their requirements and how to position the company&rsquo;s solutions for different use cases.</span></li>
+                      <li><span>Built and developed a pipeline of <b>30+ prospective accounts from scratch</b>, with several conversations progressing to <em>Stage 4 discussions</em> and some approaching the LOI stage before my exit.</span></li>
+                      <li><span>Worked on conversations and potential opportunities involving a <b>Mahindra &amp; Mahindra Group subsidiary, ONGC operations in the Northeast, a WWF-linked wildlife conservation project</b> focused on tiger attack detection in Madhya Pradesh, a space debris removal company, a French geospatial data company and a large agriculture/farmer-focused platform, among others.</span></li>
+                    </ul>
+                    <h4 class="case__group">03. Brand &amp; Positioning</h4>
+                    <ul class="case__list">
+                      <li><span>Worked closely with the founders on the company&rsquo;s <b>branding and overall positioning</b>, figuring out how Arctus should present itself to the market, what its visual identity should communicate and how to build a <em>consistent design language</em>.</span></li>
+                      <li><span>Coordinated with designers and external agencies on <b>branding, website direction, visual identity and other creative deliverables</b>, helping translate the company&rsquo;s business vision into how it looks and communicates externally.</span></li>
+                    </ul>
+                  </div>
+                </section>
+                <section class="case__room">
+                  <p class="case__tag">| from the founder&rsquo;s office |</p>
+                  <div class="room">
+                    <figure class="room__film"><img src="assets/companies/arctus/team.webp" alt="The Arctus Aerospace team in matching Arctus hoodies in the hangar" loading="lazy" decoding="async"><figcaption>The team, in the hangar</figcaption></figure>
+                    <div class="outbox">
+                      <h3 class="room__title">Notes from the <em>outbox</em></h3>
+                      <p class="room__lede">Every one of those 30+ accounts started with a cold note. A few of them, names and companies hidden.</p>
+                      <article class="letter"><p>Hi <span class="redact" aria-label="name hidden"></span>,</p><p>Using geospatial data to detect nitrogen in crops isn&rsquo;t an unfamiliar concept, we&rsquo;ve all studied the importance of nitrogen in agriculture, but choosing to take that understanding, refine it, and build a focused, scalable solution around it is genuinely commendable.</p><p>I&rsquo;m part of Arctus, where we&rsquo;re building high-altitude, long-endurance aircraft purely for Earth observation.</p><p>Our goal is to bring capabilities that were traditionally reserved for defence into meaningful commercial and civil use, making high-resolution, real-time Earth data far more accessible.</p><p>I&rsquo;d genuinely love to connect, simply to learn more about your work, share what we&rsquo;re building, and explore whether there might be room for alignment or partnership in any form, now or in the future.</p><p>If you&rsquo;re open to it, could we do a 15-minute call next week? Here&rsquo;s my calendar: <u>[link]</u>.</p><p>Either way, if you&rsquo;re curious, you&rsquo;re always welcome to follow our journey through our <a href="https://substack.com/@shreyalahiri" target="_blank" rel="noopener">newsletter</a>.</p><p class="letter__sign">Regards,<br>Shreya</p></article>
+                      <article class="letter letter--tilt"><p>Hi <span class="redact" aria-label="name hidden"></span>,</p><p>I&rsquo;m a big believer that modern problems need modern solutions &mdash; and that a lot of the best innovation comes from the internet, curiosity, and just&hellip; thinking differently.</p><p>What you&rsquo;re building at <span class="redact redact--long" aria-label="company hidden"></span> genuinely felt refreshing to read. It&rsquo;s new even for me, and I caught myself thinking: <em>contributing to this mission would be really interesting (and honestly, pretty cool).</em></p><p>I&rsquo;m part of <b>Arctus</b>, where we build high-altitude, long-endurance UAVs for Earth observation.</p><p>We generate real-time, high-resolution hyperspectral data, and we&rsquo;re focused on making it affordable, usable and scalable.</p><p>At the heart of what we do is a belief very similar to yours: the fastest way to build smarter networks is to make location intelligence actionable.</p><p>If it&rsquo;s relevant, I&rsquo;d love to explore whether our data could strengthen anything you&rsquo;re doing around location intelligence, rollout planning, or performance insights, even if it&rsquo;s just a quick brainstorm to see what overlaps.</p><p>Are you open to a short call sometime next week?</p><p>Either way, if you&rsquo;re curious, you&rsquo;re always welcome to follow our journey through our <a href="https://substack.com/@shreyalahiri" target="_blank" rel="noopener">newsletter</a>.</p><p>Have an amazing year ahead.</p><p class="letter__sign">Regards,<br>Shreya Lahiri</p></article>
+                      <article class="letter"><p>I&rsquo;m Shreya from Arctus Aerospace. We&rsquo;re building high-altitude UAVs that operate at <b>45,000 feet</b> for <b>24 continuous hours.</b> Not drones. Not satellites. A new category of aircrafts that provides <b>meter-scale resolution</b> with hyperspectral imaging capabilities at a fraction of conventional costs, specifically <b>80% lower</b> than existing solutions.</p><p>Your <span class="redact redact--long" aria-label="company hidden"></span> engine already proves what&rsquo;s possible when you combine deep learning with earth observation. Now imagine feeding it data that&rsquo;s <b>4x sharper</b>, <b>captured on-demand</b>, with hyperspectral fidelity that makes moisture stress, early blight, and nutrient deficiencies visible days earlier.</p><p>If this changes anything that <span class="redact redact--long" aria-label="company hidden"></span> can do for farmers, I would love to talk more about what we are building.</p><p>Either way, you can keep a track of our journey from our <a href="https://substack.com/@shreyalahiri" target="_blank" rel="noopener">Newsletter</a>.</p><p>Have a great year ahead.</p><p class="letter__sign">Best,<br>Shreya</p></article>
+                    </div>
+                    <figure class="room__shot room__shot--l"><img src="assets/companies/arctus/desk.webp" alt="Late-night outreach: music on the monitor, the pipeline sheet on the laptop" loading="lazy" decoding="async"><figcaption>Outreach nights: the pipeline sheet, and a lot of Darzi</figcaption></figure>
+                    <div class="room__shot room__shot--r links">
+                      <a class="links__item" href="https://www.instagram.com/reel/DRj3qiXj-7D/" target="_blank" rel="noopener"><img src="assets/companies/arctus/reel.webp" alt="" loading="lazy" decoding="async"><span><b>Earth observation for $1/sq km</b>Arctus, featured on Instagram ↗</span></a>
+                      <a class="links__item links__item--plain" href="https://substack.com/@shreyalahiri" target="_blank" rel="noopener"><span><b>The Arctus newsletter</b>Follow the journey on Substack ↗</span></a>
+                    </div>
                   </div>
                 </section>
               </article>
@@ -343,7 +403,7 @@
                 <button class="cal-page__more" type="button" data-more>know more <span aria-hidden="true">→</span></button>
               </div>
             </div>
-            <!-- The page that opens on "know more". Text marked .todo is a placeholder: replace it and drop the class. -->
+            <!-- The "know more" page, cloned into the casefile overlay when it opens (scripts/scenes/casefile.js). -->
             <template class="cal-page__story">
               <article class="case" aria-label="Wayground: Growth Associate">
                 <header class="case__intro">
@@ -355,12 +415,12 @@
                     <p class="case__aka">formerly Quizizz</p>
                   </div>
                   <div class="case__text">
-                    <p>Wayground (formerly Quizizz) is a K-12 learning platform.</p>
-                    <p>I worked across pipeline, international revenue marketing, reseller onboarding and lifecycle campaigns.</p>
+                    <p>Worked across <b>international demand generation, growth marketing, teacher outreach and reseller partnerships</b> at Wayground. From sourcing and qualifying prospects across APAC to experimenting with teacher-led growth in Canada and building a gamified reseller onboarding tool.</p>
                     <ul class="case__marks">
-                      <li>$180K+ contributed to Salesforce pipeline</li>
-                      <li>1,500+ qualified leads at 22% engagement</li>
-                      <li>Lifecycle campaigns to 120K+ users, 28% open rate, 7.4% CTR</li>
+                      <li><b>$180K+</b> contributed to Salesforce pipeline through international prospecting and lead generation</li>
+                      <li><b>1,500+ qualified leads</b> generated through Clay and n8n workflows, with <b>32% engagement</b></li>
+                      <li><b>67% reduction</b> in reseller onboarding time through a gamified onboarding tool I designed and built</li>
+                      <li><b>250K+ users</b> reached through lifecycle campaigns, achieving a <b>37% open rate and 6.89% CTR</b></li>
                     </ul>
                   </div>
                 </header>
@@ -370,14 +430,45 @@
                 </figure>
                 <section class="case__box">
                   <p class="case__tag">| what I did |</p>
-                  <div class="case__boxgrid">
+                  <div class="case__boxgrid case__groups">
+                    <p class="case__groupslede"><em>Worked across demand generation, international growth, teacher outreach and reseller partnerships during my one-year stint, and spent my last three months exclusively building and managing the reseller growth initiative.</em></p>
+                    <h4 class="case__group">Demand generation &amp; international growth</h4>
                     <ol class="case__list">
-                      <li>Contributed $180K+ to Salesforce pipeline through lead enrichment and international revenue marketing, and supported delivery of a $75K quarterly target in Financial Services and Data Conversions.</li>
-                      <li>Generated 1,500+ qualified leads at 22% engagement using Clay, and drove 35% pipeline growth from market research across Canada and other international regions.</li>
-                      <li>Rebuilt reseller onboarding end to end (documentation, training, activation), cutting onboarding time 40% and shortening time-to-first-revenue for new resellers.</li>
-                      <li>Ran lifecycle campaigns to 120K+ users on Braze and Brevo at a 28% open rate and 7.4% CTR, and built the demographic and behavioural segmentation behind them.</li>
-                      <li>Lifted user engagement 3x through cohort analysis and personalised retention journeys across onboarding, activation and win-back.</li>
+                      <li>Worked on demand generation across APAC markets, particularly Singapore, Kazakhstan, South Korea and Vietnam. Researched target industries, identified ideal customer profiles (ICPs), sourced relevant companies and decision-makers, and built qualified prospect lists for the SDR and sales teams.</li>
+                      <li><span>Used Clay and built n8n workflows for lead research, prospecting and enrichment, identifying relevant decision-makers and building targeted lead lists. Generated <b>1,500+ qualified leads at 32% engagement</b>, contributing to <b>$180K+ in Salesforce pipeline</b> through international prospecting, lead generation, market and interpersonal research.</span></li>
                     </ol>
+                    <h4 class="case__group">Teacher outreach &amp; growth experiments</h4>
+                    <ol class="case__list">
+                      <li>Independently worked on the Student Teacher Program in Canada alongside my manager. The idea was to reach students training to become teachers, give them free access to Quizizz and build familiarity with the platform so they could eventually introduce it to schools once they entered the profession.</li>
+                      <li><span>Managed outreach to student teachers through email campaigns and calls, while also speaking directly with practising teachers to understand their pain points, classroom requirements and what would make them adopt the platform. Used these conversations to understand regional differences and identify what kind of marketing and outreach would work better. The initiative ran as a <b>2-month pilot</b> before being discontinued after evaluating its traction.</span></li>
+                      <li>Worked on regional teacher and reseller engagement, getting on calls with teachers and potential resellers, exploring opportunities to organise local events and talks, and running email campaigns to bring teachers into these sessions.</li>
+                    </ol>
+                    <h4 class="case__group">Reseller growth &amp; onboarding</h4>
+                    <ol class="case__list">
+                      <li><span>Spent my final <b>3 months exclusively building out the reseller initiative</b>, from finding and reaching out to potential resellers to getting on calls, understanding their businesses, assessing alignment and bringing them on board.</span></li>
+                      <li><span>Designed, coded and built a <b>gamified reseller onboarding tool</b> to make the certification and onboarding journey smoother. Turned what was previously a lengthy, manual process into a more interactive experience, helping reduce reseller onboarding time by <b>67%</b> and making it easier for partners to complete their certification independently.</span></li>
+                      <li>Built a central repository of reseller marketing and sales assets, bringing together the resources, documentation and materials partners needed to pitch Quizizz to schools and get started with their sales efforts.</li>
+                      <li>Worked directly with onboarded resellers on joint marketing campaigns, encouraging them to reach schools that were already in conversation with our SDR team. Also explored regional events and partner-led activations to build trust with prospective schools and help move conversations towards deal closure.</li>
+                    </ol>
+                    <h4 class="case__group">Lifecycle &amp; retention marketing</h4>
+                    <ol class="case__list">
+                      <li><span>Worked on lifecycle and email marketing using Braze and Brevo, reaching <b>250K+ users</b> through onboarding, activation, engagement and retention campaigns. Built audience segments around user demographics and behaviour, achieving a <b>37% open rate and 6.89% CTR</b>.</span></li>
+                      <li><span>Used cohort analysis and user behaviour to understand where users were dropping off and what could bring them back. Worked on personalised onboarding, retention and win-back journeys, contributing to a <b>3x improvement in user engagement</b>.</span></li>
+                    </ol>
+                  </div>
+                </section>
+                <section class="case__room">
+                  <p class="case__tag">| beyond the work |</p>
+                  <div class="room">
+                    <figure class="room__invite room__invite--photo"><img src="assets/companies/wayground/party.webp" alt="Five of us on stage in front of the Wayground sign, lit pink and purple" loading="lazy" decoding="async"><figcaption>Wayground, after hours</figcaption></figure>
+                    <div class="room__story">
+                      <h3 class="room__title">Most <em>importantly</em></h3>
+                      <p class="room__lede">I made great friends and mentors along the way.</p>
+                      <p>And I got my own college professors to use Quizizz in class.</p>
+                    </div>
+                    <figure class="room__film room__film--low"><img src="assets/companies/wayground/area83.webp" alt="The Wayground team giving thumbs up in front of the green wall at Area83" loading="lazy" decoding="async"><figcaption>The team, at Area83</figcaption></figure>
+                    <figure class="room__shot room__shot--l room__shot--wide room__shot--low"><img src="assets/companies/wayground/hackathon.webp" alt="A “Why Wally?” pitch on the projector at Hack-AI-thon 2025" loading="lazy" decoding="async"><figcaption>Hack-AI-thon 2025</figcaption></figure>
+                    <figure class="room__shot room__shot--r room__shot--wide"><img src="assets/companies/wayground/class-quiz.webp" alt="A laptop in a college classroom, waiting in a Quizizz game lobby with 13 players" loading="lazy" decoding="async"><figcaption>My college professor&rsquo;s quiz, on Quizizz</figcaption></figure>
                   </div>
                 </section>
               </article>
@@ -403,7 +494,7 @@
         <h2 id="ride-title" class="ride__title">Early internships</h2>
         <div class="ride__art">
           <!-- The painting (the lettering is part of it) fills the screen; the bus drives in over it. -->
-          <img class="ride__painting" loading="lazy" src="assets/internships/roadside-1600.webp" srcset="assets/internships/roadside-1600.webp 1600w, assets/internships/roadside-2164.webp 2164w" sizes="max(100vw, 160svh)" width="2164" height="1352" alt="A painted Kerala roadside: banana groves on a mustard sky, patterned birds and blue flowers, with the words early internships, route G3, three stops" decoding="async">
+          <img class="ride__painting" loading="lazy" src="assets/internships/roadside-1600.webp" srcset="assets/internships/roadside-1600.webp 1600w, assets/internships/roadside-2164.webp 2164w" sizes="max(100vw, 160svh)" width="2164" height="1352" alt="A painted Kerala roadside: banana groves on a mustard sky, patterned birds and blue flowers, with the words early internships, route G3, click the windows to know more" decoding="async">
           <div class="ride__window">
           <div class="bus" data-bus>
             <div class="bus__art" data-bus-art></div>
@@ -411,7 +502,7 @@
               <span class="bus__blind"><span class="bus__label"><b>Mave</b><span>marketing intern</span></span></span>
             </button>
             <button class="bus__window" type="button" style="--i:1" data-window="intern-2">
-              <span class="bus__blind"><span class="bus__label"><b>Joveo</b><span>global supply &amp; partnerships intern</span></span></span>
+              <span class="bus__blind"><span class="bus__label"><b>Joveo</b><span>international partnerships intern</span></span></span>
             </button>
             <button class="bus__window" type="button" style="--i:2" data-window="intern-3">
               <span class="bus__blind"><span class="bus__label"><b>MyCaptain</b><span>program management intern</span></span></span>
@@ -420,8 +511,7 @@
           </div>
         </div>
       </div>
-      <!-- Stop 01. Text marked .todo is a placeholder: replace it and drop the class. The window's label above
-           and data-label here are the company's name. -->
+      <!-- Stop 01: the page Mave's window opens. Its data-label is the company name, which also labels the "next:" button. -->
       <template data-intern="intern-1" data-label="Mave">
         <article class="ticket" aria-label="Mave">
           <p class="ticket__route">route G3 · stop 01</p>
@@ -430,20 +520,51 @@
             <figure class="ticket__plan" data-plan></figure>
             <div class="ticket__notes">
               <dl class="ticket__facts">
-                <div><dt>role</dt><dd>marketing intern</dd></div>
+                <div><dt>role</dt><dd>growth &amp; marketing intern</dd></div>
                 <div><dt>when</dt><dd>Feb – Apr 2024</dd></div>
               </dl>
-              <ol class="ticket__parts">
-                <li>Wrote, filmed and ran content across the Mave Health and Therapy Club India Instagram channels.</li>
-                <li>Drew 1M+ views and a 10x lift in brand engagement.</li>
-                <li>Competitor and trend research that enabled 100+ therapists to be onboarded in two weeks.</li>
-              </ol>
+              <p class="ticket__hand">Worked across content creation, social media, therapist acquisition and brand building for a health-tech startup.</p>
+              <div class="ticket__groups">
+                <h4 class="ticket__group">Content &amp; social media</h4>
+                <ol class="ticket__parts">
+                  <li><span>Helped build Mave Health&rsquo;s social media presence from the ground up, growing its main Instagram account from <b>0 to 3,000 followers in 3 months</b>. Worked on content strategy, planning, storyboarding, shooting, editing and publishing videos featuring the founders, Dhaval and Jay.</span></li>
+                  <li><span>Created and independently managed <b>Therapy Club India</b>, a dedicated Instagram channel built to connect with therapists, get them talking about mental health and introduce them to Mave&rsquo;s therapist network. Curated ideas, developed content concepts, scripted, shot and edited videos for the channel.</span></li>
+                  <li><span>Worked on content that reached <b>1M+ views</b> across social media channels, helping improve brand visibility and engagement through consistent content creation and experimentation with different formats.</span></li>
+                </ol>
+                <h4 class="ticket__group">Therapist acquisition &amp; community building</h4>
+                <ol class="ticket__parts">
+                  <li><span>Reached out to <b>nearly 300 therapists</b> through direct outreach and social media and email, introducing them to Mave&rsquo;s platform and its integrated care model, which connected clients with therapists alongside the wearable. Helped onboard approximately <b>150–180 therapists</b> onto the platform.</span></li>
+                  <li>Researched therapist communities, competitor offerings and content trends to understand what would encourage therapists to engage with the brand and become part of its network. Used these insights to shape outreach and content strategies.</li>
+                </ol>
+                <h4 class="ticket__group">Brand content &amp; production</h4>
+                <ol class="ticket__parts">
+                  <li>Helped plan and execute Mave Health&rsquo;s podcast featuring Robin Uthappa and other guests, including the Executive Director of Narayana Health. Contributed to content planning, scripting, lighting, shoot preparation and the overall production setup.</li>
+                  <li>Worked on the company&rsquo;s broader content direction, from figuring out what stories to tell and how to present the founders to coordinating shoots and translating ideas into videos for Mave&rsquo;s official channels.</li>
+                </ol>
+              </div>
             </div>
           </div>
+          <section class="feed">
+            <p class="ticket__route">on the feed</p>
+            <div class="feed__grid">
+              <figure class="feed__reels"><img src="assets/companies/mave/reels.webp" alt="A grid of eight Therapy Club India reels, with view counts from 699 to 2,126" loading="lazy" decoding="async"><figcaption>Therapy Club India: ideas, scripts, shoots and edits</figcaption></figure>
+              <div class="feed__side">
+                <figure class="feed__profile"><img src="assets/companies/mave/profile.webp" alt="The mavehealth.hq Instagram profile at 3k followers" loading="lazy" decoding="async"><figcaption>mavehealth.hq: 0 to 3K in 3 months</figcaption></figure>
+                <div class="feed__ep">
+                  <p class="feed__kicker">the podcast</p>
+                  <p class="feed__title">EP-01: Unpacking India&rsquo;s Healthcare Crisis</p>
+                  <p>A candid conversation with Viren Shetty, Executive Director of Narayana Health, and with Robin Uthappa.</p>
+                </div>
+                <div class="links">
+                  <a class="links__item links__item--plain" href="https://www.instagram.com/therapyclubindia/" target="_blank" rel="noopener"><span><b>Therapy Club India</b>See the channel on Instagram ↗</span></a>
+                  <a class="links__item links__item--plain" href="https://www.instagram.com/mavehealth.hq/" target="_blank" rel="noopener"><span><b>Mave Health</b>mavehealth.hq on Instagram ↗</span></a>
+                </div>
+              </div>
+            </div>
+          </section>
         </article>
       </template>
-      <!-- Stop 02. Text marked .todo is a placeholder: replace it and drop the class. The window's label above
-           and data-label here are the company's name. -->
+      <!-- Stop 02: the page Joveo's window opens. Its data-label is the company name, which also labels the "next:" button. -->
       <template data-intern="intern-2" data-label="Joveo">
         <article class="ticket" aria-label="Joveo">
           <p class="ticket__route">route G3 · stop 02</p>
@@ -452,19 +573,22 @@
             <figure class="ticket__plan" data-plan></figure>
             <div class="ticket__notes">
               <dl class="ticket__facts">
-                <div><dt>role</dt><dd>global supply &amp; partnerships intern</dd></div>
+                <div><dt>role</dt><dd>international partnerships intern</dd></div>
                 <div><dt>when</dt><dd>Jun – Aug 2024</dd></div>
               </dl>
+              <p class="ticket__hand">Worked on global partnerships across the US, UK and Portugal during my 3-month stint at a programmatic HR-tech company.</p>
               <ol class="ticket__parts">
-                <li>Ran partnership strategy for 50+ clients across the US, UK and Portugal, improving onboarding speed 20%.</li>
-                <li>Qualified 200+ prospective partners through market data analysis, raising pipeline efficiency 30%.</li>
+                <li><span>Worked on identifying and bringing <b>job boards and job aggregators</b> onto Joveo&rsquo;s platform across the US, UK and Portugal. Researched regional markets, mapped potential partners and qualified <b>80+ prospective partners</b> based on market data, audience relevance and partnership fit.</span></li>
+                <li><span>Successfully onboarded <b>15 job boards and job aggregators within 3 months</b>. Handled the initial partnership journey end to end, from scouting potential partners and finding the right contacts to initiating conversations, managing email communication and taking discussions forward before handing over to my manager for the next stage.</span></li>
+                <li><span>Managed initial partner outreach primarily through <b>cold emails</b>, learning how to personalise pitches, follow up with international prospects and navigate business conversations across different markets. Also participated in international calls and partner discussions.</span></li>
+                <li><span>Got hands-on exposure to the <b>programmatic recruitment ecosystem</b>, including job feeds, XML integrations, CPC (Cost Per Click), CPA (Cost Per Acquisition) and CTR (Click-Through Rate), and how these metrics influence the way job boards and aggregators work with recruitment platforms.</span></li>
+                <li><span>Learned the <b>end-to-end partnership process</b>, from identifying a potential business partner and qualifying the opportunity to negotiations, documentation, agreement signing and onboarding. Worked closely with my manager to move promising conversations through the partnership pipeline.</span></li>
               </ol>
             </div>
           </div>
         </article>
       </template>
-      <!-- Stop 03. Text marked .todo is a placeholder: replace it and drop the class. The window's label above
-           and data-label here are the company's name. -->
+      <!-- Stop 03: the page MyCaptain's window opens. Its data-label is the company name, which also labels the "next:" button. -->
       <template data-intern="intern-3" data-label="MyCaptain">
         <article class="ticket" aria-label="MyCaptain">
           <p class="ticket__route">route G3 · stop 03</p>
@@ -477,9 +601,10 @@
                 <div><dt>when</dt><dd>Jul – Dec 2023</dd></div>
               </dl>
               <ol class="ticket__parts">
-                <li>Ran three concurrent programmes and a 50+ participant cohort.</li>
-                <li>Resolved 100+ individual escalations, for a 20% rise in satisfaction.</li>
-                <li>Cut scheduling conflicts by 15%.</li>
+                <li><span>Managed the <b>day-to-day coordination of classes</b>, ensuring sessions ran smoothly, started on time and followed the planned schedule.</span></li>
+                <li><span>Acted as the <b>first point of contact for students</b> during classes, addressing their doubts and concerns, documenting recurring queries and escalating unresolved issues to managers for timely resolution.</span></li>
+                <li><span>Coordinated with <b>class teachers</b> to ensure sessions were conducted properly, maintained classroom discipline and addressed any issues affecting the learning experience.</span></li>
+                <li><span>Kept track of <b>student queries and operational issues</b> to make sure they were resolved promptly rather than piling up, while maintaining <em>smooth communication between students, teachers and managers</em>.</span></li>
               </ol>
             </div>
           </div>
@@ -576,16 +701,13 @@
           </div>
         </article>
       </template>
-      <!-- AI+ Partnership Deck: replace the text marked .todo, put the video and pictures in assets/websites/web-1/, and set the link. -->
-      
-      <!-- AI+ Partnership Deck: replace the text marked .todo, put the video and pictures in assets/websites/web-1/, and set the link. -->
+      <!-- AI+ Partnership Deck: opened from the Featured Projects grid. Pictures are in assets/websites/web-1/. -->
       <template data-web-page="web-1" data-label="AI+ Partnership Deck">
         <article class="wproj" aria-label="AI+ Partnership Deck">
           <header class="wproj__top">
             <h2 class="wproj__name">AI+ Partnership Deck</h2>
             <p class="wproj__note">(Scroll to explore)</p>
           </header>
-          <div class="wproj__video"><!-- <video src="assets/websites/web-1/film.mp4" autoplay muted loop playsinline></video> --><span class="wcard__ph">project video</span></div>
           <div class="wproj__info">
             <dl>
               <div><dt>Info</dt><dd>A partnership deck built for AI+, designed to bring its community, ecosystem and value proposition together in a compelling visual narrative. Created to make partnership conversations more engaging and to communicate the value of being part of the AI+ ecosystem.</dd></div>
@@ -614,14 +736,13 @@
           </section>
         </article>
       </template>
-      <!-- AI+ Website: replace the text marked .todo, put the video and pictures in assets/websites/web-2/, and set the link. -->
+      <!-- AI+ Website: opened from the Featured Projects grid. Pictures are in assets/websites/web-2/. -->
       <template data-web-page="web-2" data-label="AI+ Website">
         <article class="wproj" aria-label="AI+ Website">
           <header class="wproj__top">
             <h2 class="wproj__name">AI+ Website</h2>
             <p class="wproj__note">(Scroll to explore)</p>
           </header>
-          <div class="wproj__video"><!-- <video src="assets/websites/web-2/film.mp4" autoplay muted loop playsinline></video> --><span class="wcard__ph">project video</span></div>
           <div class="wproj__info">
             <dl>
               <div><dt>Info</dt><dd>A digital home for AI+, built to bring its community, events and vision to life. Designed around the idea that a website should feel like an extension of the brand, combining visual storytelling, thoughtful interactions and a cohesive digital experience.</dd></div>
@@ -650,14 +771,13 @@
           </section>
         </article>
       </template>
-      <!-- AI+ Venue Finder: replace the text marked .todo, put the video and pictures in assets/websites/web-3/, and set the link. -->
+      <!-- AI+ Venue Finder: opened from the Featured Projects grid. Pictures are in assets/websites/web-3/. -->
       <template data-web-page="web-3" data-label="AI+ Venue Finder">
         <article class="wproj" aria-label="AI+ Venue Finder">
           <header class="wproj__top">
             <h2 class="wproj__name">AI+ Venue Finder</h2>
             <p class="wproj__note">(Scroll to explore)</p>
           </header>
-          <div class="wproj__video"><!-- <video src="assets/websites/web-3/film.mp4" autoplay muted loop playsinline></video> --><span class="wcard__ph">project video</span></div>
           <div class="wproj__info">
             <dl>
               <div><dt>Info</dt><dd>A venue discovery platform built to make finding the right spaces for AI+ gatherings easier. Designed to bring venue information into one place, so we can explore and compare options by location, capacity, pricing and other event requirements.</dd></div>
@@ -854,7 +974,8 @@
     </section>
 
     <!-- Jack of all trades: a notepad page that floats down and sticks to the maroon (scripts/scenes/jack.js).
-         Each skill's data-target is where its arrow will lead; intentionally empty for now. -->
+         Each skill's data-target is the hash of the page it opens (see the pages registered in jack.js and the
+         other scenes). -->
     <section id="jack" class="jack" aria-labelledby="jack-title" data-jack data-lazy-bg>
       <div class="jack__sea" data-jack-sea aria-hidden="true">
         <svg class="jack__waves" data-jack-waves preserveAspectRatio="none"></svg>
@@ -914,7 +1035,7 @@
           </header>
           <div class="pick">
             <a class="pick__item" href="#work-ai-plus" data-open-case="work-ai-plus"><span class="pick__name">AI+</span><span class="pick__what">50+ partners, $250,000+ in sponsorship, 89% came back</span><span class="pick__go" aria-hidden="true">→</span></a>
-            <a class="pick__item" href="#intern-2" data-open-case="intern-2"><span class="pick__name">Joveo</span><span class="pick__what">Partnership strategy for 50+ clients across the US, UK and Portugal</span><span class="pick__go" aria-hidden="true">→</span></a>
+            <a class="pick__item" href="#intern-2" data-open-case="intern-2"><span class="pick__name">Joveo</span><span class="pick__what">15 job boards and aggregators onboarded across the US, UK and Portugal</span><span class="pick__go" aria-hidden="true">→</span></a>
             <a class="pick__item" href="#work-arctus" data-open-case="work-arctus"><span class="pick__name">Arctus Aerospace</span><span class="pick__what">LOIs and strategic partnerships ahead of the next round</span><span class="pick__go" aria-hidden="true">→</span></a>
           </div>
         </article>
@@ -923,8 +1044,7 @@
 
 
     <!-- Contact: the last page — a red wall, the post box (assets/contact/postbox*.webp), a letter dropping into
-         its slot as you arrive, and a postcard with the ways to reach me (scripts/scenes/contact.js). Links marked
-         .todo are placeholders: set each href and its text. -->
+         its slot as you arrive, and a postcard with the ways to reach me (scripts/scenes/contact.js). -->
     <footer id="contact" class="post" aria-labelledby="post-title" data-contact>
       <div class="post__scene">
         <div class="post__words">

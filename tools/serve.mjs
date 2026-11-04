@@ -1,12 +1,13 @@
 // Tiny zero-dependency static server with HTTP range support (Safari needs it to play video).
-// Usage: node server.mjs [port]
+// Usage: node tools/serve.mjs [port]   (or: npm run dev)
 import { createServer } from 'node:http';
 import { createReadStream } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { extname, join, normalize, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const root = fileURLToPath(new URL('.', import.meta.url));
+// The site root is one level up from tools/.
+const root = fileURLToPath(new URL('..', import.meta.url));
 const port = Number(process.argv[2] || process.env.PORT || 5173);
 
 const types = {

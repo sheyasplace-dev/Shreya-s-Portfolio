@@ -262,3 +262,29 @@
   .bus__label b { font-size: max(9px, calc(var(--bw) * 0.03)); }
   .bus__label span { display: none; }
 }
+
+/* Mave: the points in groups, numbered straight through; then the feed it made. */
+.ticket__groups { counter-reset: part; }
+.ticket__groups .ticket__parts { counter-reset: none; }
+.ticket__parts b { font-weight: 700; }
+.ticket__group { margin: 1.6em 0 0.3em; padding-bottom: 0.5em; border-bottom: 1px solid var(--rule); font-family: 'Figtree', var(--font-ui); font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
+.ticket__group:first-child { margin-top: 0; }
+
+.feed { margin-top: clamp(56px, 10vh, 110px); padding-top: clamp(24px, 4vh, 40px); border-top: 1px solid var(--rule); }
+.feed figure { margin: 0; }
+.feed img { display: block; width: 100%; height: auto; }
+.feed figcaption { margin-top: 10px; font-family: 'Figtree', var(--font-ui); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; }
+.feed__grid { display: grid; gap: clamp(28px, 4vw, 56px); }
+.feed__reels img { box-shadow: 0 24px 40px -26px rgba(40, 25, 10, 0.6); }
+.feed__side { display: grid; gap: 24px; align-content: start; }
+.feed__profile img { border-radius: 6px; }
+.feed__ep { padding: 22px; border: 1px solid var(--rule); background: rgba(255, 250, 238, 0.35); font-family: 'Figtree', var(--font-ui); line-height: 1.6; }
+.feed__ep p { margin: 0; }
+.feed__kicker { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; }
+.feed__title { margin: 0.3em 0 0.4em !important; font-family: var(--font-display); font-size: 1.45rem; line-height: 1.2; }
+.feed .links__item { border-color: var(--rule); }
+.feed .links__item span { color: rgba(27, 25, 21, 0.75); }
+.feed .links__item b { color: var(--ink); }
+@media (min-width: 900px) {
+  .feed__grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); align-items: start; }
+}

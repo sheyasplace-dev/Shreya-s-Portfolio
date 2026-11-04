@@ -165,7 +165,6 @@
 }
 
 .card__line:hover { color: #9e1b22; padding-left: 6px; }
-.post .todo { opacity: 0.55; }
 
 .post__nav {
   display: flex;
@@ -223,7 +222,6 @@
 
 .post__social a:hover { background: var(--mustard); border-color: var(--mustard); color: var(--wall-deep); translate: 0 -2px; }
 .post__social a:hover svg { background: var(--wall-deep); stroke: var(--mustard); }
-.post__social a.todo { opacity: 0.85; font-style: normal; }
 
 .card__line--blank { height: 1.6em; }
 .card__line--city { font-size: 0.95rem; opacity: 0.75; }

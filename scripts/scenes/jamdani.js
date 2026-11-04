@@ -14,7 +14,7 @@ export const JAMDANI = {
 };
 
 const TILE = 48;   // threads across one repeat of the static bands
-export const ROWS = 50;
+const ROWS = 50;
 export const WAVE = 12; // threads across one wave
 export const BOAT_GAP = 96; // threads between boats
 
