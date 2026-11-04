@@ -13,6 +13,7 @@ html.has-casefile { overflow: hidden; }
   position: fixed;
   inset: 0;
   z-index: 60;
+  overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
   background: var(--paper);
@@ -306,16 +307,6 @@ html.has-casefile { overflow: hidden; }
   .room__shot--l { grid-column: 1 / 7; }
   .room__shot--r { grid-column: 7 / 13; margin-top: clamp(40px, 8vh, 96px); }
 }
-
-/* Arctus: sample outreach letters (names hidden), and links out. */
-.outbox { display: grid; gap: 22px; }
-.outbox .room__title, .outbox .room__lede { margin-bottom: 0; }
-.letter { max-width: 40rem; padding: 26px 30px; background: #fffdf8; border: 1px solid var(--rule); box-shadow: 0 18px 30px -24px rgba(40, 25, 10, 0.45); font-size: 0.95rem; line-height: 1.65; }
-.letter p { margin: 0 0 0.8em; }
-.letter--tilt { rotate: -0.8deg; margin-left: clamp(0px, 4vw, 60px); }
-.letter__sign { margin: 1em 0 0 !important; font-family: 'Cedarville Cursive', cursive; }
-.redact { display: inline-block; width: 4.2em; height: 0.95em; vertical-align: -0.12em; background: var(--ink); border-radius: 2px; }
-.redact--long { width: 6.5em; }
 .links { display: grid; gap: 16px; align-content: start; }
 .links__item { display: grid; grid-template-columns: 120px 1fr; gap: 18px; align-items: center; padding: 14px; border: 1px solid var(--rule); color: inherit; text-decoration: none; transition: background 0.3s; }
 .links__item:hover { background: rgba(154, 59, 44, 0.06); }
@@ -323,15 +314,6 @@ html.has-casefile { overflow: hidden; }
 .links__item span { display: grid; gap: 4px; font-size: 0.9rem; color: rgba(35, 32, 28, 0.7); }
 .links__item b { font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; color: var(--ink); }
 .links__item--plain { grid-template-columns: 1fr; padding: 22px; }
-@media (min-width: 900px) { .outbox { grid-column: 1 / 13; } }
-@media (min-width: 900px) {
-  .outbox { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; align-items: start; }
-  .outbox .room__title, .outbox .room__lede { grid-column: 1 / -1; }
-  .outbox .letter { padding: 22px 22px; font-size: 0.88rem; }
-  .outbox .letter:nth-of-type(1) { rotate: -1deg; }
-  .outbox .letter--tilt { margin: 28px 0 0; rotate: 0.8deg; }
-  .outbox .letter:nth-of-type(3) { rotate: -0.5deg; margin-top: 10px; }
-}
 
 /* Wayground: "what I did" in four groups, numbered straight through; then the people and the photos. */
 .case__boxgrid.case__groups { display: block; max-width: 52rem; counter-reset: point; }
@@ -342,8 +324,22 @@ html.has-casefile { overflow: hidden; }
 .room__film--low img { object-position: center 62%; }
 .room__shot--low img { object-position: 15% center; }
 .room__shot--wide img { aspect-ratio: 4 / 3; }
-.letter a, .letter u { color: #2b55c9; text-decoration: underline; text-underline-offset: 2px; }
 /* AI+: the groups are numbered, so the points under them are bullets. */
 .case__groups--bullets .case__list li { grid-template-columns: 1.4rem 1fr; }
 .case__groups--bullets .case__list li::before { content: '•'; }
 .case__groups--bullets .case__group:first-child { margin-top: 0; }
+
+/* Arctus: the cold emails, as screenshots (names hidden), centred in one column; and links out. */
+.outbox { grid-column: 1 / -1; display: grid; justify-items: center; gap: 22px; text-align: center; }
+.outbox .room__title, .outbox .room__lede { margin: 0; }
+.outbox .room__lede { max-width: 36rem; }
+.emails { display: grid; justify-items: center; gap: clamp(28px, 5vw, 56px); width: 100%; margin-top: 12px; }
+.email { margin: 0; width: min(100%, 860px); }
+.email img { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--rule); box-shadow: 0 18px 30px -24px rgba(40, 25, 10, 0.45); }
+.email figcaption { margin-top: 12px; text-align: center; }
+
+/* The photo sections: centred, and never wider than the screen. */
+.room > * { min-width: 0; }
+.room figcaption { text-align: center; }
+.room__story { margin-inline: auto; text-align: center; }
+.room__quote { margin-inline: auto; padding: 16px 0 0; border-left: 0; border-top: 2px solid var(--red); text-align: center; }
