@@ -263,8 +263,12 @@ html.has-casefile { overflow: hidden; }
 .wcard__img:has(img) { display: block; }
 
 /* Open source: a screenshot instead of a black-and-white band, and running prose instead of a list. */
-.case__band--shot { padding: 0 var(--gutter); }
-.case__band--shot img { height: auto; max-height: none; filter: none; border: 1px solid var(--rule); }
+/* Shipped: two screenshots side by side at one height (each flexes by its aspect ratio), full size on click. */
+.case__shots { display: flex; gap: clamp(12px, 2vw, 28px); align-items: flex-start; padding: clamp(28px, 5vh, 56px) var(--gutter) 0; }
+.case__shots figure { margin: 0; flex: var(--ar) 1 0; min-width: 0; }
+.case__shots a { display: block; }
+.case__shots img { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--rule); box-shadow: 0 18px 30px -24px rgba(40, 25, 10, 0.45); }
+.case__shots figcaption { margin-top: 10px; text-align: center; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(35, 32, 28, 0.6); }
 .case__prose { max-width: 46rem; line-height: 1.7; }
 .case__prose p { margin: 0 0 1.1em; }
 .case__path a, .case__link { color: var(--red); }
